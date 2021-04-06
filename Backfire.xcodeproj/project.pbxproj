@@ -1,0 +1,701 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		63DEF6EB261BF06A00AF9AE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6EA261BF06A00AF9AE8 /* Tests_iOS.swift */; };
+		63DEF6F6261BF06A00AF9AE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6F5261BF06A00AF9AE8 /* Tests_macOS.swift */; };
+		63DEF6F8261BF06A00AF9AE8 /* BackfireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6CF261BF06900AF9AE8 /* BackfireApp.swift */; };
+		63DEF6F9261BF06A00AF9AE8 /* BackfireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6CF261BF06900AF9AE8 /* BackfireApp.swift */; };
+		63DEF6FA261BF06A00AF9AE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6D0261BF06900AF9AE8 /* ContentView.swift */; };
+		63DEF6FB261BF06A00AF9AE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6D0261BF06900AF9AE8 /* ContentView.swift */; };
+		63DEF6FC261BF06A00AF9AE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */; };
+		63DEF6FD261BF06A00AF9AE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		63DEF6E7261BF06A00AF9AE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DEF6CA261BF06900AF9AE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63DEF6D5261BF06A00AF9AE8;
+			remoteInfo = "Backfire (iOS)";
+		};
+		63DEF6F2261BF06A00AF9AE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DEF6CA261BF06900AF9AE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63DEF6DD261BF06A00AF9AE8;
+			remoteInfo = "Backfire (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		63DEF6CF261BF06900AF9AE8 /* BackfireApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireApp.swift; sourceTree = "<group>"; };
+		63DEF6D0261BF06900AF9AE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63DEF6D6261BF06A00AF9AE8 /* Backfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backfire.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63DEF6D9261BF06A00AF9AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63DEF6DE261BF06A00AF9AE8 /* Backfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backfire.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63DEF6E0261BF06A00AF9AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63DEF6E1261BF06A00AF9AE8 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		63DEF6E6261BF06A00AF9AE8 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63DEF6EA261BF06A00AF9AE8 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		63DEF6EC261BF06A00AF9AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63DEF6F1261BF06A00AF9AE8 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63DEF6F5261BF06A00AF9AE8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		63DEF6F7261BF06A00AF9AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63DEF6D3261BF06A00AF9AE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6DB261BF06A00AF9AE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6E3261BF06A00AF9AE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6EE261BF06A00AF9AE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		63DEF6C9261BF06900AF9AE8 = {
+			isa = PBXGroup;
+			children = (
+				63DEF6CE261BF06900AF9AE8 /* Shared */,
+				63DEF6D8261BF06A00AF9AE8 /* iOS */,
+				63DEF6DF261BF06A00AF9AE8 /* macOS */,
+				63DEF6E9261BF06A00AF9AE8 /* Tests iOS */,
+				63DEF6F4261BF06A00AF9AE8 /* Tests macOS */,
+				63DEF6D7261BF06A00AF9AE8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		63DEF6CE261BF06900AF9AE8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				63DEF6CF261BF06900AF9AE8 /* BackfireApp.swift */,
+				63DEF6D0261BF06900AF9AE8 /* ContentView.swift */,
+				63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		63DEF6D7261BF06A00AF9AE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63DEF6D6261BF06A00AF9AE8 /* Backfire.app */,
+				63DEF6DE261BF06A00AF9AE8 /* Backfire.app */,
+				63DEF6E6261BF06A00AF9AE8 /* Tests iOS.xctest */,
+				63DEF6F1261BF06A00AF9AE8 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63DEF6D8261BF06A00AF9AE8 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				63DEF6D9261BF06A00AF9AE8 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		63DEF6DF261BF06A00AF9AE8 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				63DEF6E0261BF06A00AF9AE8 /* Info.plist */,
+				63DEF6E1261BF06A00AF9AE8 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		63DEF6E9261BF06A00AF9AE8 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				63DEF6EA261BF06A00AF9AE8 /* Tests_iOS.swift */,
+				63DEF6EC261BF06A00AF9AE8 /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		63DEF6F4261BF06A00AF9AE8 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				63DEF6F5261BF06A00AF9AE8 /* Tests_macOS.swift */,
+				63DEF6F7261BF06A00AF9AE8 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		63DEF6D5261BF06A00AF9AE8 /* Backfire (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63DEF700261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Backfire (iOS)" */;
+			buildPhases = (
+				63DEF6D2261BF06A00AF9AE8 /* Sources */,
+				63DEF6D3261BF06A00AF9AE8 /* Frameworks */,
+				63DEF6D4261BF06A00AF9AE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Backfire (iOS)";
+			productName = "Backfire (iOS)";
+			productReference = 63DEF6D6261BF06A00AF9AE8 /* Backfire.app */;
+			productType = "com.apple.product-type.application";
+		};
+		63DEF6DD261BF06A00AF9AE8 /* Backfire (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63DEF703261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Backfire (macOS)" */;
+			buildPhases = (
+				63DEF6DA261BF06A00AF9AE8 /* Sources */,
+				63DEF6DB261BF06A00AF9AE8 /* Frameworks */,
+				63DEF6DC261BF06A00AF9AE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Backfire (macOS)";
+			productName = "Backfire (macOS)";
+			productReference = 63DEF6DE261BF06A00AF9AE8 /* Backfire.app */;
+			productType = "com.apple.product-type.application";
+		};
+		63DEF6E5261BF06A00AF9AE8 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63DEF706261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				63DEF6E2261BF06A00AF9AE8 /* Sources */,
+				63DEF6E3261BF06A00AF9AE8 /* Frameworks */,
+				63DEF6E4261BF06A00AF9AE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63DEF6E8261BF06A00AF9AE8 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = 63DEF6E6261BF06A00AF9AE8 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		63DEF6F0261BF06A00AF9AE8 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63DEF709261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				63DEF6ED261BF06A00AF9AE8 /* Sources */,
+				63DEF6EE261BF06A00AF9AE8 /* Frameworks */,
+				63DEF6EF261BF06A00AF9AE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63DEF6F3261BF06A00AF9AE8 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 63DEF6F1261BF06A00AF9AE8 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63DEF6CA261BF06900AF9AE8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					63DEF6D5261BF06A00AF9AE8 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					63DEF6DD261BF06A00AF9AE8 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					63DEF6E5261BF06A00AF9AE8 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 63DEF6D5261BF06A00AF9AE8;
+					};
+					63DEF6F0261BF06A00AF9AE8 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 63DEF6DD261BF06A00AF9AE8;
+					};
+				};
+			};
+			buildConfigurationList = 63DEF6CD261BF06900AF9AE8 /* Build configuration list for PBXProject "Backfire" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 63DEF6C9261BF06900AF9AE8;
+			productRefGroup = 63DEF6D7261BF06A00AF9AE8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63DEF6D5261BF06A00AF9AE8 /* Backfire (iOS) */,
+				63DEF6DD261BF06A00AF9AE8 /* Backfire (macOS) */,
+				63DEF6E5261BF06A00AF9AE8 /* Tests iOS */,
+				63DEF6F0261BF06A00AF9AE8 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		63DEF6D4261BF06A00AF9AE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63DEF6FC261BF06A00AF9AE8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6DC261BF06A00AF9AE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63DEF6FD261BF06A00AF9AE8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6E4261BF06A00AF9AE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6EF261BF06A00AF9AE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63DEF6D2261BF06A00AF9AE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63DEF6FA261BF06A00AF9AE8 /* ContentView.swift in Sources */,
+				63DEF6F8261BF06A00AF9AE8 /* BackfireApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6DA261BF06A00AF9AE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63DEF6FB261BF06A00AF9AE8 /* ContentView.swift in Sources */,
+				63DEF6F9261BF06A00AF9AE8 /* BackfireApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6E2261BF06A00AF9AE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63DEF6EB261BF06A00AF9AE8 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63DEF6ED261BF06A00AF9AE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63DEF6F6261BF06A00AF9AE8 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		63DEF6E8261BF06A00AF9AE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63DEF6D5261BF06A00AF9AE8 /* Backfire (iOS) */;
+			targetProxy = 63DEF6E7261BF06A00AF9AE8 /* PBXContainerItemProxy */;
+		};
+		63DEF6F3261BF06A00AF9AE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63DEF6DD261BF06A00AF9AE8 /* Backfire (macOS) */;
+			targetProxy = 63DEF6F2261BF06A00AF9AE8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		63DEF6FE261BF06A00AF9AE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		63DEF6FF261BF06A00AF9AE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		63DEF701261BF06A00AF9AE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire;
+				PRODUCT_NAME = Backfire;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63DEF702261BF06A00AF9AE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire;
+				PRODUCT_NAME = Backfire;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63DEF704261BF06A00AF9AE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire;
+				PRODUCT_NAME = Backfire;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		63DEF705261BF06A00AF9AE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire;
+				PRODUCT_NAME = Backfire;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		63DEF707261BF06A00AF9AE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Backfire (iOS)";
+			};
+			name = Debug;
+		};
+		63DEF708261BF06A00AF9AE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Backfire (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63DEF70A261BF06A00AF9AE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Backfire (macOS)";
+			};
+			name = Debug;
+		};
+		63DEF70B261BF06A00AF9AE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Backfire (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63DEF6CD261BF06900AF9AE8 /* Build configuration list for PBXProject "Backfire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63DEF6FE261BF06A00AF9AE8 /* Debug */,
+				63DEF6FF261BF06A00AF9AE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63DEF700261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Backfire (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63DEF701261BF06A00AF9AE8 /* Debug */,
+				63DEF702261BF06A00AF9AE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63DEF703261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Backfire (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63DEF704261BF06A00AF9AE8 /* Debug */,
+				63DEF705261BF06A00AF9AE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63DEF706261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63DEF707261BF06A00AF9AE8 /* Debug */,
+				63DEF708261BF06A00AF9AE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63DEF709261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63DEF70A261BF06A00AF9AE8 /* Debug */,
+				63DEF70B261BF06A00AF9AE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63DEF6CA261BF06900AF9AE8 /* Project object */;
+}
