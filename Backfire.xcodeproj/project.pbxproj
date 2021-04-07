@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632514F6261CF281006F5625 /* BackfireAppDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632514F5261CF281006F5625 /* BackfireAppDebug.swift */; };
+		632514F7261CF281006F5625 /* BackfireAppDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632514F5261CF281006F5625 /* BackfireAppDebug.swift */; };
+		632514FD261CF7F7006F5625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 632514FC261CF7F7006F5625 /* Assets.xcassets */; };
+		63251504261CF7F7006F5625 /* Backfire Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 63251503261CF7F7006F5625 /* Backfire Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		63251509261CF7F7006F5625 /* BackfireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63251508261CF7F7006F5625 /* BackfireApp.swift */; };
+		6325150B261CF7F7006F5625 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6325150A261CF7F7006F5625 /* ContentView.swift */; };
+		6325150D261CF7F7006F5625 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6325150C261CF7F7006F5625 /* NotificationController.swift */; };
+		6325150F261CF7F7006F5625 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6325150E261CF7F7006F5625 /* NotificationView.swift */; };
+		63251511261CF7F7006F5625 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63251510261CF7F7006F5625 /* ComplicationController.swift */; };
+		63251513261CF7F8006F5625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63251512261CF7F8006F5625 /* Assets.xcassets */; };
+		63251516261CF7F8006F5625 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63251515261CF7F8006F5625 /* Preview Assets.xcassets */; };
+		63251522261CF7F8006F5625 /* BackfireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63251521261CF7F8006F5625 /* BackfireTests.swift */; };
+		6325152D261CF7F8006F5625 /* BackfireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6325152C261CF7F8006F5625 /* BackfireUITests.swift */; };
+		63251531261CF7F8006F5625 /* Backfire.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 632514FA261CF7F5006F5625 /* Backfire.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		63251540261D1A53006F5625 /* BackfireBLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF714261BF4E100AF9AE8 /* BackfireBLEManager.swift */; };
 		63DEF6EB261BF06A00AF9AE8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6EA261BF06A00AF9AE8 /* Tests_iOS.swift */; };
 		63DEF6F6261BF06A00AF9AE8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6F5261BF06A00AF9AE8 /* Tests_macOS.swift */; };
 		63DEF6F8261BF06A00AF9AE8 /* BackfireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6CF261BF06900AF9AE8 /* BackfireApp.swift */; };
@@ -15,9 +30,39 @@
 		63DEF6FB261BF06A00AF9AE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF6D0261BF06900AF9AE8 /* ContentView.swift */; };
 		63DEF6FC261BF06A00AF9AE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */; };
 		63DEF6FD261BF06A00AF9AE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */; };
+		63DEF715261BF4E100AF9AE8 /* BackfireBLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF714261BF4E100AF9AE8 /* BackfireBLEManager.swift */; };
+		63DEF716261BF4E200AF9AE8 /* BackfireBLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DEF714261BF4E100AF9AE8 /* BackfireBLEManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		63251505261CF7F7006F5625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DEF6CA261BF06900AF9AE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63251502261CF7F7006F5625;
+			remoteInfo = "Backfire Extension";
+		};
+		6325151E261CF7F8006F5625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DEF6CA261BF06900AF9AE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63251502261CF7F7006F5625;
+			remoteInfo = "Backfire Extension";
+		};
+		63251529261CF7F8006F5625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DEF6CA261BF06900AF9AE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 632514F9261CF7F5006F5625;
+			remoteInfo = Backfire;
+		};
+		6325152F261CF7F8006F5625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63DEF6CA261BF06900AF9AE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 632514F9261CF7F5006F5625;
+			remoteInfo = Backfire;
+		};
 		63DEF6E7261BF06A00AF9AE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63DEF6CA261BF06900AF9AE8 /* Project object */;
@@ -34,7 +79,52 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		63251535261CF7F8006F5625 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				63251504261CF7F7006F5625 /* Backfire Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63251539261CF7F8006F5625 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				63251531261CF7F8006F5625 /* Backfire.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		632514F5261CF281006F5625 /* BackfireAppDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireAppDebug.swift; sourceTree = "<group>"; };
+		632514FA261CF7F5006F5625 /* Backfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backfire.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		632514FC261CF7F7006F5625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		632514FE261CF7F7006F5625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63251503261CF7F7006F5625 /* Backfire Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Backfire Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63251508261CF7F7006F5625 /* BackfireApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireApp.swift; sourceTree = "<group>"; };
+		6325150A261CF7F7006F5625 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6325150C261CF7F7006F5625 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		6325150E261CF7F7006F5625 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		63251510261CF7F7006F5625 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		63251512261CF7F8006F5625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63251515261CF7F8006F5625 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63251517261CF7F8006F5625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63251518261CF7F8006F5625 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		6325151D261CF7F8006F5625 /* BackfireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BackfireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63251521261CF7F8006F5625 /* BackfireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireTests.swift; sourceTree = "<group>"; };
+		63251523261CF7F8006F5625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63251528261CF7F8006F5625 /* BackfireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BackfireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6325152C261CF7F8006F5625 /* BackfireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireUITests.swift; sourceTree = "<group>"; };
+		6325152E261CF7F8006F5625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63DEF6CF261BF06900AF9AE8 /* BackfireApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireApp.swift; sourceTree = "<group>"; };
 		63DEF6D0261BF06900AF9AE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,9 +139,31 @@
 		63DEF6F1261BF06A00AF9AE8 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DEF6F5261BF06A00AF9AE8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		63DEF6F7261BF06A00AF9AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63DEF714261BF4E100AF9AE8 /* BackfireBLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireBLEManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		63251500261CF7F7006F5625 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6325151A261CF7F8006F5625 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63251525261CF7F8006F5625 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63DEF6D3261BF06A00AF9AE8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -83,6 +195,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		632514FB261CF7F5006F5625 /* Backfire */ = {
+			isa = PBXGroup;
+			children = (
+				632514FC261CF7F7006F5625 /* Assets.xcassets */,
+				632514FE261CF7F7006F5625 /* Info.plist */,
+			);
+			path = Backfire;
+			sourceTree = "<group>";
+		};
+		63251507261CF7F7006F5625 /* Backfire Extension */ = {
+			isa = PBXGroup;
+			children = (
+				63251508261CF7F7006F5625 /* BackfireApp.swift */,
+				6325150A261CF7F7006F5625 /* ContentView.swift */,
+				6325150C261CF7F7006F5625 /* NotificationController.swift */,
+				6325150E261CF7F7006F5625 /* NotificationView.swift */,
+				63251510261CF7F7006F5625 /* ComplicationController.swift */,
+				63251512261CF7F8006F5625 /* Assets.xcassets */,
+				63251517261CF7F8006F5625 /* Info.plist */,
+				63251518261CF7F8006F5625 /* PushNotificationPayload.apns */,
+				63251514261CF7F8006F5625 /* Preview Content */,
+			);
+			path = "Backfire Extension";
+			sourceTree = "<group>";
+		};
+		63251514261CF7F8006F5625 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				63251515261CF7F8006F5625 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63251520261CF7F8006F5625 /* BackfireTests */ = {
+			isa = PBXGroup;
+			children = (
+				63251521261CF7F8006F5625 /* BackfireTests.swift */,
+				63251523261CF7F8006F5625 /* Info.plist */,
+			);
+			path = BackfireTests;
+			sourceTree = "<group>";
+		};
+		6325152B261CF7F8006F5625 /* BackfireUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6325152C261CF7F8006F5625 /* BackfireUITests.swift */,
+				6325152E261CF7F8006F5625 /* Info.plist */,
+			);
+			path = BackfireUITests;
+			sourceTree = "<group>";
+		};
 		63DEF6C9261BF06900AF9AE8 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +254,10 @@
 				63DEF6DF261BF06A00AF9AE8 /* macOS */,
 				63DEF6E9261BF06A00AF9AE8 /* Tests iOS */,
 				63DEF6F4261BF06A00AF9AE8 /* Tests macOS */,
+				632514FB261CF7F5006F5625 /* Backfire */,
+				63251507261CF7F7006F5625 /* Backfire Extension */,
+				63251520261CF7F8006F5625 /* BackfireTests */,
+				6325152B261CF7F8006F5625 /* BackfireUITests */,
 				63DEF6D7261BF06A00AF9AE8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +267,8 @@
 			children = (
 				63DEF6CF261BF06900AF9AE8 /* BackfireApp.swift */,
 				63DEF6D0261BF06900AF9AE8 /* ContentView.swift */,
+				632514F5261CF281006F5625 /* BackfireAppDebug.swift */,
+				63DEF714261BF4E100AF9AE8 /* BackfireBLEManager.swift */,
 				63DEF6D1261BF06A00AF9AE8 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -112,6 +281,10 @@
 				63DEF6DE261BF06A00AF9AE8 /* Backfire.app */,
 				63DEF6E6261BF06A00AF9AE8 /* Tests iOS.xctest */,
 				63DEF6F1261BF06A00AF9AE8 /* Tests macOS.xctest */,
+				632514FA261CF7F5006F5625 /* Backfire.app */,
+				63251503261CF7F7006F5625 /* Backfire Extension.appex */,
+				6325151D261CF7F8006F5625 /* BackfireTests.xctest */,
+				63251528261CF7F8006F5625 /* BackfireUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,6 +327,76 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		632514F9261CF7F5006F5625 /* Backfire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63251536261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "Backfire" */;
+			buildPhases = (
+				632514F8261CF7F5006F5625 /* Resources */,
+				63251535261CF7F8006F5625 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63251506261CF7F7006F5625 /* PBXTargetDependency */,
+			);
+			name = Backfire;
+			productName = Backfire;
+			productReference = 632514FA261CF7F5006F5625 /* Backfire.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		63251502261CF7F7006F5625 /* Backfire Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63251532261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "Backfire Extension" */;
+			buildPhases = (
+				632514FF261CF7F7006F5625 /* Sources */,
+				63251500261CF7F7006F5625 /* Frameworks */,
+				63251501261CF7F7006F5625 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Backfire Extension";
+			productName = "Backfire Extension";
+			productReference = 63251503261CF7F7006F5625 /* Backfire Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		6325151C261CF7F8006F5625 /* BackfireTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6325153A261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "BackfireTests" */;
+			buildPhases = (
+				63251519261CF7F8006F5625 /* Sources */,
+				6325151A261CF7F8006F5625 /* Frameworks */,
+				6325151B261CF7F8006F5625 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6325151F261CF7F8006F5625 /* PBXTargetDependency */,
+			);
+			name = BackfireTests;
+			productName = BackfireTests;
+			productReference = 6325151D261CF7F8006F5625 /* BackfireTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		63251527261CF7F8006F5625 /* BackfireUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6325153D261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "BackfireUITests" */;
+			buildPhases = (
+				63251524261CF7F8006F5625 /* Sources */,
+				63251525261CF7F8006F5625 /* Frameworks */,
+				63251526261CF7F8006F5625 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6325152A261CF7F8006F5625 /* PBXTargetDependency */,
+			);
+			name = BackfireUITests;
+			productName = BackfireUITests;
+			productReference = 63251528261CF7F8006F5625 /* BackfireUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		63DEF6D5261BF06A00AF9AE8 /* Backfire (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63DEF700261BF06A00AF9AE8 /* Build configuration list for PBXNativeTarget "Backfire (iOS)" */;
@@ -161,10 +404,12 @@
 				63DEF6D2261BF06A00AF9AE8 /* Sources */,
 				63DEF6D3261BF06A00AF9AE8 /* Frameworks */,
 				63DEF6D4261BF06A00AF9AE8 /* Resources */,
+				63251539261CF7F8006F5625 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				63251530261CF7F8006F5625 /* PBXTargetDependency */,
 			);
 			name = "Backfire (iOS)";
 			productName = "Backfire (iOS)";
@@ -230,9 +475,23 @@
 		63DEF6CA261BF06900AF9AE8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					632514F9261CF7F5006F5625 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					63251502261CF7F7006F5625 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					6325151C261CF7F8006F5625 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 63251502261CF7F7006F5625;
+					};
+					63251527261CF7F8006F5625 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 632514F9261CF7F5006F5625;
+					};
 					63DEF6D5261BF06A00AF9AE8 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -266,11 +525,46 @@
 				63DEF6DD261BF06A00AF9AE8 /* Backfire (macOS) */,
 				63DEF6E5261BF06A00AF9AE8 /* Tests iOS */,
 				63DEF6F0261BF06A00AF9AE8 /* Tests macOS */,
+				632514F9261CF7F5006F5625 /* Backfire */,
+				63251502261CF7F7006F5625 /* Backfire Extension */,
+				6325151C261CF7F8006F5625 /* BackfireTests */,
+				63251527261CF7F8006F5625 /* BackfireUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		632514F8261CF7F5006F5625 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				632514FD261CF7F7006F5625 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63251501261CF7F7006F5625 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63251516261CF7F8006F5625 /* Preview Assets.xcassets in Resources */,
+				63251513261CF7F8006F5625 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6325151B261CF7F8006F5625 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63251526261CF7F8006F5625 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63DEF6D4261BF06A00AF9AE8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,11 +598,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		632514FF261CF7F7006F5625 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63251540261D1A53006F5625 /* BackfireBLEManager.swift in Sources */,
+				6325150D261CF7F7006F5625 /* NotificationController.swift in Sources */,
+				6325150B261CF7F7006F5625 /* ContentView.swift in Sources */,
+				63251511261CF7F7006F5625 /* ComplicationController.swift in Sources */,
+				63251509261CF7F7006F5625 /* BackfireApp.swift in Sources */,
+				6325150F261CF7F7006F5625 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63251519261CF7F8006F5625 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63251522261CF7F8006F5625 /* BackfireTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63251524261CF7F8006F5625 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6325152D261CF7F8006F5625 /* BackfireUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63DEF6D2261BF06A00AF9AE8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				632514F6261CF281006F5625 /* BackfireAppDebug.swift in Sources */,
 				63DEF6FA261BF06A00AF9AE8 /* ContentView.swift in Sources */,
+				63DEF715261BF4E100AF9AE8 /* BackfireBLEManager.swift in Sources */,
 				63DEF6F8261BF06A00AF9AE8 /* BackfireApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,7 +642,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				632514F7261CF281006F5625 /* BackfireAppDebug.swift in Sources */,
 				63DEF6FB261BF06A00AF9AE8 /* ContentView.swift in Sources */,
+				63DEF716261BF4E200AF9AE8 /* BackfireBLEManager.swift in Sources */,
 				63DEF6F9261BF06A00AF9AE8 /* BackfireApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +668,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		63251506261CF7F7006F5625 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63251502261CF7F7006F5625 /* Backfire Extension */;
+			targetProxy = 63251505261CF7F7006F5625 /* PBXContainerItemProxy */;
+		};
+		6325151F261CF7F8006F5625 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63251502261CF7F7006F5625 /* Backfire Extension */;
+			targetProxy = 6325151E261CF7F8006F5625 /* PBXContainerItemProxy */;
+		};
+		6325152A261CF7F8006F5625 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 632514F9261CF7F5006F5625 /* Backfire */;
+			targetProxy = 63251529261CF7F8006F5625 /* PBXContainerItemProxy */;
+		};
+		63251530261CF7F8006F5625 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 632514F9261CF7F5006F5625 /* Backfire */;
+			targetProxy = 6325152F261CF7F8006F5625 /* PBXContainerItemProxy */;
+		};
 		63DEF6E8261BF06A00AF9AE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 63DEF6D5261BF06A00AF9AE8 /* Backfire (iOS) */;
@@ -354,6 +701,186 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		63251533261CF7F8006F5625 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Backfire Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Backfire Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		63251534261CF7F8006F5625 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Backfire Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Backfire Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		63251537261CF7F8006F5625 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				IBSC_MODULE = Backfire_Extension;
+				INFOPLIST_FILE = Backfire/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		63251538261CF7F8006F5625 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				IBSC_MODULE = Backfire_Extension;
+				INFOPLIST_FILE = Backfire/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		6325153B261CF7F8006F5625 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = BackfireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.BackfireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backfire Extension.appex/Backfire Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		6325153C261CF7F8006F5625 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = BackfireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.BackfireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backfire Extension.appex/Backfire Extension";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
+		6325153E261CF7F8006F5625 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = BackfireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.BackfireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = Backfire;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Debug;
+		};
+		6325153F261CF7F8006F5625 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				INFOPLIST_FILE = BackfireUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.BackfireUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = Backfire;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+			};
+			name = Release;
+		};
 		63DEF6FE261BF06A00AF9AE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -650,6 +1177,42 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		63251532261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "Backfire Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63251533261CF7F8006F5625 /* Debug */,
+				63251534261CF7F8006F5625 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63251536261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "Backfire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63251537261CF7F8006F5625 /* Debug */,
+				63251538261CF7F8006F5625 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6325153A261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "BackfireTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6325153B261CF7F8006F5625 /* Debug */,
+				6325153C261CF7F8006F5625 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6325153D261CF7F8006F5625 /* Build configuration list for PBXNativeTarget "BackfireUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6325153E261CF7F8006F5625 /* Debug */,
+				6325153F261CF7F8006F5625 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		63DEF6CD261BF06900AF9AE8 /* Build configuration list for PBXProject "Backfire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
