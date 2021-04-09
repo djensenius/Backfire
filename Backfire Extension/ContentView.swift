@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var boardManager = BLEManager()
-    
+
     var body: some View {
         VStack {
             Spacer()

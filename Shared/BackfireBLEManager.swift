@@ -35,6 +35,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var mode = "Off"
     @Published var tripDistance = 0
     @Published var isConnected = false
+    @Published var isSearching = false
 
     override init() {
         super.init()
@@ -81,20 +82,23 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             peripheralName = "Unknown"
         }
 
-        let index = peripheralName.index(peripheralName.startIndex, offsetBy: 3)
-        if peripheralName[..<index] == "BF_" {
-            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue)
-            print(newPeripheral)
-            peripherals.append(newPeripheral)
-            stopScanning()
-            self.peripheral = peripheral
-            self.peripheral?.delegate = self
-            self.myCentral.connect(self.peripheral!, options: nil)
+        if peripheralName.count > 3 {
+            let index = peripheralName.index(peripheralName.startIndex, offsetBy: 3)
+            if peripheralName[..<index] == "BF_" {
+                let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue)
+                print(newPeripheral)
+                peripherals.append(newPeripheral)
+                stopScanning()
+                self.peripheral = peripheral
+                self.peripheral?.delegate = self
+                self.myCentral.connect(self.peripheral!, options: nil)
+            }
         }
     }
 
     func startScanning() {
          print("startScanning")
+        self.isSearching = true
         myCentral.scanForPeripherals(withServices: nil, options: nil)
      }
 
@@ -104,11 +108,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
 
     func disconnect() {
+        self.isConnected = false
         myCentral.cancelPeripheralConnection(peripheral!)
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         if peripheral == self.peripheral {
+            self.isSearching = false
             self.isConnected = true
             peripheral.discoverServices(nil)
         }
@@ -119,6 +125,18 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             for service in services {
                 peripheral.discoverCharacteristics(nil, for: service)
                 return
+            }
+        }
+    }
+
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        if peripheral == self.peripheral {
+            self.peripherals = [Peripheral]()
+            self.peripheral = nil
+            if (self.isConnected == true) {
+                self.isConnected = false
+                self.isSearching = true
+                self.startScanning()
             }
         }
     }
@@ -135,9 +153,17 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if characteristic.value?.count == 20 {
             self.bytesTwenty = characteristic.value!
-            self.speed = Int(characteristic.value![6]) / 4
-            self.battery = Int(characteristic.value![5])
-            let m = Int(characteristic.value![4])
+            if ((characteristic.value?[6]) != nil) {
+                self.speed = Int(characteristic.value![6]) / 4
+            }
+
+            if (characteristic.value?[5] != nil) {
+                self.battery = Int(characteristic.value![5])
+            }
+            var m = 0
+            if (characteristic.value?[4] != nil) {
+                m = Int(characteristic.value![4])
+            }
             if m == 1 {
                 self.mode = "Economy"
             } else if m == 2 {
@@ -145,7 +171,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             } else if m == 3 {
                 self.mode = "Turbo"
             }
-            self.tripDistance = Int(characteristic.value![17])
+            if (characteristic.value?[17] != nil) {
+                self.tripDistance = Int(characteristic.value![17])
+            }
         } else if characteristic.value?.count == 5 {
             self.bytesOne = characteristic.value!
         }

@@ -2,20 +2,18 @@
 //  BackfireApp.swift
 //  Backfire Extension
 //
-//  Created by David Jensenius on 2021-04-06.
+//  Created by David Jensenius on 2021-04-07.
 //
 
 import SwiftUI
 
 @main
 struct BackfireApp: App {
-    @SceneBuilder var body: some Scene {
+    var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
             }
         }
-
-        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
     }
 }
