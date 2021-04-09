@@ -23,7 +23,7 @@
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Needed to connect to board</string>
+	<string>Need bluetooth access to connect to your skateboard</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -34,5 +34,12 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is needed to track your ride</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

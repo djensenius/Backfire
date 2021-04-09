@@ -23,6 +23,8 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Needs to connect to your Backfire board</string>
+	<string>Need bluetooth access to connect to your skateboard</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location is needed to track your ride</string>
 </dict>
 </plist>

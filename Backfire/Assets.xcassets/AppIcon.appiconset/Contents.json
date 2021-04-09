@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Artboard 1@3x-38-Notification@2x~watch.png",
+      "filename" : "Board Logo 2-01-38-Notification@2x~watch.png",
       "idiom" : "watch",
       "role" : "notificationCenter",
       "scale" : "2x",
@@ -9,7 +9,7 @@
       "subtype" : "38mm"
     },
     {
-      "filename" : "Artboard 1@3x-40:42-Notification@2x~watch.png",
+      "filename" : "Board Logo 2-01-40:42-Notification@2x~watch.png",
       "idiom" : "watch",
       "role" : "notificationCenter",
       "scale" : "2x",
@@ -17,21 +17,21 @@
       "subtype" : "42mm"
     },
     {
-      "filename" : "Artboard 1@3x-44-Settings-Notification@2x~watch.png",
+      "filename" : "Board Logo 2-01-44-Settings-Notification@2x~watch.png",
       "idiom" : "watch",
       "role" : "companionSettings",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "Artboard 1@3x-Settings@3x.png",
+      "filename" : "Board Logo 2-01-Settings@3x.png",
       "idiom" : "watch",
       "role" : "companionSettings",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "Artboard 1@3x-38-Home-Screen@2x~watch.png",
+      "filename" : "Board Logo 2-01-38-Home-Screen@2x~watch.png",
       "idiom" : "watch",
       "role" : "appLauncher",
       "scale" : "2x",
@@ -39,7 +39,7 @@
       "subtype" : "38mm"
     },
     {
-      "filename" : "Artboard 1@3x-40:42-Home-Screen@2x~watch.png",
+      "filename" : "Board Logo 2-01-40:42-Home-Screen@2x~watch.png",
       "idiom" : "watch",
       "role" : "appLauncher",
       "scale" : "2x",
@@ -47,7 +47,7 @@
       "subtype" : "40mm"
     },
     {
-      "filename" : "Artboard 1@3x-44-Home-Screen@2x~watch.png",
+      "filename" : "Board Logo 2-01-44-Home-Screen@2x~watch.png",
       "idiom" : "watch",
       "role" : "appLauncher",
       "scale" : "2x",
@@ -55,7 +55,7 @@
       "subtype" : "44mm"
     },
     {
-      "filename" : "Artboard 1@3x-38-Short-Look@2x~watch.png",
+      "filename" : "Board Logo 2-01-38-Short-Look@2x~watch.png",
       "idiom" : "watch",
       "role" : "quickLook",
       "scale" : "2x",
@@ -63,7 +63,7 @@
       "subtype" : "38mm"
     },
     {
-      "filename" : "Artboard 1@3x-42-Short-Look@2x~watch.png",
+      "filename" : "Board Logo 2-01-42-Short-Look@2x~watch.png",
       "idiom" : "watch",
       "role" : "quickLook",
       "scale" : "2x",
@@ -71,7 +71,7 @@
       "subtype" : "42mm"
     },
     {
-      "filename" : "Artboard 1@3x-44-Short-Look@2x~watch.png",
+      "filename" : "Board Logo 2-01-44-Short-Look@2x~watch.png",
       "idiom" : "watch",
       "role" : "quickLook",
       "scale" : "2x",
@@ -79,7 +79,7 @@
       "subtype" : "44mm"
     },
     {
-      "filename" : "icon_512x512@2x.png",
+      "filename" : "Board Logo 2-01@ios~marketing.png",
       "idiom" : "watch-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

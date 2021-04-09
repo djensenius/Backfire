@@ -8,43 +8,43 @@
 import SwiftUI
 
 struct BackfireAppDebug: View {
-    @ObservedObject var bleManager = BLEManager()
+    @ObservedObject var boardManager: BLEManager
 
     var body: some View {
-        VStack {
-            HStack {
+        HStack {
+            HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text("Twenty")
                         .font(.headline)
                 }
 
                 VStack(alignment: .leading) {
-                    ForEach(bleManager.bytesTwenty.indices, id: \.self) { byte in
-                        Text("Value \(byte): \(bleManager.bytesTwenty[byte])")
+                    ForEach(boardManager.bytesTwenty.indices, id: \.self) { byte in
+                        Text("Value \(byte): \(boardManager.bytesTwenty[byte])")
                     }
                 }
                 Spacer()
             }
-            HStack {
+            Spacer()
+            HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text("Twenty")
+                    Text("Five")
                         .font(.headline)
                 }
 
                 VStack(alignment: .leading) {
-                    ForEach(bleManager.bytesOne.indices, id: \.self) { byte in
-                        Text("Value \(byte): \(bleManager.bytesOne[byte])")
+                    ForEach(boardManager.bytesOne.indices, id: \.self) { byte in
+                        Text("Value \(byte): \(boardManager.bytesOne[byte])")
                     }
                 }
                 Spacer()
             }
         }
-        Spacer()
     }
 }
 
 struct BackfireAppDebug_Previews: PreviewProvider {
     static var previews: some View {
-        BackfireAppDebug()
+        BackfireAppDebug(boardManager: BLEManager())
     }
 }
