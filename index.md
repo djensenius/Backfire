@@ -10,15 +10,18 @@ I was not satisfied with any of the electric skateboard tracking apps out there.
 * Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right?)
 
 ### Screenshots
-![iPhone Current Ride](/screenshots/IMG_3885.PNG =250x)
+![Apple Watch](/screenshots/IMG_3889.PNG =250)
 
-![iPhone Rides](/screenshots/IMG_3884.PNG =250x)
+![iPhone Rides](/screenshots/IMG_3890.PNG =250)
 
-![iPhone Ride Summary](/screenshots/2021-04-10.png =250x)
+![iPhone Ride Summary (some data missing as this was done in the simulator)](/screenshots/2021-04-10.png =250)
+
+![iPhone Current Ride](/screenshots/IMG_3885.PNG =250)
+
 
 ### FAQ
 
-**Is this official**
+**Is this official**?
 
 It is not. This is a hobby app and is in no way connected to or associated with Backfire Boards. I needed to reverse engineer the bluetooth data as the spec is not provided by Backfire or Hobbywing.
 
@@ -28,12 +31,19 @@ Maybe? I have only tested it on the Backfire Zealot S. If your board is a Backfi
 
 **Will this work on Android?**
 
-No
+No.
 
 **Will this ever support Android?**
 
-Almost certainly not, it's built using Apple technologies like CloudKit. If you are feeling ambitious, I'm more than happy to have contributors! 
+Almost certainly not, it's built using Apple technologies like CloudKit. If you are feeling ambitious, I'm more than happy to have contributors!
 
+**Is there a macOS version?**
+
+I don't recommend riding your electric skateboard while holding a Mac, but yes. A version will be up to view your rides.
+
+**How can I use it?**
+
+Contact me for a TestFlight beta.
 
 
 ### Support or Contact
