@@ -10,13 +10,13 @@ I was not satisfied with any of the electric skateboard tracking apps out there.
 * Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right?)
 
 ### Screenshots
-![Apple Watch](/screenshots/IMG_3889.PNG =250)
+![Apple Watch](/Backfire/assets/IMG_3889.PNG =250)
 
-![iPhone Rides](/screenshots/IMG_3890.PNG =250)
+![iPhone Rides](/Backfire/assets/IMG_3890.PNG =250)
 
-![iPhone Ride Summary (some data missing as this was done in the simulator)](/screenshots/2021-04-10.png =250)
+![iPhone Ride Summary (some data missing as this was done in the simulator)](/Backfire/assets/2021-04-10.png =250)
 
-![iPhone Current Ride](/screenshots/IMG_3885.PNG =250)
+![iPhone Current Ride](/Backfire/assets/IMG_3885.PNG =250)
 
 
 ### FAQ
