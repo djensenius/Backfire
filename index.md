@@ -10,9 +10,11 @@ I was not satisfied with any of the electric skateboard tracking apps out there.
 * Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right?)
 
 ### Screenshots
-![iPhone Current Ride](/screenshots/IMG_3885.PNG)
+![iPhone Current Ride](/screenshots/IMG_3885.PNG =250x)
 
-![iPhone Rides](/screenshots/IMG_3884.PNG)
+![iPhone Rides](/screenshots/IMG_3884.PNG =250x)
+
+![iPhone Ride Summary](/screenshots/2021-04-10.png =250x)
 
 ### FAQ
 
