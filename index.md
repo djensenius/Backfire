@@ -55,4 +55,4 @@ Contact me for a TestFlight beta.
 
 ### Support or Contact
 
-Create an [issue].(https://github.com/djensenius/Backfire/issues)
+Create an [issue](https://github.com/djensenius/Backfire/issues).
