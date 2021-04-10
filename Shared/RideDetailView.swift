@@ -22,6 +22,9 @@ struct DetailRide {
     var rideTime: String
     var climb: Int
     var decline: Int
+    var mode: String
+    var startBattery: Int
+    var endBattery: Int
 }
 
 struct RideDetailView: View {
@@ -36,8 +39,13 @@ struct RideDetailView: View {
                     .ignoresSafeArea(edges: .top)
             }
             VStack(alignment: .leading) {
-                Text("\(ride.timestamp!, formatter: itemFormatter)")
-                    .font(.headline)
+                HStack {
+                    if ride.device == "Apple Watch" {
+                        Text(Image(systemName: "applewatch"))
+                    }
+                    Text("\(ride.timestamp!, formatter: itemFormatter)")
+                        .font(.headline)
+                }
                 HStack {
                     Text("Distance: \(String(format:"%.02f", (rideDetails?.distance ?? 1) / 1000)) km")
                     Spacer()
@@ -67,11 +75,11 @@ struct RideDetailView: View {
                     if ride.weather != nil {
                         Text("Wind \(String(format:"%.01f", formatWeather(weather: ride.weather!).windSpeed)) km/h")
                     }
-
                 }
+                Text("Battery: \(rideDetails?.startBattery ?? 0)% - \(rideDetails?.endBattery ?? 0)% (\(rideDetails?.mode ?? "Unknown") mode)")
             }.padding()
             Spacer()
-        }
+        }.background(Color("background"))
     }
 
     func parseRide(ride: Ride) -> DetailRide? {
@@ -98,6 +106,11 @@ struct RideDetailView: View {
         var firstLat = sortedLocations.first?.latitude
         var firstLon = sortedLocations.first?.longitude
         var altitude = sortedLocations.first?.altitude ?? 0
+        var startBattery: Int16 = 0
+        var endBattery: Int16 = 0
+        var economy = 0
+        var speed = 0
+        var turbo = 0
         var decline: Double = 0
         var incline: Double = 0
         var maxSpeed = 0
@@ -118,13 +131,37 @@ struct RideDetailView: View {
             if location.speed > maxSpeed {
                 maxSpeed = Int(location.speed)
             }
+            let mode = location.mode
+            if mode == 1 {
+                economy = economy + 1
+            } else if mode == 2 {
+                speed = speed + 1
+            } else if mode == 3 {
+                turbo = turbo + 1
+            }
+
+            if location.battery != 0 {
+                if startBattery == 0 {
+                    startBattery = location.battery
+                }
+                endBattery = location.battery
+            }
+        }
+        var mostMode = "Economy"
+        if speed > economy && speed > turbo {
+            mostMode = "Sport"
+        } else if turbo > speed && turbo > economy {
+            mostMode = "Turbo"
         }
         return DetailRide(
             maxSpeed: maxSpeed,
             distance: totalDistance,
             rideTime: timeText,
             climb: Int(incline),
-            decline: Int(decline)
+            decline: Int(decline),
+            mode: mostMode,
+            startBattery: Int(startBattery),
+            endBattery: Int(endBattery)
         )
     }
 

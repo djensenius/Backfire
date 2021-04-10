@@ -19,9 +19,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Need bluetooth access to connect to your skateboard</string>
 	<key>NSExtension</key>
@@ -34,12 +36,24 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>You health data is collected while riding your board to view later. Data remains only tied to you.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>You health data is collected while riding your board to view later. Data remains only tied to you.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location is needed to track your ride, always allow will let the app work when the screen is locked.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is needed to track your ride</string>
+	<string>Your location is needed to track your ride, always allow will let the app work when the screen is locked.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
 		<string>remote-notification</string>
 	</array>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
+	<false/>
 </dict>
 </plist>
