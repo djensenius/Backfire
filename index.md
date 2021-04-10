@@ -10,13 +10,13 @@ I recently got a [Backfire Zealot S](https://www.backfireboards.com/products/bac
 * Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right?)
 
 ### Screenshots
-![Apple Watch](/Backfire/assets/images/IMG_3889.PNG | width=200)
+![Apple Watch](/Backfire/assets/images/IMG_3889.PNG)
 
-![iPhone Rides](/Backfire/assets/images/IMG_3890.PNG | width=200)
+![iPhone Rides](/Backfire/assets/images/IMG_3890.PNG)
 
-![iPhone Ride Summary (some data missing as this was done in the simulator)](/Backfire/assets/images/2021-04-10.png | width=200)
+![iPhone Ride Summary (some data missing as this was done in the simulator)](/Backfire/assets/images/2021-04-10.png)
 
-![iPhone Current Ride](/Backfire/assets/images/IMG_3885.PNG | width=200)
+![iPhone Current Ride](/Backfire/assets/images/IMG_3885.PNG)
 
 
 ### FAQ
@@ -48,4 +48,4 @@ Contact me for a TestFlight beta.
 
 ### Support or Contact
 
-Create an [issue](https://github.com/djensenius/Backfire/issues)
+Create an [issue].(https://github.com/djensenius/Backfire/issues)
