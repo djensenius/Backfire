@@ -1,6 +1,6 @@
 ## Backfire Board Tracker
 
-I was not satisfied with any of the electric skateboard tracking apps out there. I built my own. It supports iOS, watchOS, and soon macOS.
+I recently got a [Backfire Zealot S](https://www.backfireboards.com/products/backfire-zealot-s-belt-drive-electric-skateboard) electric skateboard. I was not satisfied with any of the electric skateboard tracking apps out there. I built my own. It supports iOS, watchOS, and soon macOS.
 
 ### Features
 * Track your current ride on your phone, tablet, or watch.
@@ -39,7 +39,7 @@ Almost certainly not, it's built using Apple technologies like CloudKit. If you 
 
 **Is there a macOS version?**
 
-I don't recommend riding your electric skateboard while holding a Mac, but yes. A version will be up to view your rides.
+I don't recommend riding your electric skateboard while holding a Mac, but yes. A version will be posted to view your rides once I iron out some MapKit issues.
 
 **How can I use it?**
 
