@@ -35,7 +35,7 @@ struct ContentView: View {
                         .font(.title2)
                 }
                 Circle()
-                    .stroke(Color.black, lineWidth: 10)
+                    .stroke(Color.gray, lineWidth: 10)
                 Circle()
                     .trim(from: 0, to: (CGFloat(boardManager.battery + 1)) / 100)
                     .stroke(
@@ -86,6 +86,7 @@ struct ContentView: View {
     func addRide() {
         currentRide = Ride(context: viewContext)
         currentRide?.timestamp = Date()
+        currentRide?.device = UIDevice().model
         do {
             try self.viewContext.save()
             lm.fetchTheWeather()
@@ -97,7 +98,7 @@ struct ContentView: View {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            fatalError("Unresolved error 3 \(nsError), \(nsError.userInfo)")
         }
     }
 
@@ -128,7 +129,7 @@ struct ContentView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
-                //fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                fatalError("Unresolved error 4 \(nsError), \(nsError.userInfo)")
             }
         }
         if (lm.location?.coordinate.latitude != nil && (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon)) {
@@ -139,10 +140,19 @@ struct ContentView: View {
             locationObject.latitude = lat
             locationObject.longitude = lon
             locationObject.timestamp = Date()
-            if ((boardManager.speed) != 0) {
+            locationObject.altitude = lm.location?.altitude ?? 0
+
+            if boardManager.speed != 0 {
                 locationObject.speed = Int16(boardManager.speed)
             }
-            locationObject.altitude = lm.location?.altitude ?? 0
+
+            if boardManager.battery != 0 {
+                locationObject.battery = Int16(boardManager.battery)
+            }
+
+            if boardManager.modeNum != 0 {
+                locationObject.mode = Int16(boardManager.modeNum)
+            }
 
             currentRide?.addToLocations(locationObject)
             do {
@@ -152,7 +162,7 @@ struct ContentView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
-                // fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                fatalError("Unresolved error 5\(nsError), \(nsError.userInfo)")
             }
         }
     }
@@ -161,7 +171,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(boardManager: BLEManager()).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        Group {
+            ContentView(boardManager: BLEManager()).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView(boardManager: BLEManager()).preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
 
     }
 }

@@ -152,13 +152,20 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             fetchTheWeather()
         }
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-        locationManager.activityType = .fitness
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        self.locationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey: "Track location in background while in use")
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.activityType = .fitness
+        self.locationManager.allowsBackgroundLocationUpdates = true
+        #if os(iOS)
+            self.locationManager.pausesLocationUpdatesAutomatically = false
+        #endif
         self.locationManager.startUpdatingLocation()
     }
 
     func stopMonitoring() {
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyReduced
+        self.locationManager.allowsBackgroundLocationUpdates = false
         self.locationManager.stopUpdatingLocation()
     }
 

@@ -24,7 +24,7 @@ struct PersistenceController {
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nsError = error as NSError
             print(nsError)
-            // fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            fatalError("Unresolved error 6\(nsError), \(nsError.userInfo)")
         }
         return result
     }()
@@ -36,6 +36,15 @@ struct PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+
+        guard let description = container.persistentStoreDescriptions.first else {
+            fatalError("###\(#function): Failed to retrieve a persistent store description.")
+        }
+
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+        container.persistentStoreDescriptions = [description]
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -49,8 +58,10 @@ struct PersistenceController {
                 * The store could not be migrated to the current model version.
                 Check the error message to determine what the actual problem was.
                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("Unresolved error 7 \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
     }
 }

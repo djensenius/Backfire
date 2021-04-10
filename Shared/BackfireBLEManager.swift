@@ -33,6 +33,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var speed = 0
     @Published var battery = 0
     @Published var mode = "Off"
+    @Published var modeNum = 0
     @Published var tripDistance = 0
     @Published var isConnected = false
     @Published var isSearching = false
@@ -163,6 +164,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             var m = 0
             if (characteristic.value?[4] != nil) {
                 m = Int(characteristic.value![4])
+                self.modeNum = m
             }
             if m == 1 {
                 self.mode = "Economy"

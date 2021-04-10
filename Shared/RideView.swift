@@ -10,6 +10,7 @@ import CoreData
 
 struct TripView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.colorScheme) var colorScheme
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: false)],
@@ -24,8 +25,13 @@ struct TripView: View {
                     NavigationLink(destination: RideDetailView(ride: item)) {
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
-                                Text("\(item.timestamp!, formatter: itemFormatter)")
-                                    .font(.headline)
+                                HStack {
+                                    if item.device == "Apple Watch" {
+                                        Text(Image(systemName: "applewatch"))
+                                    }
+                                    Text("\(item.timestamp!, formatter: itemFormatter)")
+                                        .font(.headline)
+                                }
                                 if (item.locations?.count ?? 0 > 0) {
                                     details(locations: item.locations?.allObjects as! [Location])
                                 }
@@ -34,8 +40,13 @@ struct TripView: View {
                             Spacer()
 
                             VStack(alignment: .trailing, spacing: 10) {
-                                Text(weatherIcon(icon: item.weather?.icon ?? ""))
-                                    .font(.largeTitle)
+                                if colorScheme == .dark {
+                                    Text(weatherIcon(icon: item.weather?.icon ?? ""))
+                                        .font(.largeTitle)
+                                } else {
+                                    Text(weatherIcon(icon: item.weather?.icon ?? "").renderingMode(.template))
+                                        .font(.largeTitle)
+                                }
                                 Text(returnTemp(temperature: item.weather?.temperature ?? 373.15))
                                     .font(.subheadline)
                             }
@@ -166,7 +177,7 @@ struct TripView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
-                // fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                fatalError("Unresolved error 1 \(nsError), \(nsError.userInfo)")
             }
         }
     }
@@ -182,7 +193,7 @@ struct TripView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
-                // fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                fatalError("Unresolved error 2 \(nsError), \(nsError.userInfo)")
             }
         }
     }
@@ -197,6 +208,9 @@ private let itemFormatter: DateFormatter = {
 
 struct TripView_Previews: PreviewProvider {
     static var previews: some View {
-        TripView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        Group {
+            TripView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            TripView().preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }
