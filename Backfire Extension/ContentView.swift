@@ -34,13 +34,10 @@ struct ContentView: View {
             Spacer()
             if (boardManager.isConnected) {
                 Button(action: {
-                    if self.didLongPress {
-                        self.didLongPress = false
-                        self.boardManager.disconnect()
-                        timer.invalidate()
-                        healthtracking.stopHeathTracking()
-                        lm.stopMonitoring()
-                    }
+                    self.boardManager.disconnect()
+                    timer.invalidate()
+                    healthtracking.stopHeathTracking()
+                    lm.stopMonitoring()
                 })
                 {
                     ZStack {
@@ -55,14 +52,14 @@ struct ContentView: View {
                             Text(boardManager.mode)
                                 .font(.footnote)
                             if (currentRide != nil) {
-                                Text("Press to end")
+                                Text("Tap to end")
                                     .font(.footnote)
                             }
                         }
                         Circle()
                             .stroke(Color.black, lineWidth: 10)
                         Circle()
-                            .trim(from: 0, to: (CGFloat(boardManager.battery + 100)) / 100)
+                            .trim(from: 0, to: (CGFloat(boardManager.battery) + 1) / 100)
                             .stroke(
                                 AngularGradient(
                                     gradient: Gradient(colors: [Color.red, Color.green]),
@@ -74,9 +71,6 @@ struct ContentView: View {
                             ).rotationEffect(.degrees(-90))
                     }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
                 }.buttonStyle(PlainButtonStyle())
-                .onLongPressGesture {
-                    self.didLongPress = true
-                }
             } else {
                 Text("You have \(items.count) rides")
                 Button("Connect and Ride") {
