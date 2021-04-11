@@ -33,44 +33,41 @@ struct ContentView: View {
         VStack {
             Spacer()
             if boardManager.isConnected == true && boardManager.isSearching == false {
-                Button(action: {
+                ZStack {
+                    VStack {
+                        Text("\(boardManager.speed) km/h")
+                            .font(.title2)
+                            .padding(.bottom)
+                        Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
+                            .font(.footnote)
+                        Text("Battery: \(boardManager.battery)%")
+                            .font(.footnote)
+                        Text(boardManager.mode)
+                            .font(.footnote)
+                        if (currentRide != nil) {
+                            Text("Tap to end")
+                                .font(.footnote)
+                        }
+                    }
+                    Circle()
+                        .trim(from: 0, to: (CGFloat(boardManager.battery) + 1) / 100)
+                        .stroke(
+                            AngularGradient(
+                                gradient: Gradient(colors: [Color.red, Color.green]),
+                                center: .center,
+                                startAngle: .degrees(0),
+                                endAngle: .degrees(350)
+                            ),
+                            style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                        ).rotationEffect(.degrees(-90))
+                }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
+                .onLongPressGesture {
+                    print("Long press")
                     self.boardManager.disconnect()
                     timer.invalidate()
                     healthtracking.stopHeathTracking()
                     lm.stopMonitoring()
-                })
-                {
-                    ZStack {
-                        VStack {
-                            Text("\(boardManager.speed) km/h")
-                                .font(.title2)
-                                .padding(.bottom)
-                            Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
-                                .font(.footnote)
-                            Text("Battery: \(boardManager.battery)%")
-                                .font(.footnote)
-                            Text(boardManager.mode)
-                                .font(.footnote)
-                            if (currentRide != nil) {
-                                Text("Tap to end")
-                                    .font(.footnote)
-                            }
-                        }
-                        Circle()
-                            .stroke(Color.black, lineWidth: 10)
-                        Circle()
-                            .trim(from: 0, to: (CGFloat(boardManager.battery) + 1) / 100)
-                            .stroke(
-                                AngularGradient(
-                                    gradient: Gradient(colors: [Color.red, Color.green]),
-                                    center: .center,
-                                    startAngle: .degrees(0),
-                                    endAngle: .degrees(350)
-                                ),
-                                style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                            ).rotationEffect(.degrees(-90))
-                    }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
-                }.buttonStyle(PlainButtonStyle())
+                }
             } else if boardManager.isSearching == true {
                 Text("You have \(items.count) rides")
                 ProgressView()
@@ -96,6 +93,7 @@ struct ContentView: View {
             }
         }
     }
+
     func addRide() {
         currentRide = Ride(context: self.viewContext)
         currentRide?.timestamp = Date()
