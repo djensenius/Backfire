@@ -22,6 +22,13 @@ struct ContentView: View {
     @ObservedObject var boardManager = BLEManager()
     @State var healthtracking = HealthTracking()
     @State private var didLongPress = false
+    @State private var useHealthKit = false
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
+        animation: .default)
+
+    private var config: FetchedResults<Config>
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Ride.timestamp, ascending: false)],
@@ -30,67 +37,109 @@ struct ContentView: View {
     private var items: FetchedResults<Ride>
 
     var body: some View {
-        VStack {
-            Spacer()
-            if boardManager.isConnected == true && boardManager.isSearching == false {
-                ZStack {
-                    VStack {
-                        Text("\(boardManager.speed) km/h")
-                            .font(.title2)
-                            .padding(.bottom)
-                        Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
-                            .font(.footnote)
-                        Text("Battery: \(boardManager.battery)%")
-                            .font(.footnote)
-                        Text(boardManager.mode)
-                            .font(.footnote)
-                        if (currentRide != nil) {
-                            Text("Tap to end")
+        TabView {
+            VStack {
+                Spacer()
+                if boardManager.isConnected == true && boardManager.isSearching == false {
+                    ZStack {
+                        VStack {
+                            Text("\(boardManager.speed) km/h")
+                                .font(.title2)
+                                .padding(.bottom)
+                            Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
                                 .font(.footnote)
+                            Text("Battery: \(boardManager.battery)%")
+                                .font(.footnote)
+                            Text(boardManager.mode)
+                                .font(.footnote)
+                            if (currentRide != nil) {
+                                Text("Press to end")
+                                    .font(.footnote)
+                            }
+                        }
+                        Circle()
+                            .trim(from: 0, to: (CGFloat(boardManager.battery) + 1) / 100)
+                            .stroke(
+                                AngularGradient(
+                                    gradient: Gradient(colors: [Color.red, Color.green]),
+                                    center: .center,
+                                    startAngle: .degrees(0),
+                                    endAngle: .degrees(350)
+                                ),
+                                style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                            ).rotationEffect(.degrees(-90))
+                    }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
+                    .onLongPressGesture {
+                        print("Long press")
+                        self.boardManager.disconnect()
+                        timer.invalidate()
+                        if config.count > 0 && config[0].useHealthKit == true {
+                            healthtracking.stopHeathTracking()
+                        }
+                        lm.stopMonitoring()
+                    }
+                } else if boardManager.isSearching == true {
+                    Text("You have \(items.count) rides")
+                    ProgressView()
+                    Text("Connecting to Board")
+                    Button("End Ride") {
+                        if boardManager.isSearching == true {
+                            self.boardManager.stopScanningAndResetData()
+                        } else {
+                            self.boardManager.disconnect()
+                        }
+                        timer.invalidate()
+                        if config.count > 0 && config[0].useHealthKit == true {
+                            healthtracking.stopHeathTracking()
+                        }
+                        lm.stopMonitoring()
+                    }
+                } else {
+                    Text("You have \(items.count) rides")
+                    Button("Connect and Ride") {
+                        lm.startMonitoring()
+                        boardManager.startScanning()
+                        addRide()
+                        if config.count > 0 && config[0].useHealthKit == true {
+                            healthtracking.startHealthTracking()
                         }
                     }
-                    Circle()
-                        .trim(from: 0, to: (CGFloat(boardManager.battery) + 1) / 100)
-                        .stroke(
-                            AngularGradient(
-                                gradient: Gradient(colors: [Color.red, Color.green]),
-                                center: .center,
-                                startAngle: .degrees(0),
-                                endAngle: .degrees(350)
-                            ),
-                            style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                        ).rotationEffect(.degrees(-90))
-                }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
-                .onLongPressGesture {
-                    print("Long press")
-                    self.boardManager.disconnect()
-                    timer.invalidate()
-                    healthtracking.stopHeathTracking()
-                    lm.stopMonitoring()
-                }
-            } else if boardManager.isSearching == true {
-                Text("You have \(items.count) rides")
-                ProgressView()
-                Text("Connecting to Board")
-                Button("End Ride") {
-                    if boardManager.isSearching == true {
-                        self.boardManager.stopScanningAndResetData()
-                    } else {
-                        self.boardManager.disconnect()
-                    }
-                    timer.invalidate()
-                    healthtracking.stopHeathTracking()
-                    lm.stopMonitoring()
-                }
-            } else {
-                Text("You have \(items.count) rides")
-                Button("Connect and Ride") {
-                    lm.startMonitoring()
-                    boardManager.startScanning()
-                    addRide()
-                    healthtracking.startHealthTracking()
                 }
             }
+
+            VStack {
+                Toggle("HealthKit", isOn: $useHealthKit)
+                    .onAppear(perform: {
+                        configureHealthKit()
+                    })
+                    .onChange(of: useHealthKit, perform: { value in
+                        updateHealth(use: value)
+                    })
+                    .padding()
+            }
+        }
+    }
+
+    func updateHealth(use: Bool) {
+        if (config.count == 0) {
+            let newConfig = Config(context: self.viewContext)
+            newConfig.useHealthKit = use
+        } else {
+            config[0].useHealthKit = use
+        }
+        do {
+            try self.viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved saving HealthKit \(nsError), \(nsError.userInfo)")
+        }
+    }
+
+    func configureHealthKit() {
+        if config.count > 0 && config[0].useHealthKit == true {
+            useHealthKit = true
+        } else {
+            useHealthKit = false
         }
     }
 
