@@ -10,5 +10,9 @@ import MapKit
 
 // extension MKPolyline {
 class MulticolorPolyline: MKPolyline {
-    var color = UIColor.black
+    #if os(iOS)
+        var color = UIColor.black
+    #else
+        var color = NSColor.black
+    #endif
 }

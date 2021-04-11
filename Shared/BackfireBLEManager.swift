@@ -108,6 +108,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         myCentral.stopScan()
     }
 
+    func stopScanningAndResetData() {
+        myCentral.stopScan()
+        self.isConnected = false
+        self.isSearching = false
+    }
+
     func disconnect() {
         self.isConnected = false
         myCentral.cancelPeripheralConnection(peripheral!)

@@ -54,7 +54,8 @@ struct TripView: View {
                     }
                 }
                 .onDelete(perform: deleteItems)
-            }.navigationBarTitle("Rides")
+            }
+            .navigationBarTitle("Rides")
         }
     }
 
@@ -198,6 +199,14 @@ struct TripView: View {
         }
     }
 }
+
+#if os(macOS)
+extension View {
+    func navigationBarTitle(_ title: String) -> some View {
+        self
+    }
+}
+#endif
 
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
