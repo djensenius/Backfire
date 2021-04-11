@@ -16,25 +16,34 @@ struct BackfireApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TabView {
-                ContentView(boardManager: self.boardManager)
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                    .tabItem {
-                        Image(systemName: "speedometer")
-                        Text("Dashboard")
-                    }
+            #if os(iOS)
+                TabView {
+                    ContentView(boardManager: self.boardManager)
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .tabItem {
+                            Image(systemName: "speedometer")
+                            Text("Dashboard")
+                        }
+                    TripView()
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .tabItem {
+                            Image(systemName: "map")
+                            Text("Rides")
+                        }
+                    BackfireAppDebug(boardManager: self.boardManager)
+                        .tabItem {
+                            Image(systemName: "printer")
+                            Text("Raw Data")
+                        }
+                }
+            #else
                 TripView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     .tabItem {
                         Image(systemName: "map")
                         Text("Rides")
                     }
-                BackfireAppDebug(boardManager: self.boardManager)
-                    .tabItem {
-                        Image(systemName: "printer")
-                        Text("Raw Data")
-                    }
-            }
+            #endif
         }
     }
 }

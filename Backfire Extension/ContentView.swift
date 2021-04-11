@@ -32,7 +32,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Spacer()
-            if (boardManager.isConnected) {
+            if boardManager.isConnected == true && boardManager.isSearching == false {
                 Button(action: {
                     self.boardManager.disconnect()
                     timer.invalidate()
@@ -71,6 +71,20 @@ struct ContentView: View {
                             ).rotationEffect(.degrees(-90))
                     }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
                 }.buttonStyle(PlainButtonStyle())
+            } else if boardManager.isSearching == true {
+                Text("You have \(items.count) rides")
+                ProgressView()
+                Text("Connecting to Board")
+                Button("End Ride") {
+                    if boardManager.isSearching == true {
+                        self.boardManager.stopScanningAndResetData()
+                    } else {
+                        self.boardManager.disconnect()
+                    }
+                    timer.invalidate()
+                    healthtracking.stopHeathTracking()
+                    lm.stopMonitoring()
+                }
             } else {
                 Text("You have \(items.count) rides")
                 Button("Connect and Ride") {

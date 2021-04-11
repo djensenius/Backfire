@@ -43,7 +43,7 @@ struct RideDetailView: View {
                     if ride.device == "Apple Watch" {
                         Text(Image(systemName: "applewatch"))
                     }
-                    Text("\(ride.timestamp!, formatter: itemFormatter)")
+                    Text("\(ride.timestamp ?? Date(), formatter: itemFormatter)")
                         .font(.headline)
                 }
                 HStack {
@@ -90,6 +90,7 @@ struct RideDetailView: View {
         let sortedLocations = locations.sorted {
             $0.timestamp?.compare($1.timestamp ?? Date()) == .orderedAscending
         }
+       
         let diffComponents = Calendar.current.dateComponents([.minute, .second], from: (sortedLocations.first?.timestamp)!, to: (sortedLocations.last?.timestamp)!)
         let minutes = diffComponents.minute
         let seconds = diffComponents.second

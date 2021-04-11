@@ -23,70 +23,114 @@ struct ContentView: View {
     var body: some View {
         VStack (alignment: .center, spacing: 10) {
             ZStack {
-                VStack {
-                    Text("\(boardManager.speed) km/h")
-                        .font(.largeTitle)
-                        .padding(.bottom)
-                    Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
-                        .font(.title2)
-                    Text("Battery: \(boardManager.battery)%")
-                        .font(.title2)
-                    Text(boardManager.mode)
-                        .font(.title2)
-                }
+                rideDetails()
                 Circle()
                     .stroke(Color.gray, lineWidth: 10)
-                Circle()
-                    .trim(from: 0, to: (CGFloat(boardManager.battery + 1)) / 100)
-                    .stroke(
-                        AngularGradient(
-                            gradient: Gradient(colors: [Color.red, Color.green]),
-                            center: .center,
-                            startAngle: .degrees(0),
-                            endAngle: .degrees(355)
-                        ),
-                        style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                    ).rotationEffect(.degrees(-90))
+                batteryPorgress()
             }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
 
             Spacer()
-            
-            HStack(alignment: .center) {
-                VStack (alignment: .center, spacing: 10) {
-                    if boardManager.isConnected == false && boardManager.isSearching == false {
-                        Button(action: {
-                            self.boardManager.startScanning()
-                            addRide()
-                        }) {
-                            Text("Connect and Ride")
-                        }.onAppear(perform: {
-                            lm.startMonitoring()
-                        })
-                    }
-                    if boardManager.isConnected == true {
-                        Button(action: {
-                            self.boardManager.disconnect()
-                            lm.stopMonitoring()
-                            timer.invalidate()
-                        }) {
-                            Text("End Ride")
-                        }
-
-                    }
-                    if boardManager.isSearching == true {
-                        Text("Connecting")
-                    }
-                }
-            }
+            startStopButton()
             Spacer()
         }
         .padding()
     }
 
+    func batteryPorgress() -> AnyView {
+        return AnyView(
+            VStack {
+                Text("\(boardManager.speed) km/h")
+                    .font(.largeTitle)
+                    .padding(.bottom)
+                Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
+                    .font(.title2)
+                Text("Battery: \(boardManager.battery)%")
+                    .font(.title2)
+                Text(boardManager.mode)
+                    .font(.title2)
+            }
+        )
+    }
+    func rideDetails() -> AnyView {
+        return AnyView(
+            VStack {
+                Text("\(boardManager.speed) km/h")
+                    .font(.largeTitle)
+                    .padding(.bottom)
+                Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
+                    .font(.title2)
+                Text("Battery: \(boardManager.battery)%")
+                    .font(.title2)
+                Text(boardManager.mode)
+                    .font(.title2)
+            }
+        )
+    }
+
+    func startStopButton() -> AnyView {
+        return AnyView(
+            HStack(alignment: .center) {
+                VStack (alignment: .center, spacing: 10) {
+                    if boardManager.isConnected == false && boardManager.isSearching == false {
+                        connectAndRideButton()
+                    } else if boardManager.isSearching == true {
+                        reconnectButton()
+                    } else if boardManager.isConnected == true {
+                        Button(action: {
+                            stop()
+                        }) {
+                            Text("End Ride")
+                        }
+                    }
+                }
+            }
+        )
+    }
+
+    func connectAndRideButton() -> AnyView {
+        return AnyView(
+            Button(action: {
+                addRide()
+            }) {
+                Text("Connect and Ride")
+            }.onAppear(perform: {
+                lm.startMonitoring()
+            })
+        )
+    }
+
+    func reconnectButton() -> AnyView {
+        return AnyView(
+            Button(action: {
+                stop()
+            }) {
+                VStack {
+                    Text("Connecting to board")
+                    Text("End Ride")
+                }
+            }
+        )
+    }
+
+    func stop() {
+        if boardManager.isSearching == true {
+            self.boardManager.stopScanningAndResetData()
+        } else {
+            self.boardManager.disconnect()
+        }
+        lm.stopMonitoring()
+        timer.invalidate()
+    }
+
     func addRide() {
+        self.boardManager.startScanning()
         currentRide = Ride(context: viewContext)
         currentRide?.timestamp = Date()
+        #if os(iOS)
         currentRide?.device = UIDevice().model
+        #else
+        currentRide?.device = "macOS"
+        #endif
         do {
             try self.viewContext.save()
             lm.fetchTheWeather()
