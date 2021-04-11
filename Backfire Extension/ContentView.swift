@@ -35,6 +35,7 @@ struct ContentView: View {
         animation: .default)
 
     private var items: FetchedResults<Ride>
+    private var localizeNumber = LocalizeNumbers()
 
     var body: some View {
         TabView {
@@ -43,10 +44,10 @@ struct ContentView: View {
                 if boardManager.isConnected == true && boardManager.isSearching == false {
                     ZStack {
                         VStack {
-                            Text("\(boardManager.speed) km/h")
+                            Text("\(localizeNumber.speed(speed: boardManager.speed))")
                                 .font(.title2)
                                 .padding(.bottom)
-                            Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
+                            Text("Trip: \(localizeNumber.distance(distance: Double(boardManager.tripDistance) / 10))")
                                 .font(.footnote)
                             Text("Battery: \(boardManager.battery)%")
                                 .font(.footnote)

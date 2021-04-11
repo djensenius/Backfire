@@ -18,6 +18,8 @@ struct TripView: View {
 
     private var items: FetchedResults<Ride>
 
+    private var localizeNumber = LocalizeNumbers()
+
     var body: some View {
         NavigationView {
             List {
@@ -47,7 +49,7 @@ struct TripView: View {
                                     Text(weatherIcon(icon: item.weather?.icon ?? "").renderingMode(.template))
                                         .font(.largeTitle)
                                 }
-                                Text(returnTemp(temperature: item.weather?.temperature ?? 373.15))
+                                Text(localizeNumber.temp(temp: item.weather?.temperature ?? 373.15))
                                     .font(.subheadline)
                             }
                         }
@@ -57,11 +59,6 @@ struct TripView: View {
             }
             .navigationBarTitle("Rides")
         }
-    }
-
-    func returnTemp(temperature: Double) -> String {
-        let temp = String(format:"%.01f", temperature - 273.15)
-        return "\(temp)°"
     }
 
     func weatherIcon(icon: String) -> Image {
@@ -161,7 +158,7 @@ struct TripView: View {
         }
 
         return AnyView(
-            Text("\(timeText) / \(String(format:"%.02f", totalDistance / 1000)) km")
+            Text("\(timeText) / \(localizeNumber.distance(distance: Double(totalDistance) / 1000, length: 2))")
                 .font(.subheadline)
         )
     }

@@ -20,13 +20,14 @@ struct ContentView: View {
     @ObservedObject var boardManager: BLEManager
     @StateObject var lm = LocationManager.init()
 
+    var localizeNumber = LocalizeNumbers()
+
     var body: some View {
         VStack (alignment: .center, spacing: 10) {
             ZStack {
                 rideDetails()
                 Circle()
                     .stroke(Color.gray, lineWidth: 10)
-                batteryPorgress()
             }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
 
             Spacer()
@@ -36,28 +37,13 @@ struct ContentView: View {
         .padding()
     }
 
-    func batteryPorgress() -> AnyView {
-        return AnyView(
-            VStack {
-                Text("\(boardManager.speed) km/h")
-                    .font(.largeTitle)
-                    .padding(.bottom)
-                Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
-                    .font(.title2)
-                Text("Battery: \(boardManager.battery)%")
-                    .font(.title2)
-                Text(boardManager.mode)
-                    .font(.title2)
-            }
-        )
-    }
     func rideDetails() -> AnyView {
         return AnyView(
             VStack {
-                Text("\(boardManager.speed) km/h")
+                Text("\(localizeNumber.speed(speed: boardManager.speed))")
                     .font(.largeTitle)
                     .padding(.bottom)
-                Text("Trip: \( String(format: "%.1f", Float(boardManager.tripDistance) / 10)) km")
+                Text("Trip: \(localizeNumber.distance(distance: Double(boardManager.tripDistance) / 10))")
                     .font(.title2)
                 Text("Battery: \(boardManager.battery)%")
                     .font(.title2)

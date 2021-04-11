@@ -29,9 +29,11 @@ struct DetailRide {
 
 struct RideDetailView: View {
     @StateObject var ride: Ride
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         let rideDetails = parseRide(ride: ride)
+        let localizeNumber = LocalizeNumbers()
 
         VStack(alignment: .leading, spacing: 10) {
             if ride.locations?.count ?? 0 > 1 {
@@ -47,10 +49,10 @@ struct RideDetailView: View {
                         .font(.headline)
                 }
                 HStack {
-                    Text("Distance: \(String(format:"%.02f", (rideDetails?.distance ?? 1) / 1000)) km")
+                    Text("Distance: \(localizeNumber.distance(distance: Double(rideDetails?.distance ?? 1) / 1000, length: 2))")
                     Spacer()
                     if ride.weather != nil {
-                        Text("\(formatWeather(weather: ride.weather!).icon) \(String(format:"%.01f", formatWeather(weather: ride.weather!).temperature))°")
+                        Text("\(formatWeather(weather: ride.weather!).icon) \(localizeNumber.temp(temp: formatWeather(weather: ride.weather!).temperature))")
                     }
                 }
                 HStack {
@@ -62,10 +64,10 @@ struct RideDetailView: View {
 
                 }
                 HStack {
-                    Text("Max Speed: \(rideDetails?.maxSpeed ?? 0) km/h")
+                    Text("Max Speed: \(localizeNumber.speed(speed: rideDetails?.maxSpeed ?? 0))")
                     Spacer()
                     if ride.weather != nil {
-                        Text("Felt like \(String(format:"%.01f", formatWeather(weather: ride.weather!).feelsLike))°")
+                        Text("Felt like \(localizeNumber.temp(temp: formatWeather(weather: ride.weather!).feelsLike))")
                     }
 
                 }
@@ -73,13 +75,13 @@ struct RideDetailView: View {
                     Text("Climb: \(rideDetails?.climb ?? 0)m / Decline: \(rideDetails?.decline ?? 0)m")
                     Spacer()
                     if ride.weather != nil {
-                        Text("Wind \(String(format:"%.01f", formatWeather(weather: ride.weather!).windSpeed)) km/h")
+                        Text("Wind: \(localizeNumber.speed(speed: Int(formatWeather(weather: ride.weather!).windSpeed)))")
                     }
                 }
                 Text("Battery: \(rideDetails?.startBattery ?? 0)% - \(rideDetails?.endBattery ?? 0)% (\(rideDetails?.mode ?? "Unknown") mode)")
             }.padding()
             Spacer()
-        }.background(Color("background"))
+        }
     }
 
     func parseRide(ride: Ride) -> DetailRide? {
@@ -167,13 +169,18 @@ struct RideDetailView: View {
     }
 
     func formatWeather(weather: Weather) -> DetailWeather {
-        let temp = weather.temperature - 273.15
+        var icon: Image?
+        if colorScheme == .dark {
+            icon = weatherIcon(icon: weather.icon ?? "")
+        } else {
+            icon = weatherIcon(icon: weather.icon ?? "").renderingMode(.template)
+        }
         return DetailWeather(
-            temperature: temp,
-            icon: weatherIcon(icon: weather.icon ?? ""),
+            temperature: weather.temperature,
+            icon: icon!,
             description: weather.mainDescription ?? "",
             windSpeed: weather.windSpeed,
-            feelsLike: weather.feelsLike - 273.15
+            feelsLike: weather.feelsLike
         )
     }
 
