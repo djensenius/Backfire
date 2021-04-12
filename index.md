@@ -25,6 +25,10 @@ Some data missing is missing from this screenshot as it was done in the simulato
 ### iPhone Current Ride
 ![iPhone Current Ride](/Backfire/assets/images/IMG_3885.PNG)
 
+### Privacy Policy
+
+While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to. 
+
 
 ### FAQ
 
