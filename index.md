@@ -7,7 +7,7 @@ I recently got a [Backfire Zealot S](https://www.backfireboards.com/products/bac
 * See your current speed, distance, and battery life on your phone, tablet, or watch.
 * View your previous rides on your phone or tablet.
 * Grabs and saves the weather of your ride.
-* Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right?)
+* Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right? 🤷)
 
 ### Screenshots
 
@@ -46,7 +46,7 @@ Almost certainly not, it's built using Apple technologies like CloudKit. If you 
 
 **Is there a macOS version?**
 
-I don't recommend riding your electric skateboard while holding a Mac, but yes. A version will be posted to view your rides once I iron out some MapKit issues.
+I don't recommend riding your electric skateboard while holding a Mac, but yes. Contact me through iOS test flight for access.
 
 **How can I use it?**
 
