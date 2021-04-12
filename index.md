@@ -1,15 +1,15 @@
-## Backfire Board Tracker
+# Backfire Board Tracker
 
 I recently got a [Backfire Zealot S](https://www.backfireboards.com/products/backfire-zealot-s-belt-drive-electric-skateboard) electric skateboard. I was not satisfied with any of the electric skateboard tracking apps out there. I built my own. It supports iOS, watchOS, and soon macOS.
 
-### Features
+## Features
 * Track your current ride on your phone, tablet, or watch.
 * See your current speed, distance, and battery life on your phone, tablet, or watch.
 * View your previous rides on your phone or tablet.
 * Grabs and saves the weather of your ride.
 * Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right? 🤷)
 
-### Screenshots
+## Screenshots
 
 ### Apple Watch
 ![Apple Watch](/Backfire/assets/images/IMG_3889.PNG)
@@ -25,9 +25,14 @@ Some data missing is missing from this screenshot as it was done in the simulato
 ### iPhone Current Ride
 ![iPhone Current Ride](/Backfire/assets/images/IMG_3885.PNG)
 
-### Privacy Policy
+### macOS Ride Summary
+![macOS Screenshot](/Backfire/assets/images/macScreenshot.png)
 
-While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to. 
+I've blurred the map out for privacy reasons. It is not really blurry, I promise!
+
+## Privacy Policy
+
+While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to.
 
 
 ### FAQ
