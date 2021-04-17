@@ -43,4 +43,16 @@ class LocalizeNumbers {
         let cel = Measurement(value: temp, unit: UnitTemperature.kelvin)
         return formatter.string(from: cel)
     }
+
+    func height(distance: Int, length: Int = 2) -> String {
+        let formatter = MeasurementFormatter()
+        formatter.locale = Locale.current
+        formatter.unitStyle = .medium
+        let n = NumberFormatter()
+        n.maximumFractionDigits = length
+        formatter.numberFormatter = n
+
+        let cel = Measurement(value: Double(distance), unit: UnitLength.meters)
+        return formatter.string(from: cel)
+    }
 }

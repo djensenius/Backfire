@@ -24,16 +24,10 @@ struct TripView: View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    NavigationLink(destination: RideDetailView(ride: item)) {
+                    NavigationLink(destination: RideDetailView(ride: item).navigationTitle(returnTitleText(item: item))) {
                         HStack {
                             VStack(alignment: .leading, spacing: 10) {
-                                HStack {
-                                    if item.device == "Apple Watch" {
-                                        Text(Image(systemName: "applewatch"))
-                                    }
-                                    Text("\(item.timestamp!, formatter: itemFormatter)")
-                                        .font(.headline)
-                                }
+                                returnTitle(item: item)
                                 if (item.locations?.count ?? 0 > 0) {
                                     details(locations: item.locations?.allObjects as! [Location])
                                 }
@@ -163,6 +157,28 @@ struct TripView: View {
         )
     }
 
+    private func returnTitle(item: Ride) -> AnyView {
+        return AnyView(
+            HStack {
+                if item.device == "Apple Watch" {
+                    Text(Image(systemName: "applewatch"))
+                }
+                Text("\(item.timestamp!, formatter: itemFormatter)")
+                    .font(.headline)
+            }
+        )
+    }
+
+    private func returnTitleText(item: Ride) -> String {
+        var string = ""
+//        if item.device == "Apple Watch" {
+//            string = "\(Image(systemName: "applewatch"))"
+//        }
+        let time = itemFormatterShort.string(from: item.timestamp ?? Date())
+        string = "\(string) \(time)"
+        return string
+    }
+
     private func addItem() {
         withAnimation {
             let newItem = Ride(context: viewContext)
@@ -208,6 +224,13 @@ extension View {
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .long
+    formatter.timeStyle = .short
+    return formatter
+}()
+
+private let itemFormatterShort: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
     formatter.timeStyle = .short
     return formatter
 }()

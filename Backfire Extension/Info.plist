@@ -51,9 +51,12 @@
 	</array>
 	<key>WKBackgroundModes</key>
 	<array>
+		<string>physical-therapy</string>
 		<string>workout-processing</string>
 	</array>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
+	<key>com.apple.developer.icloud-container-environment</key>
+	<string>Production</string>
 </dict>
 </plist>

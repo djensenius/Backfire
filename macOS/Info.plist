@@ -30,5 +30,7 @@
 	<string>Need bluetooth access to connect to your skateboard</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is needed to track your ride</string>
+	<key>com.apple.developer.icloud-container-environment</key>
+	<string>Production</string>
 </dict>
 </plist>
