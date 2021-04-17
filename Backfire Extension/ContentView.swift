@@ -15,6 +15,8 @@ var lat: Double = 0.0
 var lon: Double = 0.0
 var locationList: [CLLocation] = []
 var timer = Timer()
+var extendedSession = ExtendedSessionCoordinator.init()
+
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -78,6 +80,7 @@ struct ContentView: View {
                             healthtracking.stopHeathTracking()
                         }
                         lm.stopMonitoring()
+                        extendedSession.start()
                     }
                 } else if boardManager.isSearching == true {
                     Text("You have \(items.count) rides")
@@ -94,6 +97,7 @@ struct ContentView: View {
                             healthtracking.stopHeathTracking()
                         }
                         lm.stopMonitoring()
+                        extendedSession.start()
                     }
                 } else {
                     Text("You have \(items.count) rides")
@@ -101,6 +105,7 @@ struct ContentView: View {
                         lm.startMonitoring()
                         boardManager.startScanning()
                         addRide()
+                        extendedSession.start()
                         if config.count > 0 && config[0].useHealthKit == true {
                             healthtracking.startHealthTracking()
                         }
