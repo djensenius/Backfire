@@ -34,10 +34,12 @@ class Helper {
     @Environment(\.colorScheme) var colorScheme
 
     func parseRide(ride: Ride) -> DetailRide? {
-        if (ride.locations == nil) {
+        if ride.locations == nil {
             return nil
         }
-        let locations = ride.locations?.allObjects as! [Location]
+        guard let locations = ride.locations?.allObjects as? [Location] else {
+            fatalError("Could not cast locations")
+        }
         let sortedLocations = locations.sorted {
             $0.timestamp?.compare($1.timestamp ?? Date()) == .orderedAscending
         }
@@ -70,26 +72,26 @@ class Helper {
             let firsLocation = CLLocation(latitude: firstLat!, longitude: firstLon!)
             let secondLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
             let currentAltitude = location.altitude
-            if (altitude > currentAltitude) {
-                decline = decline + (altitude - currentAltitude)
+            if altitude > currentAltitude {
+                decline += (altitude - currentAltitude)
             } else {
-                incline = incline + (currentAltitude - altitude)
+                incline += (currentAltitude - altitude)
             }
             altitude = currentAltitude
 
             firstLat = location.latitude
             firstLon = location.longitude
-            totalDistance = totalDistance + firsLocation.distance(from: secondLocation)
+            totalDistance += firsLocation.distance(from: secondLocation)
             if location.speed > maxSpeed {
                 maxSpeed = Int(location.speed)
             }
             let mode = location.mode
             if mode == 1 {
-                economy = economy + 1
+                economy += 1
             } else if mode == 2 {
-                speed = speed + 1
+                speed += 1
             } else if mode == 3 {
-                turbo = turbo + 1
+                turbo += 1
             }
 
             if location.battery != 0 {

@@ -20,10 +20,12 @@ struct RideDetailView: View {
             VStack(alignment: .leading, spacing: 10) {
                 if ride.locations?.count ?? 0 > 1 {
                     ZStack(alignment: .topTrailing) {
-                        MapView(rideLocations: ride.locations?.allObjects as! [Location])
-                            .frame(height: 200)
-                        VStack() {
-                            VStack() {
+                        if ride.locations?.count ?? 0 > 1 {
+                            MapView(rideLocations: ride.locations!.allObjects)
+                                .frame(height: 200)
+                        }
+                        VStack {
+                            VStack {
                                 Text("\(formattedWeather.iconColor) \(localizeNumber.temp(temp: formattedWeather.temperature))")
                             }.padding(5)
                         }

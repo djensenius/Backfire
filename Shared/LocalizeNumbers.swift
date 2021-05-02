@@ -12,9 +12,9 @@ class LocalizeNumbers {
         let formatter = MeasurementFormatter()
         formatter.locale = Locale.current
         formatter.unitStyle = .medium
-        let n = NumberFormatter()
-        n.maximumFractionDigits = 0
-        formatter.numberFormatter = n
+        let num = NumberFormatter()
+        num.maximumFractionDigits = 0
+        formatter.numberFormatter = num
 
         let kmh = Measurement(value: Double(speed), unit: UnitSpeed.kilometersPerHour)
         return formatter.string(from: kmh)
@@ -24,9 +24,9 @@ class LocalizeNumbers {
         let formatter = MeasurementFormatter()
         formatter.locale = Locale.current
         formatter.unitStyle = .medium
-        let n = NumberFormatter()
-        n.maximumFractionDigits = length
-        formatter.numberFormatter = n
+        let num = NumberFormatter()
+        num.maximumFractionDigits = length
+        formatter.numberFormatter = num
 
         let kmh = Measurement(value: distance, unit: UnitLength.kilometers)
         return formatter.string(from: kmh)
@@ -36,9 +36,9 @@ class LocalizeNumbers {
         let formatter = MeasurementFormatter()
         formatter.locale = Locale.current
         formatter.unitStyle = .short
-        let n = NumberFormatter()
-        n.maximumFractionDigits = length
-        formatter.numberFormatter = n
+        let num = NumberFormatter()
+        num.maximumFractionDigits = length
+        formatter.numberFormatter = num
         
         let cel = Measurement(value: temp, unit: UnitTemperature.kelvin)
         return formatter.string(from: cel)
@@ -48,9 +48,9 @@ class LocalizeNumbers {
         let formatter = MeasurementFormatter()
         formatter.locale = Locale.current
         formatter.unitStyle = .medium
-        let n = NumberFormatter()
-        n.maximumFractionDigits = length
-        formatter.numberFormatter = n
+        let num = NumberFormatter()
+        num.maximumFractionDigits = length
+        formatter.numberFormatter = num
 
         let cel = Measurement(value: Double(distance), unit: UnitLength.meters)
         return formatter.string(from: cel)

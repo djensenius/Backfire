@@ -131,7 +131,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
         guard let url = URL(
                 string:
-                    "https://api.openweathermap.org/data/2.5/onecall?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&exclude=minutely,hourly&appid=\(BackfireConsts.openWeatherApi)"
+                    """
+                    https://api.openweathermap.org/data/2.5/onecall?lat=\(location.coordinate.latitude) \
+                    &lon=\(location.coordinate.longitude)&exclude=minutely,hourly&appid=\(BackfireConsts.openWeatherApi)
+                    """
         ) else {
             print("Invalid URL")
             return

@@ -160,23 +160,23 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if characteristic.value?.count == 20 {
             self.bytesTwenty = characteristic.value!
-            if ((characteristic.value?[6]) != nil) {
+            if (characteristic.value?[6]) != nil {
                 self.speed = Int(characteristic.value![6]) / 4
             }
 
-            if (characteristic.value?[5] != nil) {
+            if characteristic.value?[5] != nil {
                 self.battery = Int(characteristic.value![5])
             }
-            var m = 0
-            if (characteristic.value?[4] != nil) {
-                m = Int(characteristic.value![4])
-                self.modeNum = m
+            var theMode = 0
+            if characteristic.value?[4] != nil {
+                theMode = Int(characteristic.value![4])
+                self.modeNum = theMode
             }
-            if m == 1 {
+            if theMode == 1 {
                 self.mode = "Economy"
-            } else if m == 2 {
+            } else if theMode == 2 {
                 self.mode = "Speed"
-            } else if m == 3 {
+            } else if theMode == 3 {
                 self.mode = "Turbo"
             }
             if (characteristic.value?[17] != nil) {

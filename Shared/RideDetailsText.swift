@@ -49,7 +49,7 @@ struct RideDetailsText: View {
 
     func boxView(text: String, value: String, divider: Bool = false) -> AnyView {
         return AnyView(
-            VStack() {
+            VStack {
                 if divider {
                     Divider()
                         .padding([.top, .bottom])
@@ -125,7 +125,7 @@ struct RideDetailsText: View {
         var timeText = ""
         timeText = "\(minutes ?? 0)"
 
-        if (seconds ?? 0 < 10) {
+        if seconds ?? 0 < 10 {
             timeText = "\(timeText):0\(seconds ?? 0)"
         } else {
             timeText = "\(timeText):\(seconds ?? 0)"
@@ -139,11 +139,11 @@ struct RideDetailsText: View {
             let secondLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
             firstLat = location.latitude
             firstLon = location.longitude
-            totalDistance = totalDistance + firsLocation.distance(from: secondLocation)
+            totalDistance += firsLocation.distance(from: secondLocation)
         }
 
         return AnyView(
-            Text("\(timeText) / \(String(format:"%.02f", totalDistance / 1000)) KMs")
+            Text("\(timeText) / \(String(format: "%.02f", totalDistance / 1000)) KMs")
                 .font(.subheadline)
         )
     }

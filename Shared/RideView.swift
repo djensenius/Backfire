@@ -29,7 +29,7 @@ struct TripView: View {
                             VStack(alignment: .leading, spacing: 10) {
                                 returnTitle(item: item)
                                 if (item.locations?.count ?? 0 > 0) {
-                                    details(locations: item.locations?.allObjects as! [Location])
+                                    details(locationsAny: item.locations!.allObjects)
                                 }
                             }
 
@@ -117,7 +117,10 @@ struct TripView: View {
         }
     }
 
-    func details(locations: [Location]) -> AnyView {
+    func details(locationsAny: [Any]) -> AnyView {
+        guard let locations = locationsAny as? [Location] else {
+            fatalError("Could nto cast variable")
+        }
         if locations.count == 0 {
             return AnyView(Text(""))
         }
@@ -148,7 +151,7 @@ struct TripView: View {
             let secondLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
             firstLat = location.latitude
             firstLon = location.longitude
-            totalDistance = totalDistance + firsLocation.distance(from: secondLocation)
+            totalDistance += firsLocation.distance(from: secondLocation)
         }
 
         return AnyView(
@@ -171,9 +174,6 @@ struct TripView: View {
 
     private func returnTitleText(item: Ride) -> String {
         var string = ""
-//        if item.device == "Apple Watch" {
-//            string = "\(Image(systemName: "applewatch"))"
-//        }
         let time = itemFormatterShort.string(from: item.timestamp ?? Date())
         string = "\(string) \(time)"
         return string

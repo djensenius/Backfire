@@ -14,7 +14,6 @@ var lon: Double = 0.0
 var locationList: [CLLocation] = []
 var timer = Timer()
 
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var boardManager: BLEManager
@@ -170,7 +169,7 @@ struct ContentView: View {
     }
 
     func updateLoaction() {
-        if (currentRide?.weather == nil && lm.weather.current != nil) {
+        if currentRide?.weather == nil && lm.weather.current != nil {
             let weather = Weather(context: viewContext)
             weather.clouds = Int16(lm.weather.current?.clouds ?? 0)
             weather.feelsLike = lm.weather.current?.feelsLike ?? 0
@@ -193,7 +192,8 @@ struct ContentView: View {
                 try self.viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 4 \(nsError), \(nsError.userInfo)")
@@ -226,7 +226,8 @@ struct ContentView: View {
                 try self.viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 5\(nsError), \(nsError.userInfo)")
@@ -242,7 +243,6 @@ struct ContentView: View {
         return false
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
