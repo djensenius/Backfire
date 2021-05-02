@@ -123,6 +123,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     @Published var location: CLLocation?
     @Published var weather = OpenWeather(lat: 0, timezone: "UTC", daily: [], timezoneOffset: 0, current: nil, lon: 0, alerts: [])
+    @Published var totalDistance: Double = 0
 
     func fetchTheWeather() {
         print("Getting Weather")
@@ -178,6 +179,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         if (self.location?.coordinate.longitude != location.coordinate.longitude ||
                 self.location?.coordinate.latitude != location.coordinate.latitude) {
 
+            if (locations.first != nil) && (locations.last != nil) {
+                totalDistance += (locations.first!.distance(from: locations.last!) * 100)
+            }
             self.location = location
             if (self.weather.lat == 0 && self.weather.lon == 0) {
                 self.fetchTheWeather()

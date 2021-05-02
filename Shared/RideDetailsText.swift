@@ -88,7 +88,7 @@ struct RideDetailsText: View {
         let maxSpeed = RideDetails(title: "Max Speed", value: localizeNumber.speed(speed: rideDetails.maxSpeed))
         let climb = RideDetails(title: "Climb", value: localizeNumber.height(distance: rideDetails.climb))
         let batteryStart = RideDetails(title: "Battery Start", value: "\(rideDetails.startBattery)%")
-        let temprature = RideDetails(title: "Temprature", value: localizeNumber.temp(temp: formattedWeather?.feelsLike ?? 0))
+        let temprature = RideDetails(title: "Temprature", value: localizeNumber.temp(temp: formattedWeather?.temperature ?? 0))
         let feelsLike = RideDetails(title: "Feels Like", value: localizeNumber.temp(temp: formattedWeather?.feelsLike ?? 0))
 
         // Right

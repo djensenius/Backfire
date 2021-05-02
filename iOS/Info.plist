@@ -67,6 +67,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>com.apple.developer.icloud-container-environment</key>
-	<string>Production</string>
+	<string>Development</string>
 </dict>
 </plist>

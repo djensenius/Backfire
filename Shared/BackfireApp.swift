@@ -35,6 +35,12 @@ struct BackfireApp: App {
                             Image(systemName: "printer")
                             Text("Raw Data")
                         }
+                    SettingsView()
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .tabItem {
+                            Image(systemName: "gear")
+                            Text("Settings")
+                        }
                 }
             #else
                 TripView()

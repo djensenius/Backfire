@@ -19,17 +19,27 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var boardManager: BLEManager
     @StateObject var lm = LocationManager.init()
+    @State private var started = false
 
     var localizeNumber = LocalizeNumbers()
 
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
+        animation: .default)
+
+    private var config: FetchedResults<Config>
+    
     var body: some View {
         VStack (alignment: .center, spacing: 10) {
             ZStack {
                 rideDetails()
                 Circle()
                     .stroke(Color.gray, lineWidth: 10)
-            }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
-
+                if checkConfig() == true {
+                    batteryProgress()
+                }
+            }
+            .frame(idealWidth: 250, idealHeight: 250, alignment: .center)
             Spacer()
             startStopButton()
             Spacer()
@@ -37,18 +47,45 @@ struct ContentView: View {
         .padding()
     }
 
+    func batteryProgress() -> AnyView {
+        return AnyView(
+            Circle()
+                .trim(from: 0, to: (CGFloat(boardManager.battery + 1)) / 100)
+                .stroke(
+                    AngularGradient(
+                        gradient: Gradient(colors: [Color.red, Color.green]),
+                        center: .center,
+                        startAngle: .degrees(0),
+                        endAngle: .degrees(355)
+                    ),
+                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                ).rotationEffect(.degrees(-90))
+        )
+    }
+
     func rideDetails() -> AnyView {
         return AnyView(
             VStack {
-                Text("\(localizeNumber.speed(speed: boardManager.speed))")
-                    .font(.largeTitle)
-                    .padding(.bottom)
-                Text("Trip: \(localizeNumber.distance(distance: Double(boardManager.tripDistance) / 10))")
-                    .font(.title2)
-                Text("Battery: \(boardManager.battery)%")
-                    .font(.title2)
-                Text(boardManager.mode)
-                    .font(.title2)
+                if checkConfig() == true {
+                    Text("\(localizeNumber.speed(speed: boardManager.speed))")
+                        .font(.largeTitle)
+                        .padding(.bottom)
+                    Text("Trip: \(localizeNumber.distance(distance: Double(boardManager.tripDistance) / 10))")
+                        .font(.title2)
+                    Text("Battery: \(boardManager.battery)%")
+                        .font(.title2)
+                    Text(boardManager.mode)
+                        .font(.title2)
+                } else {
+                    if (lm.location?.speed != nil) {
+                        let speed = Measurement(value: lm.location!.speed, unit: UnitSpeed.metersPerSecond).converted(to: .kilometersPerHour)
+                        Text("\(speed.value)")
+                            .font(.largeTitle)
+                            .padding(.bottom)
+                    }
+                    Text("Trip: \(localizeNumber.distance(distance: Double(lm.totalDistance) / 10))")
+                        .font(.title2)
+                }
             }
         )
     }
@@ -195,6 +232,14 @@ struct ContentView: View {
                 fatalError("Unresolved error 5\(nsError), \(nsError.userInfo)")
             }
         }
+    }
+
+    func checkConfig() -> Bool {
+        print("CONFIGURE SETTINGS")
+        if config.count > 0 && config[0].useBackfire == true {
+            return true
+        }
+        return false
     }
 }
 

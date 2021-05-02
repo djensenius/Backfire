@@ -39,7 +39,9 @@ struct MapView: NSViewRepresentable {
   }
 
   private func setMapZoomArea(map: MKMapView, polyline: MKPolyline, edgeInsets: NSEdgeInsets, animated: Bool = false) {
-      map.setVisibleMapRect(polyline.boundingMapRect, edgePadding: edgeInsets, animated: animated)
+    DispatchQueue.main.async {
+        map.setVisibleMapRect(polyline.boundingMapRect, edgePadding: edgeInsets, animated: animated)
+    }
   }
 
     private func segmentColor(speed: Double, midSpeed: Double, slowestSpeed: Double, fastestSpeed: Double) -> NSColor {
