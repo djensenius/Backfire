@@ -30,13 +30,16 @@ Some data missing is missing from this screenshot as it was done in the simulato
 
 I've blurred the map out for privacy reasons. It is not really blurry, I promise!
 
+
 <a id="privacy"></a>
+
+
 ## Privacy Policy
 
 While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to.
 
 
-### FAQ
+## FAQ
 
 **Is this an official Backfire Board application?**
 
