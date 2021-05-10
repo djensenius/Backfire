@@ -30,6 +30,7 @@ Some data missing is missing from this screenshot as it was done in the simulato
 
 I've blurred the map out for privacy reasons. It is not really blurry, I promise!
 
+<a id="privacy"></a>
 ## Privacy Policy
 
 While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to.
@@ -37,7 +38,7 @@ While this app uses your location and bluetooth, no data collected is available 
 
 ### FAQ
 
-**Is this official**?
+**Is this an official Backfire Board application?**
 
 It is not. This is a hobby app and is in no way connected to or associated with Backfire Boards. I needed to reverse engineer the bluetooth data as the spec is not provided by Backfire or Hobbywing.
 
