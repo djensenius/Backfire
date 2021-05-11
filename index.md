@@ -9,6 +9,13 @@ I recently got a [Backfire Zealot S](https://www.backfireboards.com/products/bac
 * Grabs and saves the weather of your ride.
 * Watch users track rides as workouts (you don’t burn a lot of calories, but it’s balance work, right? 🤷)
 
+<a id="privacy"></a>
+
+
+## Privacy Policy
+
+While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to.
+
 ## Screenshots
 
 ### Apple Watch
@@ -29,14 +36,6 @@ Some data missing is missing from this screenshot as it was done in the simulato
 ![macOS Screenshot](/Backfire/assets/images/macScreenshot.png)
 
 I've blurred the map out for privacy reasons. It is not really blurry, I promise!
-
-
-<a id="privacy"></a>
-
-
-## Privacy Policy
-
-While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to.
 
 
 ## FAQ
