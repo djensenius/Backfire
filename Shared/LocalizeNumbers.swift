@@ -39,7 +39,6 @@ class LocalizeNumbers {
         let num = NumberFormatter()
         num.maximumFractionDigits = length
         formatter.numberFormatter = num
-        
         let cel = Measurement(value: temp, unit: UnitTemperature.kelvin)
         return formatter.string(from: cel)
     }

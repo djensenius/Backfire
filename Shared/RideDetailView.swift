@@ -14,7 +14,7 @@ struct RideDetailView: View {
 
     var body: some View {
         let helper = Helper()
-        let formattedWeather = helper.formatWeather(weather: ride.weather!)
+        let formattedWeather = helper.formatWeather(weather: ride.weather ?? nil)
 
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -35,7 +35,11 @@ struct RideDetailView: View {
 
                     }
                 }
-                RideDetailsText(ride: ride)
+                if ride.locations?.count ?? 0 > 0 {
+                    RideDetailsText(ride: ride)
+                } else {
+                    Text("Not enough ride data to show ride.")
+                }
             }
         }
     }

@@ -27,9 +27,9 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>This app needs a bluetooth connection to connect to your board</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>You health data is collected while riding your board to view later. Data remains only tied to you.</string>
+	<string>Your health data is used to track your rides as a skating activity.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>You health data is collected while riding your board to view later. Data remains only tied to you.</string>
+	<string>Your health data is used to track your rides as a skating activity.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Your location is needed to track your ride, always allow will let the app work when the screen is locked.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

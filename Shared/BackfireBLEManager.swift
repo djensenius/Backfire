@@ -45,7 +45,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         myCentral.delegate = self
     }
 
-
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             isSwitchedOn = true
@@ -72,14 +71,15 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         print(consoleLog)
     }
 
-
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager,
+                        didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String: Any],
+                        rssi RSSI: NSNumber) {
         var peripheralName: String!
 
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
-        }
-        else {
+        } else {
             peripheralName = "Unknown"
         }
 
@@ -140,7 +140,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         if peripheral == self.peripheral {
             self.peripherals = [Peripheral]()
             self.peripheral = nil
-            if (self.isConnected == true) {
+            if self.isConnected == true {
                 self.isConnected = false
                 self.isSearching = true
                 self.startScanning()
@@ -179,7 +179,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             } else if theMode == 3 {
                 self.mode = "Turbo"
             }
-            if (characteristic.value?[17] != nil) {
+            if characteristic.value?[17] != nil {
                 self.tripDistance = Int(characteristic.value![17])
             }
         } else if characteristic.value?.count == 5 {
@@ -187,7 +187,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
 
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral,
+                    didDiscoverDescriptorsFor characteristic: CBCharacteristic,
+                    error: Error?) {
         print(characteristic)
     }
 }

@@ -33,11 +33,10 @@ struct MapView: UIViewRepresentable {
   private func updateOverlays(from mapView: MKMapView) {
     mapView.removeOverlays(mapView.overlays)
     let polyline = MKPolyline(coordinates: locationViewModel.locations, count: locationViewModel.locations.count)
-    let pl = polyLine()
-    pl.forEach { line in
+    let pline = polyLine()
+    pline.forEach { line in
         mapView.addOverlay(line)
     }
-    //mapView.addOverlay(pl)
     setMapZoomArea(map: mapView, polyline: polyline, edgeInsets: mapZoomEdgeInsets, animated: true)
   }
 

@@ -57,6 +57,6 @@
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
 	<key>com.apple.developer.icloud-container-environment</key>
-	<string>Production</string>
+	<string>Development</string>
 </dict>
 </plist>

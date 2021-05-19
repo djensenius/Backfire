@@ -44,13 +44,17 @@ class Helper {
             $0.timestamp?.compare($1.timestamp ?? Date()) == .orderedAscending
         }
 
-        let diffComponents = Calendar.current.dateComponents([.minute, .second], from: (sortedLocations.first?.timestamp)!, to: (sortedLocations.last?.timestamp)!)
+        let diffComponents = Calendar.current.dateComponents(
+            [.minute, .second],
+            from: (sortedLocations.first?.timestamp)!,
+            to: (sortedLocations.last?.timestamp)!
+        )
         let minutes = diffComponents.minute
         let seconds = diffComponents.second
         var timeText = ""
         timeText = "\(minutes ?? 0)"
 
-        if (seconds ?? 0 < 10) {
+        if seconds ?? 0 < 10 {
             timeText = "\(timeText):0\(seconds ?? 0)"
         } else {
             timeText = "\(timeText):\(seconds ?? 0)"
@@ -108,7 +112,11 @@ class Helper {
             mostMode = "Turbo"
         }
 
-        let rideTime = Calendar.current.dateComponents([.second], from: (sortedLocations.first?.timestamp)!, to: (sortedLocations.last?.timestamp)!)
+        let rideTime = Calendar.current.dateComponents(
+            [.second],
+            from: (sortedLocations.first?.timestamp)!,
+            to: (sortedLocations.last?.timestamp)!
+        )
         let totalHours = Measurement(value: Double(rideTime.second!), unit: UnitDuration.seconds).converted(to: .hours)
         let avgSpeed: Double = (totalDistance / 1000) / totalHours.value
 
@@ -125,21 +133,33 @@ class Helper {
         )
     }
 
-    func formatWeather(weather: Weather) -> DetailWeather {
+    func formatWeather(weather: Weather?) -> DetailWeather {
         var icon: Image?
-        let iconColor = weatherIcon(icon: weather.icon ?? "")
+        let iconColor = weatherIcon(icon: weather?.icon ?? "")
         if colorScheme == .dark {
             icon = iconColor
         } else {
             icon = iconColor.renderingMode(.template)
         }
+
+        if weather == nil {
+            return DetailWeather(
+                temperature: 0,
+                icon: icon!,
+                iconColor: iconColor,
+                description: "",
+                windSpeed: 100.0,
+                feelsLike: 100.0
+            )
+        }
+
         return DetailWeather(
-            temperature: weather.temperature,
+            temperature: weather!.temperature,
             icon: icon!,
             iconColor: iconColor,
-            description: weather.mainDescription ?? "",
-            windSpeed: weather.windSpeed,
-            feelsLike: weather.feelsLike
+            description: weather!.mainDescription ?? "",
+            windSpeed: weather!.windSpeed,
+            feelsLike: weather!.feelsLike
         )
     }
 

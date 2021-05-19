@@ -20,7 +20,9 @@ class ExtendedSessionCoordinator: NSObject, WKExtensionDelegate, WKExtendedRunti
         session?.start()
     }
 
-    func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
+    func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession,
+                                didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason,
+                                error: Error?) {
         // Do something
     }
 

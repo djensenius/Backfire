@@ -27,9 +27,9 @@ struct ContentView: View {
         animation: .default)
 
     private var config: FetchedResults<Config>
-    
+
     var body: some View {
-        VStack (alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: 10) {
             ZStack {
                 rideDetails()
                 Circle()
@@ -75,15 +75,20 @@ struct ContentView: View {
                         .font(.title2)
                     Text(boardManager.mode)
                         .font(.title2)
-                } else {
-                    if (lm.location?.speed != nil) {
-                        let speed = Measurement(value: lm.location!.speed, unit: UnitSpeed.metersPerSecond).converted(to: .kilometersPerHour)
-                        Text("\(speed.value)")
+                } else if started == true {
+                    if lm.location?.speed != nil {
+                        let speed = Measurement(
+                            value: lm.location!.speed,
+                            unit: UnitSpeed.metersPerSecond
+                        ).converted(to: .kilometersPerHour)
+                        Text("\(localizeNumber.speed(speed: Int(speed.value)))")
                             .font(.largeTitle)
                             .padding(.bottom)
                     }
-                    Text("Trip: \(localizeNumber.distance(distance: Double(lm.totalDistance) / 10))")
+                    Text("Trip: \(localizeNumber.distance(distance: Double(lm.totalDistance)))")
                         .font(.title2)
+                } else {
+                    Text("Not Started")
                 }
             }
         )
@@ -92,12 +97,14 @@ struct ContentView: View {
     func startStopButton() -> AnyView {
         return AnyView(
             HStack(alignment: .center) {
-                VStack (alignment: .center, spacing: 10) {
-                    if boardManager.isConnected == false && boardManager.isSearching == false {
+                VStack(alignment: .center, spacing: 10) {
+                    if checkConfig() == true && boardManager.isConnected == false && boardManager.isSearching == false {
                         connectAndRideButton()
+                    } else if checkConfig() == false && started == false {
+                        rideButton()
                     } else if boardManager.isSearching == true {
                         reconnectButton()
-                    } else if boardManager.isConnected == true {
+                    } else if boardManager.isConnected == true || started == true {
                         Button(action: {
                             stop()
                         }) {
@@ -121,6 +128,18 @@ struct ContentView: View {
         )
     }
 
+    func rideButton() -> AnyView {
+        return AnyView(
+            Button(action: {
+                addRide()
+            }) {
+                Text("Ride")
+            }.onAppear(perform: {
+                lm.startMonitoring()
+            })
+        )
+    }
+
     func reconnectButton() -> AnyView {
         return AnyView(
             Button(action: {
@@ -137,15 +156,19 @@ struct ContentView: View {
     func stop() {
         if boardManager.isSearching == true {
             self.boardManager.stopScanningAndResetData()
-        } else {
+        } else if checkConfig() == true {
             self.boardManager.disconnect()
         }
         lm.stopMonitoring()
+        started = false
         timer.invalidate()
     }
 
     func addRide() {
-        self.boardManager.startScanning()
+        if checkConfig() == true {
+            self.boardManager.startScanning()
+        }
+        started = true
         currentRide = Ride(context: viewContext)
         currentRide?.timestamp = Date()
         #if os(iOS)
@@ -162,7 +185,9 @@ struct ContentView: View {
                                  })
         } catch {
             // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            // fatalError() causes the application to generate a crash log and terminate.
+            // You should not use this function in a shipping application, although it may
+            // be useful during development.
             let nsError = error as NSError
             fatalError("Unresolved error 3 \(nsError), \(nsError.userInfo)")
         }
@@ -193,13 +218,15 @@ struct ContentView: View {
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate.
-                // You should not use this function in a shipping application, although it may be useful during development.
+                // You should not use this function in a shipping application, although it may
+                // be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 4 \(nsError), \(nsError.userInfo)")
             }
         }
-        if (lm.location?.coordinate.latitude != nil && (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon)) {
+        if lm.location?.coordinate.latitude != nil &&
+            (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {
             lat = (lm.location?.coordinate.latitude)!
             lon = (lm.location?.coordinate.longitude)!
             locationList.append(lm.location!)
@@ -209,8 +236,12 @@ struct ContentView: View {
             locationObject.timestamp = Date()
             locationObject.altitude = lm.location?.altitude ?? 0
 
-            if boardManager.speed != 0 {
-                locationObject.speed = Int16(boardManager.speed)
+            if lm.location?.speed != nil {
+                let speed = Measurement(
+                    value: lm.location!.speed,
+                    unit: UnitSpeed.metersPerSecond
+                ).converted(to: .kilometersPerHour)
+                locationObject.speed = Int16(speed.value)
             }
 
             if boardManager.battery != 0 {
@@ -227,7 +258,8 @@ struct ContentView: View {
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate.
-                // You should not use this function in a shipping application, although it may be useful during development.
+                // You should not use this function in a shipping application, although it may
+                // be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 5\(nsError), \(nsError.userInfo)")
@@ -236,7 +268,6 @@ struct ContentView: View {
     }
 
     func checkConfig() -> Bool {
-        print("CONFIGURE SETTINGS")
         if config.count > 0 && config[0].useBackfire == true {
             return true
         }
@@ -247,8 +278,11 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(boardManager: BLEManager()).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            ContentView(boardManager: BLEManager()).preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView(boardManager: BLEManager())
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView(boardManager: BLEManager())
+                .preferredColorScheme(.dark)
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
 
     }
