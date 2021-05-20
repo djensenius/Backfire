@@ -22,9 +22,6 @@ I recently got a [Backfire Zealot S](https://www.backfireboards.com/products/bac
 
 While this app uses your location and bluetooth, no data collected is available to the developers of the app. All data is stored in a secure cloud container on Apple Servers that only you have access to.
 
-## Get It
-
-
 ## Screenshots
 
 ### Apple Watch
