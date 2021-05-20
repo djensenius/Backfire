@@ -11,7 +11,7 @@ import CoreData
 @main
 struct BackfireApp: App {
     @ObservedObject var boardManager = BLEManager()
-    
+
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
@@ -30,10 +30,18 @@ struct BackfireApp: App {
                             Image(systemName: "map")
                             Text("Rides")
                         }
+                    /*
                     BackfireAppDebug(boardManager: self.boardManager)
                         .tabItem {
                             Image(systemName: "printer")
                             Text("Raw Data")
+                        }
+                    */
+                    SettingsView()
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .tabItem {
+                            Image(systemName: "gear")
+                            Text("Settings")
                         }
                 }
             #else

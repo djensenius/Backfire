@@ -22,39 +22,47 @@ struct TripView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink(destination: RideDetailView(ride: item).navigationTitle(returnTitleText(item: item))) {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 10) {
-                                returnTitle(item: item)
-                                if (item.locations?.count ?? 0 > 0) {
-                                    details(locations: item.locations?.allObjects as! [Location])
+            if items.count > 0 {
+                List {
+                    ForEach(items) { item in
+                        NavigationLink(
+                            destination: RideDetailView(ride: item).navigationTitle(returnTitleText(item: item))
+                        ) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    returnTitle(item: item)
+                                    if item.locations?.count ?? 0 > 0 {
+                                        details(locationsAny: item.locations!.allObjects)
+                                    }
                                 }
-                            }
 
-                            Spacer()
+                                Spacer()
 
-                            VStack(alignment: .trailing, spacing: 10) {
-                                if colorScheme == .dark {
-                                    Text(weatherIcon(icon: item.weather?.icon ?? ""))
-                                        .font(.largeTitle)
-                                } else {
-                                    Text(weatherIcon(icon: item.weather?.icon ?? "").renderingMode(.template))
-                                        .font(.largeTitle)
+                                VStack(alignment: .trailing, spacing: 10) {
+                                    if colorScheme == .dark {
+                                        Text(weatherIcon(icon: item.weather?.icon ?? ""))
+                                            .font(.largeTitle)
+                                    } else {
+                                        Text(weatherIcon(icon: item.weather?.icon ?? "").renderingMode(.template))
+                                            .font(.largeTitle)
+                                    }
+                                    Text(localizeNumber.temp(temp: item.weather?.temperature ?? 373.15))
+                                        .font(.subheadline)
                                 }
-                                Text(localizeNumber.temp(temp: item.weather?.temperature ?? 373.15))
-                                    .font(.subheadline)
                             }
                         }
                     }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
+                .navigationBarTitle("Rides")
+            } else {
+                #if os(macOS)
+                    Text("No rides available, use the iOS App to create a ride.")
+                #endif
             }
-            .navigationBarTitle("Rides")
         }
     }
-
+    // swiftlint:disable function_body_length
     func weatherIcon(icon: String) -> Image {
         switch icon {
         case "01d":
@@ -116,8 +124,12 @@ struct TripView: View {
                 .renderingMode(.original)
         }
     }
+    // swiftlint:enable function_body_length
 
-    func details(locations: [Location]) -> AnyView {
+    func details(locationsAny: [Any]) -> AnyView {
+        guard let locations = locationsAny as? [Location] else {
+            fatalError("Could nto cast variable")
+        }
         if locations.count == 0 {
             return AnyView(Text(""))
         }
@@ -127,13 +139,17 @@ struct TripView: View {
 
         var timeText = ""
 
-        if (sortedLocations.first?.timestamp != nil && sortedLocations.last?.timestamp != nil) {
-            let diffComponents = Calendar.current.dateComponents([.minute, .second], from: (sortedLocations.first?.timestamp)!, to: (sortedLocations.last?.timestamp)!)
+        if sortedLocations.first?.timestamp != nil && sortedLocations.last?.timestamp != nil {
+            let diffComponents = Calendar.current.dateComponents(
+                [.minute, .second],
+                from: (sortedLocations.first?.timestamp)!,
+                to: (sortedLocations.last?.timestamp)!
+            )
             let minutes = diffComponents.minute
             let seconds = diffComponents.second
             timeText = "\(minutes ?? 0)"
 
-            if (seconds ?? 0 < 10) {
+            if seconds ?? 0 < 10 {
                 timeText = "\(timeText):0\(seconds ?? 0)"
             } else {
                 timeText = "\(timeText):\(seconds ?? 0)"
@@ -148,7 +164,7 @@ struct TripView: View {
             let secondLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
             firstLat = location.latitude
             firstLon = location.longitude
-            totalDistance = totalDistance + firsLocation.distance(from: secondLocation)
+            totalDistance += firsLocation.distance(from: secondLocation)
         }
 
         return AnyView(
@@ -171,9 +187,6 @@ struct TripView: View {
 
     private func returnTitleText(item: Ride) -> String {
         var string = ""
-//        if item.device == "Apple Watch" {
-//            string = "\(Image(systemName: "applewatch"))"
-//        }
         let time = itemFormatterShort.string(from: item.timestamp ?? Date())
         string = "\(string) \(time)"
         return string
@@ -188,7 +201,9 @@ struct TripView: View {
                 try viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it
+                // may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 1 \(nsError), \(nsError.userInfo)")
@@ -204,7 +219,9 @@ struct TripView: View {
                 try viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it
+                // may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 2 \(nsError), \(nsError.userInfo)")
@@ -239,7 +256,9 @@ struct TripView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TripView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            TripView().preferredColorScheme(.dark).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            TripView()
+                .preferredColorScheme(.dark)
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

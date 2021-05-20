@@ -34,21 +34,27 @@ class Helper {
     @Environment(\.colorScheme) var colorScheme
 
     func parseRide(ride: Ride) -> DetailRide? {
-        if (ride.locations == nil) {
+        if ride.locations == nil {
             return nil
         }
-        let locations = ride.locations?.allObjects as! [Location]
+        guard let locations = ride.locations?.allObjects as? [Location] else {
+            fatalError("Could not cast locations")
+        }
         let sortedLocations = locations.sorted {
             $0.timestamp?.compare($1.timestamp ?? Date()) == .orderedAscending
         }
 
-        let diffComponents = Calendar.current.dateComponents([.minute, .second], from: (sortedLocations.first?.timestamp)!, to: (sortedLocations.last?.timestamp)!)
+        let diffComponents = Calendar.current.dateComponents(
+            [.minute, .second],
+            from: (sortedLocations.first?.timestamp)!,
+            to: (sortedLocations.last?.timestamp)!
+        )
         let minutes = diffComponents.minute
         let seconds = diffComponents.second
         var timeText = ""
         timeText = "\(minutes ?? 0)"
 
-        if (seconds ?? 0 < 10) {
+        if seconds ?? 0 < 10 {
             timeText = "\(timeText):0\(seconds ?? 0)"
         } else {
             timeText = "\(timeText):\(seconds ?? 0)"
@@ -70,26 +76,26 @@ class Helper {
             let firsLocation = CLLocation(latitude: firstLat!, longitude: firstLon!)
             let secondLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
             let currentAltitude = location.altitude
-            if (altitude > currentAltitude) {
-                decline = decline + (altitude - currentAltitude)
+            if altitude > currentAltitude {
+                decline += (altitude - currentAltitude)
             } else {
-                incline = incline + (currentAltitude - altitude)
+                incline += (currentAltitude - altitude)
             }
             altitude = currentAltitude
 
             firstLat = location.latitude
             firstLon = location.longitude
-            totalDistance = totalDistance + firsLocation.distance(from: secondLocation)
+            totalDistance += firsLocation.distance(from: secondLocation)
             if location.speed > maxSpeed {
                 maxSpeed = Int(location.speed)
             }
             let mode = location.mode
             if mode == 1 {
-                economy = economy + 1
+                economy += 1
             } else if mode == 2 {
-                speed = speed + 1
+                speed += 1
             } else if mode == 3 {
-                turbo = turbo + 1
+                turbo += 1
             }
 
             if location.battery != 0 {
@@ -106,7 +112,11 @@ class Helper {
             mostMode = "Turbo"
         }
 
-        let rideTime = Calendar.current.dateComponents([.second], from: (sortedLocations.first?.timestamp)!, to: (sortedLocations.last?.timestamp)!)
+        let rideTime = Calendar.current.dateComponents(
+            [.second],
+            from: (sortedLocations.first?.timestamp)!,
+            to: (sortedLocations.last?.timestamp)!
+        )
         let totalHours = Measurement(value: Double(rideTime.second!), unit: UnitDuration.seconds).converted(to: .hours)
         let avgSpeed: Double = (totalDistance / 1000) / totalHours.value
 
@@ -123,21 +133,33 @@ class Helper {
         )
     }
 
-    func formatWeather(weather: Weather) -> DetailWeather {
+    func formatWeather(weather: Weather?) -> DetailWeather {
         var icon: Image?
-        let iconColor = weatherIcon(icon: weather.icon ?? "")
+        let iconColor = weatherIcon(icon: weather?.icon ?? "")
         if colorScheme == .dark {
             icon = iconColor
         } else {
             icon = iconColor.renderingMode(.template)
         }
+
+        if weather == nil {
+            return DetailWeather(
+                temperature: 0,
+                icon: icon!,
+                iconColor: iconColor,
+                description: "",
+                windSpeed: 100.0,
+                feelsLike: 100.0
+            )
+        }
+
         return DetailWeather(
-            temperature: weather.temperature,
+            temperature: weather!.temperature,
             icon: icon!,
             iconColor: iconColor,
-            description: weather.mainDescription ?? "",
-            windSpeed: weather.windSpeed,
-            feelsLike: weather.feelsLike
+            description: weather!.mainDescription ?? "",
+            windSpeed: weather!.windSpeed,
+            feelsLike: weather!.feelsLike
         )
     }
 

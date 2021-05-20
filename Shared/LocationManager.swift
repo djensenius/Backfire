@@ -122,21 +122,32 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var status: CLAuthorizationStatus?
 
     @Published var location: CLLocation?
-    @Published var weather = OpenWeather(lat: 0, timezone: "UTC", daily: [], timezoneOffset: 0, current: nil, lon: 0, alerts: [])
+    @Published var weather = OpenWeather(
+        lat: 0,
+        timezone: "UTC",
+        daily: [],
+        timezoneOffset: 0,
+        current: nil,
+        lon: 0,
+        alerts: []
+    )
+    @Published var totalDistance: Double = 0
+
+    var startLocation: CLLocation!
+    var lastLocation: CLLocation!
 
     func fetchTheWeather() {
         print("Getting Weather")
         guard let location = self.location else { return }
 
         guard let url = URL(
-                string:
-                    "https://api.openweathermap.org/data/2.5/onecall?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&exclude=minutely,hourly&appid=\(BackfireConsts.openWeatherApi)"
+                string: "https://api.openweathermap.org/data/2.5/onecall?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&exclude=minutely,hourly&appid=\(BackfireConsts.openWeatherApi)"
         ) else {
             print("Invalid URL")
             return
         }
         let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { data, _, _ in
             if let data = data {
                 DispatchQueue.main.async {
                     if let decodedResponse = try? JSONDecoder().decode(OpenWeather.self, from: data) {
@@ -148,12 +159,15 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func startMonitoring() {
-        if ((weather.current == nil) && ((self.location?.coordinate.latitude) != nil) && ((self.location?.coordinate.longitude) != nil)) {
+        if (weather.current == nil) && ((self.location?.coordinate.latitude) != nil) &&
+                ((self.location?.coordinate.longitude) != nil) {
             fetchTheWeather()
         }
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        self.locationManager.requestTemporaryFullAccuracyAuthorization(withPurposeKey: "Track location in background while in use")
+        self.locationManager.requestTemporaryFullAccuracyAuthorization(
+            withPurposeKey: "Track location in background while in use"
+        )
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.activityType = .fitness
         self.locationManager.allowsBackgroundLocationUpdates = true
@@ -175,15 +189,21 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        if (self.location?.coordinate.longitude != location.coordinate.longitude ||
-                self.location?.coordinate.latitude != location.coordinate.latitude) {
+        if self.location?.coordinate.longitude != location.coordinate.longitude ||
+                self.location?.coordinate.latitude != location.coordinate.latitude {
 
+            if (locations.first != nil) && (locations.last != nil) {
+                if startLocation == nil {
+                    startLocation = locations.first
+                } else if let location = locations.last {
+                    totalDistance += (lastLocation.distance(from: location) / 1000)
+                }
+                lastLocation = locations.last
+            }
             self.location = location
-            if (self.weather.lat == 0 && self.weather.lon == 0) {
+            if self.weather.lat == 0 && self.weather.lon == 0 {
                 self.fetchTheWeather()
             }
         }
     }
 }
-
-

@@ -17,7 +17,6 @@ var locationList: [CLLocation] = []
 var timer = Timer()
 var extendedSession = ExtendedSessionCoordinator.init()
 
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject var lm = LocationManager.init()
@@ -25,6 +24,8 @@ struct ContentView: View {
     @State var healthtracking = HealthTracking()
     @State private var didLongPress = false
     @State private var useHealthKit = false
+    @State private var useBackfire = false
+    @State private var started = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -55,7 +56,7 @@ struct ContentView: View {
                                 .font(.footnote)
                             Text(boardManager.mode)
                                 .font(.footnote)
-                            if (currentRide != nil) {
+                            if currentRide != nil {
                                 Text("Press to end")
                                     .font(.footnote)
                             }
@@ -81,6 +82,45 @@ struct ContentView: View {
                         }
                         lm.stopMonitoring()
                         extendedSession.start()
+                        Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
+                                             block: {_ in
+                                                extendedSession.invalidate()
+                                             })
+                    }
+                } else if config.count > 0 && config[0].useBackfire == false && started == true {
+                    // Get speed and distance from location manager
+                    ZStack {
+                        VStack {
+                            if lm.location?.speed != nil {
+                                let speed = Measurement(
+                                    value: lm.location!.speed,
+                                    unit: UnitSpeed.metersPerSecond
+                                ).converted(to: .kilometersPerHour)
+                                Text("\(localizeNumber.speed(speed: Int(speed.value)))")
+                                    .font(.title2)
+                                    .padding(.bottom)
+                            }
+                            Text("Trip: \(localizeNumber.distance(distance: Double(lm.totalDistance)))")
+                                .font(.footnote)
+                            if currentRide != nil {
+                                Text("Press to end")
+                                    .font(.footnote)
+                            }
+                        }
+                    }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
+                    .onLongPressGesture {
+                        print("Long press")
+                        timer.invalidate()
+                        if config.count > 0 && config[0].useHealthKit == true {
+                            healthtracking.stopHeathTracking()
+                        }
+                        started = false
+                        lm.stopMonitoring()
+                        extendedSession.start()
+                        Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
+                                             block: {_ in
+                                                extendedSession.invalidate()
+                                             })
                     }
                 } else if boardManager.isSearching == true {
                     Text("You have \(items.count) rides")
@@ -98,6 +138,23 @@ struct ContentView: View {
                         }
                         lm.stopMonitoring()
                         extendedSession.start()
+                        Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
+                                             block: {_ in
+                                                extendedSession.invalidate()
+                                             })
+                    }
+                } else if config.count > 0 && config[0].useBackfire == false && started == false {
+                    Text("To connect to a Backfire Board connection swipe to settings.")
+                    Spacer()
+                    Text("You have \(items.count) rides")
+                    Button("Ride") {
+                        lm.startMonitoring()
+                        started = true
+                        addRide()
+                        extendedSession.start()
+                        if config.count > 0 && config[0].useHealthKit == true {
+                            healthtracking.startHealthTracking()
+                        }
                     }
                 } else {
                     Text("You have \(items.count) rides")
@@ -111,41 +168,26 @@ struct ContentView: View {
                         }
                     }
                 }
-            }
+            }.onAppear(perform: {
+                configureSettings()
+            })
 
-            VStack {
-                Toggle("HealthKit", isOn: $useHealthKit)
-                    .onAppear(perform: {
-                        configureHealthKit()
-                    })
-                    .onChange(of: useHealthKit, perform: { value in
-                        updateHealth(use: value)
-                    })
-                    .padding()
-            }
+            SettingsView()
+                .environment(\.managedObjectContext, viewContext)
         }
     }
 
-    func updateHealth(use: Bool) {
-        if (config.count == 0) {
-            let newConfig = Config(context: self.viewContext)
-            newConfig.useHealthKit = use
-        } else {
-            config[0].useHealthKit = use
-        }
-        do {
-            try self.viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved saving HealthKit \(nsError), \(nsError.userInfo)")
-        }
-    }
-
-    func configureHealthKit() {
+    func configureSettings() {
         if config.count > 0 && config[0].useHealthKit == true {
             useHealthKit = true
         } else {
             useHealthKit = false
+        }
+
+        if config.count > 0 && config[0].useBackfire == true {
+            useBackfire = true
+        } else {
+            useBackfire = false
         }
     }
 
@@ -162,14 +204,16 @@ struct ContentView: View {
                                  })
         } catch {
             // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            // fatalError() causes the application to generate a crash log and terminate.
+            // You should not use this function in a shipping application, although it may
+            // be useful during development.
             let nsError = error as NSError
             fatalError("Unresolved error 3 \(nsError), \(nsError.userInfo)")
         }
     }
 
     func updateLoaction() {
-        if (currentRide?.weather == nil && lm.weather.current != nil) {
+        if currentRide?.weather == nil && lm.weather.current != nil {
             let weather = Weather(context: self.viewContext)
             weather.clouds = Int16(lm.weather.current?.clouds ?? 0)
             weather.feelsLike = lm.weather.current?.feelsLike ?? 0
@@ -192,13 +236,16 @@ struct ContentView: View {
                 try self.viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it may
+                // be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 4 \(nsError), \(nsError.userInfo)")
             }
         }
-        if (lm.location?.coordinate.latitude != nil && (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon)) {
+        if lm.location?.coordinate.latitude != nil &&
+            (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {
             lat = (lm.location?.coordinate.latitude)!
             lon = (lm.location?.coordinate.longitude)!
             locationList.append(lm.location!)
@@ -208,16 +255,22 @@ struct ContentView: View {
             locationObject.timestamp = Date()
             locationObject.altitude = lm.location?.altitude ?? 0
 
-            if boardManager.speed != 0 {
-                locationObject.speed = Int16(boardManager.speed)
+            if config.count > 0 && config[0].useBackfire == true {
+                if boardManager.battery != 0 {
+                    locationObject.battery = Int16(boardManager.battery)
+                }
+
+                if boardManager.modeNum != 0 {
+                    locationObject.mode = Int16(boardManager.modeNum)
+                }
             }
 
-            if boardManager.battery != 0 {
-                locationObject.battery = Int16(boardManager.battery)
-            }
-
-            if boardManager.modeNum != 0 {
-                locationObject.mode = Int16(boardManager.modeNum)
+            if lm.location?.speed != nil {
+                let speed = Measurement(
+                    value: lm.location!.speed,
+                    unit: UnitSpeed.metersPerSecond
+                ).converted(to: .kilometersPerHour)
+                locationObject.speed = Int16(speed.value)
             }
 
             currentRide?.addToLocations(locationObject)
@@ -225,7 +278,9 @@ struct ContentView: View {
                 try self.viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash log and terminate.
+                // You should not use this function in a shipping application, although it
+                // may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
                 fatalError("Unresolved error 5\(nsError), \(nsError.userInfo)")

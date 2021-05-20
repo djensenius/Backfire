@@ -7,9 +7,12 @@ struct MapView: UIViewRepresentable {
     private var rideLocations: [Location]
     private var color = UIColor.black
 
-    init(rideLocations: [Location]) {
-        locationViewModel.load(rideLocations: rideLocations)
-        self.rideLocations = rideLocations
+    init(rideLocations: [Any]) {
+        guard let locations = rideLocations as? [Location] else {
+            fatalError("Could not cast locations")
+        }
+        locationViewModel.load(rideLocations: locations)
+        self.rideLocations = locations
     }
 
   func makeCoordinator() -> MapViewCoordinator {
@@ -30,11 +33,10 @@ struct MapView: UIViewRepresentable {
   private func updateOverlays(from mapView: MKMapView) {
     mapView.removeOverlays(mapView.overlays)
     let polyline = MKPolyline(coordinates: locationViewModel.locations, count: locationViewModel.locations.count)
-    let pl = polyLine()
-    pl.forEach { line in
+    let pline = polyLine()
+    pline.forEach { line in
         mapView.addOverlay(line)
     }
-    //mapView.addOverlay(pl)
     setMapZoomArea(map: mapView, polyline: polyline, edgeInsets: mapZoomEdgeInsets, animated: true)
   }
 
@@ -44,31 +46,31 @@ struct MapView: UIViewRepresentable {
 
     private func segmentColor(speed: Double, midSpeed: Double, slowestSpeed: Double, fastestSpeed: Double) -> UIColor {
       enum BaseColors {
-        static let r_red: CGFloat = 1
-        static let r_green: CGFloat = 20 / 255
-        static let r_blue: CGFloat = 44 / 255
+        static let rRed: CGFloat = 1
+        static let rGreen: CGFloat = 20 / 255
+        static let rBlue: CGFloat = 44 / 255
 
-        static let y_red: CGFloat = 1
-        static let y_green: CGFloat = 215 / 255
-        static let y_blue: CGFloat = 0
+        static let yRed: CGFloat = 1
+        static let yGreen: CGFloat = 215 / 255
+        static let yBlue: CGFloat = 0
 
-        static let g_red: CGFloat = 0
-        static let g_green: CGFloat = 146 / 255
-        static let g_blue: CGFloat = 78 / 255
+        static let gRed: CGFloat = 0
+        static let gGreen: CGFloat = 146 / 255
+        static let gBlue: CGFloat = 78 / 255
       }
 
       let red, green, blue: CGFloat
 
       if speed < midSpeed {
         let ratio = CGFloat((speed - slowestSpeed) / (midSpeed - slowestSpeed))
-        red = BaseColors.r_red + ratio * (BaseColors.y_red - BaseColors.r_red)
-        green = BaseColors.r_green + ratio * (BaseColors.y_green - BaseColors.r_green)
-        blue = BaseColors.r_blue + ratio * (BaseColors.y_blue - BaseColors.r_blue)
+        red = BaseColors.rRed + ratio * (BaseColors.yRed - BaseColors.rRed)
+        green = BaseColors.rGreen + ratio * (BaseColors.yGreen - BaseColors.rGreen)
+        blue = BaseColors.rBlue + ratio * (BaseColors.yBlue - BaseColors.rBlue)
       } else {
         let ratio = CGFloat((speed - midSpeed) / (fastestSpeed - midSpeed))
-        red = BaseColors.y_red + ratio * (BaseColors.g_red - BaseColors.y_red)
-        green = BaseColors.y_green + ratio * (BaseColors.g_green - BaseColors.y_green)
-        blue = BaseColors.y_blue + ratio * (BaseColors.g_blue - BaseColors.y_blue)
+        red = BaseColors.yRed + ratio * (BaseColors.gRed - BaseColors.yRed)
+        green = BaseColors.yGreen + ratio * (BaseColors.gGreen - BaseColors.yGreen)
+        blue = BaseColors.yBlue + ratio * (BaseColors.gBlue - BaseColors.yBlue)
       }
 
       return UIColor(red: red, green: green, blue: blue, alpha: 1)

@@ -1,0 +1,8 @@
+cyclomatic_complexity:
+  ignores_case_statements: true
+line_length:
+  ignores_urls: true
+identifier_name:
+  min_length:
+    warning: 1
+    error: 1

@@ -14,16 +14,18 @@ struct RideDetailView: View {
 
     var body: some View {
         let helper = Helper()
-        let formattedWeather = helper.formatWeather(weather: ride.weather!)
+        let formattedWeather = helper.formatWeather(weather: ride.weather ?? nil)
 
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 if ride.locations?.count ?? 0 > 1 {
                     ZStack(alignment: .topTrailing) {
-                        MapView(rideLocations: ride.locations?.allObjects as! [Location])
-                            .frame(height: 200)
-                        VStack() {
-                            VStack() {
+                        if ride.locations?.count ?? 0 > 1 {
+                            MapView(rideLocations: ride.locations!.allObjects)
+                                .frame(height: 200)
+                        }
+                        VStack {
+                            VStack {
                                 Text("\(formattedWeather.iconColor) \(localizeNumber.temp(temp: formattedWeather.temperature))")
                             }.padding(5)
                         }
@@ -33,7 +35,11 @@ struct RideDetailView: View {
 
                     }
                 }
-                RideDetailsText(ride: ride)
+                if ride.locations?.count ?? 0 > 0 {
+                    RideDetailsText(ride: ride)
+                } else {
+                    Text("Not enough ride data to show ride.")
+                }
             }
         }
     }

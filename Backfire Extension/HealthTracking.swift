@@ -13,11 +13,13 @@ class HealthTracking: NSObject, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDe
     var session: HKWorkoutSession!
     var builder: HKLiveWorkoutBuilder!
 
-    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+    func workoutSession(_ workoutSession: HKWorkoutSession,
+                        didChangeTo toState: HKWorkoutSessionState,
+                        from fromState: HKWorkoutSessionState, date: Date) {
         if toState == .ended {
             print("The workout has now ended.")
-            builder.endCollection(withEnd: Date()) { (success, error) in
-                self.builder.finishWorkout { (workout, error) in
+            builder.endCollection(withEnd: Date()) { (_, _) in
+                self.builder.finishWorkout { (_, _) in
                     // Optionally display a workout summary to the user.
                 }
             }
@@ -53,7 +55,7 @@ class HealthTracking: NSObject, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDe
         configuration.locationType = .outdoor
 
         // Request authorization for those quantity types.
-        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
+        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (_, _) in
             // Handle error.
         }
 
@@ -70,7 +72,7 @@ class HealthTracking: NSObject, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDe
         builder.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
                                                      workoutConfiguration: configuration)
         session.startActivity(with: Date())
-        builder.beginCollection(withStart: Date()) { (success, error) in
+        builder.beginCollection(withStart: Date()) { (_, _) in
             // The workout has started.
         }
     }

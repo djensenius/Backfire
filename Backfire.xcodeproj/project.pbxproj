@@ -53,6 +53,8 @@
 		63B68B67261E074900CCA935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B68B38261E074900CCA935 /* Assets.xcassets */; };
 		63B68B68261E074900CCA935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B68B38261E074900CCA935 /* Assets.xcassets */; };
 		63B68B7A261E078B00CCA935 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B68B79261E078B00CCA935 /* CloudKit.framework */; };
+		63D65E4F262C631300CEEE4F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D65E4E262C631300CEEE4F /* SettingsView.swift */; };
+		63D65E50262C631300CEEE4F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D65E4E262C631300CEEE4F /* SettingsView.swift */; };
 		63D80DB026251060008222CF /* RideDetailsText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D80DAF26251060008222CF /* RideDetailsText.swift */; };
 		63D80DB126251060008222CF /* RideDetailsText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D80DAF26251060008222CF /* RideDetailsText.swift */; };
 		63D80DB926252E74008222CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D80DB826252E74008222CF /* Helper.swift */; };
@@ -168,6 +170,7 @@
 		63B68B5E261E074900CCA935 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63B68B77261E078600CCA935 /* Backfire.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Backfire.entitlements; sourceTree = "<group>"; };
 		63B68B79261E078B00CCA935 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		63D65E4E262C631300CEEE4F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		63D80DAF26251060008222CF /* RideDetailsText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailsText.swift; sourceTree = "<group>"; };
 		63D80DB826252E74008222CF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		63F3B7EE261E8FFA00502AF6 /* RideDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailView.swift; sourceTree = "<group>"; };
@@ -274,18 +277,19 @@
 			isa = PBXGroup;
 			children = (
 				63B68B35261E074500CCA935 /* BackfireApp.swift */,
+				63D65E4E262C631300CEEE4F /* SettingsView.swift */,
 				63B68B36261E074500CCA935 /* RideView.swift */,
 				63F3B7EE261E8FFA00502AF6 /* RideDetailView.swift */,
 				63D80DAF26251060008222CF /* RideDetailsText.swift */,
 				63F3B7F4261F584500502AF6 /* MapView.swift */,
 				63F3B800261F6DB700502AF6 /* MulticolorPolyline.swift */,
-				63F3B7F7261F5B5500502AF6 /* MapViewCoordinator.swift */,
 				63F3B7FA261F5B8500502AF6 /* LocationViewModel.swift */,
 				63B68B37261E074500CCA935 /* Persistence.swift */,
 				63465998261E1B2500460166 /* BackfireAppDebug.swift */,
 				63465999261E1B2500460166 /* BackfireBLEManager.swift */,
 				63B68B38261E074900CCA935 /* Assets.xcassets */,
 				63B68B33261E074500CCA935 /* Backfire.xcdatamodeld */,
+				63F3B7F7261F5B5500502AF6 /* MapViewCoordinator.swift */,
 				63465A13261E33EF00460166 /* BackfireConsts.swift */,
 				634659FF261E31DD00460166 /* LocationManager.swift */,
 				63D80DB826252E74008222CF /* Helper.swift */,
@@ -416,6 +420,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63B68B6E261E074900CCA935 /* Build configuration list for PBXNativeTarget "Backfire (macOS)" */;
 			buildPhases = (
+				635DAAE6263E426F00B15B46 /* ShellScript */,
 				63B68B41261E074900CCA935 /* Sources */,
 				63B68B42261E074900CCA935 /* Frameworks */,
 				63B68B43261E074900CCA935 /* Resources */,
@@ -569,11 +574,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		635DAAE6263E426F00B15B46 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		634659A9261E1BA500460166 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D65E50262C631300CEEE4F /* SettingsView.swift in Sources */,
 				630A8060262B2C4D005BBE89 /* ExtendedSessionCoordinator.swift in Sources */,
 				63D80DBB26252E74008222CF /* Helper.swift in Sources */,
 				634659B5261E1BA500460166 /* BackfireApp.swift in Sources */,
@@ -595,6 +621,7 @@
 			files = (
 				6346599C261E1B2500460166 /* BackfireBLEManager.swift in Sources */,
 				63F3B7EF261E8FFA00502AF6 /* RideDetailView.swift in Sources */,
+				63D65E4F262C631300CEEE4F /* SettingsView.swift in Sources */,
 				63B68B61261E074900CCA935 /* BackfireApp.swift in Sources */,
 				63F3B7F5261F584500502AF6 /* MapView.swift in Sources */,
 				63F3B7F8261F5B5500502AF6 /* MapViewCoordinator.swift in Sources */,
@@ -685,7 +712,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Backfire Extension/Backfire Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_ASSET_PATHS = "\"Backfire Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
@@ -711,7 +738,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Backfire Extension/Backfire Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_ASSET_PATHS = "\"Backfire Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
@@ -739,7 +766,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				IBSC_MODULE = Backfire_Extension;
 				INFOPLIST_FILE = Backfire/Info.plist;
@@ -760,7 +787,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				IBSC_MODULE = Backfire_Extension;
 				INFOPLIST_FILE = Backfire/Info.plist;
@@ -893,7 +920,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Backfire.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -917,7 +944,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Backfire.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -941,9 +968,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -966,9 +994,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

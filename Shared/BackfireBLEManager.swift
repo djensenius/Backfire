@@ -45,7 +45,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         myCentral.delegate = self
     }
 
-
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             isSwitchedOn = true
@@ -72,14 +71,15 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         print(consoleLog)
     }
 
-
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager,
+                        didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String: Any],
+                        rssi RSSI: NSNumber) {
         var peripheralName: String!
 
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
-        }
-        else {
+        } else {
             peripheralName = "Unknown"
         }
 
@@ -140,7 +140,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         if peripheral == self.peripheral {
             self.peripherals = [Peripheral]()
             self.peripheral = nil
-            if (self.isConnected == true) {
+            if self.isConnected == true {
                 self.isConnected = false
                 self.isSearching = true
                 self.startScanning()
@@ -160,26 +160,26 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if characteristic.value?.count == 20 {
             self.bytesTwenty = characteristic.value!
-            if ((characteristic.value?[6]) != nil) {
+            if (characteristic.value?[6]) != nil {
                 self.speed = Int(characteristic.value![6]) / 4
             }
 
-            if (characteristic.value?[5] != nil) {
+            if characteristic.value?[5] != nil {
                 self.battery = Int(characteristic.value![5])
             }
-            var m = 0
-            if (characteristic.value?[4] != nil) {
-                m = Int(characteristic.value![4])
-                self.modeNum = m
+            var theMode = 0
+            if characteristic.value?[4] != nil {
+                theMode = Int(characteristic.value![4])
+                self.modeNum = theMode
             }
-            if m == 1 {
+            if theMode == 1 {
                 self.mode = "Economy"
-            } else if m == 2 {
+            } else if theMode == 2 {
                 self.mode = "Speed"
-            } else if m == 3 {
+            } else if theMode == 3 {
                 self.mode = "Turbo"
             }
-            if (characteristic.value?[17] != nil) {
+            if characteristic.value?[17] != nil {
                 self.tripDistance = Int(characteristic.value![17])
             }
         } else if characteristic.value?.count == 5 {
@@ -187,7 +187,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
 
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral,
+                    didDiscoverDescriptorsFor characteristic: CBCharacteristic,
+                    error: Error?) {
         print(characteristic)
     }
 }
