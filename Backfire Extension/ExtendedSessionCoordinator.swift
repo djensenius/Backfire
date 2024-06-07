@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class ExtendedSessionCoordinator: NSObject, WKExtensionDelegate, WKExtendedRuntimeSessionDelegate {
+class ExtendedSessionCoordinator: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDelegate {
     var session: WKExtendedRuntimeSession!
 
     func start() {

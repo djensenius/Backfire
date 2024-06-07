@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,7 +21,6 @@
 		6346599C261E1B2500460166 /* BackfireBLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63465999261E1B2500460166 /* BackfireBLEManager.swift */; };
 		6346599D261E1B2500460166 /* BackfireBLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63465999261E1B2500460166 /* BackfireBLEManager.swift */; };
 		634659A7261E1BA400460166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 634659A6261E1BA400460166 /* Assets.xcassets */; };
-		634659AE261E1BA500460166 /* Backfire Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 634659AD261E1BA500460166 /* Backfire Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		634659B3261E1BA500460166 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634659B2261E1BA500460166 /* ContentView.swift */; };
 		634659B5261E1BA500460166 /* BackfireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634659B4261E1BA500460166 /* BackfireApp.swift */; };
 		634659B7261E1BA500460166 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634659B6261E1BA500460166 /* ComplicationController.swift */; };
@@ -72,13 +71,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		634659AF261E1BA500460166 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 63B68B2E261E074500CCA935 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 634659AC261E1BA500460166;
-			remoteInfo = "Backfire Extension";
-		};
 		634659BE261E1BA500460166 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63B68B2E261E074500CCA935 /* Project object */;
@@ -103,17 +95,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		634659C4261E1BA500460166 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				634659AE261E1BA500460166 /* Backfire Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		634659C8261E1BA500460166 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,7 +120,6 @@
 		634659A4261E1BA100460166 /* Backfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backfire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		634659A6261E1BA400460166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		634659A8261E1BA400460166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		634659AD261E1BA500460166 /* Backfire Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Backfire Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		634659B2261E1BA500460166 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		634659B4261E1BA500460166 /* BackfireApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireApp.swift; sourceTree = "<group>"; };
 		634659B6261E1BA500460166 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -306,7 +286,6 @@
 				63B68B4D261E074900CCA935 /* Tests iOS.xctest */,
 				63B68B58261E074900CCA935 /* Tests macOS.xctest */,
 				634659A4261E1BA100460166 /* Backfire.app */,
-				634659AD261E1BA500460166 /* Backfire Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -368,34 +347,17 @@
 			buildConfigurationList = 634659C5261E1BA500460166 /* Build configuration list for PBXNativeTarget "Backfire" */;
 			buildPhases = (
 				634659A2261E1BA100460166 /* Resources */,
-				634659C4261E1BA500460166 /* Embed App Extensions */,
+				634659A9261E1BA500460166 /* Sources */,
+				634659AA261E1BA500460166 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				634659B0261E1BA500460166 /* PBXTargetDependency */,
 			);
 			name = Backfire;
 			productName = Backfire;
 			productReference = 634659A4261E1BA100460166 /* Backfire.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		634659AC261E1BA500460166 /* Backfire Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 634659C1261E1BA500460166 /* Build configuration list for PBXNativeTarget "Backfire Extension" */;
-			buildPhases = (
-				634659A9261E1BA500460166 /* Sources */,
-				634659AA261E1BA500460166 /* Frameworks */,
-				634659AB261E1BA500460166 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Backfire Extension";
-			productName = "Backfire Extension";
-			productReference = 634659AD261E1BA500460166 /* Backfire Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			productType = "com.apple.product-type.application";
 		};
 		63B68B3C261E074900CCA935 /* Backfire (iOS) */ = {
 			isa = PBXNativeTarget;
@@ -476,13 +438,11 @@
 		63B68B2E261E074500CCA935 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					634659A3261E1BA100460166 = {
-						CreatedOnToolsVersion = 12.4;
-					};
-					634659AC261E1BA500460166 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 					63B68B3C261E074900CCA935 = {
@@ -519,7 +479,6 @@
 				63B68B4C261E074900CCA935 /* Tests iOS */,
 				63B68B57261E074900CCA935 /* Tests macOS */,
 				634659A3261E1BA100460166 /* Backfire */,
-				634659AC261E1BA500460166 /* Backfire Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -529,16 +488,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				634659A7261E1BA400460166 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		634659AB261E1BA500460166 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 				634659BC261E1BA500460166 /* Preview Assets.xcassets in Resources */,
 				634659B9261E1BA500460166 /* Assets.xcassets in Resources */,
+				634659A7261E1BA400460166 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,11 +635,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		634659B0261E1BA500460166 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 634659AC261E1BA500460166 /* Backfire Extension */;
-			targetProxy = 634659AF261E1BA500460166 /* PBXContainerItemProxy */;
-		};
 		634659BF261E1BA500460166 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 634659A3261E1BA100460166 /* Backfire */;
@@ -706,70 +653,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		634659C2261E1BA500460166 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Backfire Extension/Backfire Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 43;
-				DEVELOPMENT_ASSET_PATHS = "\"Backfire Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 9JALHNGRBQ;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Backfire Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
-			};
-			name = Debug;
-		};
-		634659C3261E1BA500460166 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "Backfire Extension/Backfire Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 43;
-				DEVELOPMENT_ASSET_PATHS = "\"Backfire Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 9JALHNGRBQ;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Backfire Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
-			};
-			name = Release;
-		};
 		634659C6261E1BA500460166 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Backfire Extension/Backfire Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
-				IBSC_MODULE = Backfire_Extension;
 				INFOPLIST_FILE = Backfire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -785,12 +684,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Backfire Extension/Backfire Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
-				IBSC_MODULE = Backfire_Extension;
 				INFOPLIST_FILE = Backfire/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Backfire.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -836,9 +740,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -853,11 +759,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -895,9 +804,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -906,10 +817,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -972,6 +886,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -998,6 +913,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1065,6 +981,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1087,6 +1004,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				INFOPLIST_FILE = "Tests macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1106,15 +1024,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		634659C1261E1BA500460166 /* Build configuration list for PBXNativeTarget "Backfire Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				634659C2261E1BA500460166 /* Debug */,
-				634659C3261E1BA500460166 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		634659C5261E1BA500460166 /* Build configuration list for PBXNativeTarget "Backfire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
