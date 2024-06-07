@@ -148,24 +148,28 @@ struct ContentView: View {
                     Spacer()
                     Text("You have \(items.count) rides")
                     Button("Ride") {
-                        lm.startMonitoring()
                         started = true
                         addRide()
                         extendedSession.start()
                         if config.count > 0 && config[0].useHealthKit == true {
                             healthtracking.startHealthTracking()
                         }
+                    }.task {
+                        await lm.startMonitoring()
+                        await lm.fetchTheWeather()
                     }
                 } else {
                     Text("You have \(items.count) rides")
                     Button("Connect and Ride") {
-                        lm.startMonitoring()
                         boardManager.startScanning()
                         addRide()
                         extendedSession.start()
                         if config.count > 0 && config[0].useHealthKit == true {
                             healthtracking.startHealthTracking()
                         }
+                    }.task {
+                        await lm.startMonitoring()
+                        await lm.fetchTheWeather()
                     }
                 }
             }.onAppear(perform: {
@@ -197,7 +201,6 @@ struct ContentView: View {
         currentRide?.device = "Apple Watch"
         do {
             try self.viewContext.save()
-            lm.fetchTheWeather()
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
                                  block: {_ in
                                     updateLoaction()
@@ -213,8 +216,9 @@ struct ContentView: View {
     }
 
     func updateLoaction() {
-        if currentRide?.weather == nil && lm.weather.current != nil {
+        if currentRide?.weather == nil && lm.weather != nil {
             let weather = Weather(context: self.viewContext)
+            /*
             weather.clouds = Int16(lm.weather.current?.clouds ?? 0)
             weather.feelsLike = lm.weather.current?.feelsLike ?? 0
             weather.humidity = Int16(lm.weather.current?.humidity ?? 0)
@@ -232,6 +236,7 @@ struct ContentView: View {
             weather.sunset = Int32(lm.weather.current?.sunrise ?? 0)
             weather.sunrise = Int32(lm.weather.current?.sunrise ?? 0)
             currentRide?.weather = weather
+             */
             do {
                 try self.viewContext.save()
             } catch {

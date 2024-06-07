@@ -8,37 +8,7 @@
 import Foundation
 import CoreLocation
 import Combine
-
-// MARK: - OpenWeather
-struct OpenWeather: Codable {
-    let lat: Double
-    let timezone: String
-    let daily: [Daily]
-    let timezoneOffset: Int
-    let current: Current?
-    let lon: Double
-    var alerts: [Alert]?
-
-    enum CodingKeys: String, CodingKey {
-        case lat, timezone, daily
-        case timezoneOffset = "timezone_offset"
-        case current, lon, alerts
-    }
-}
-
-// MARK: - Alert
-struct Alert: Codable {
-    let end: Int
-    let senderName: String
-    let event: String
-    let description: String
-    let start: Int
-
-    enum CodingKeys: String, CodingKey {
-        case end, event, description, start
-        case senderName = "sender_name"
-    }
-}
+import WeatherKit
 
 // MARK: - Current
 struct Current: Codable {
@@ -75,100 +45,42 @@ struct TheWeather: Codable {
     }
 }
 
-// MARK: - Daily
-struct Daily: Codable {
-    let uvi: Double
-    let dt: Int
-    let snow: Double?
-    let clouds, pressure: Int
-    let weather: [TheWeather]
-    let pop: Double
-    let windDeg: Int
-    let dewPoint: Double
-    let rain: Double?
-    let sunrise: Int
-    let feelsLike: FeelsLike
-    let humidity: Int
-    let windSpeed: Double
-    let temp: Temp
-    let sunset: Int
-
-    enum CodingKeys: String, CodingKey {
-        case uvi, dt, snow, clouds, pressure, weather, pop
-        case windDeg = "wind_deg"
-        case dewPoint = "dew_point"
-        case rain, sunrise
-        case feelsLike = "feels_like"
-        case humidity
-        case windSpeed = "wind_speed"
-        case temp, sunset
-    }
-}
-
-// MARK: - FeelsLike
-struct FeelsLike: Codable {
-    let morn, day, eve, night: Double
-}
-
-// MARK: - Temp
-struct Temp: Codable {
-    let night, eve, min, max: Double
-    let day, morn: Double
-}
-
 // MARK: - Location services
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private var status: CLAuthorizationStatus?
 
+    @Published var weather: CurrentWeather?
+    
     @Published var location: CLLocation?
-    @Published var weather = OpenWeather(
-        lat: 0,
-        timezone: "UTC",
-        daily: [],
-        timezoneOffset: 0,
-        current: nil,
-        lon: 0,
-        alerts: []
-    )
     @Published var totalDistance: Double = 0
 
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
 
-    func fetchTheWeather() {
-        print("Getting Weather")
+    func fetchTheWeather() async {
         guard let location = self.location else { return }
 
-        guard let url = URL(
-                string: "https://api.openweathermap.org/data/2.5/onecall?lat=\(location.coordinate.latitude)&lon=\(location.coordinate.longitude)&exclude=minutely,hourly&appid=\(BackfireConsts.openWeatherApi)"
-        ) else {
-            print("Invalid URL")
-            return
-        }
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, _, _ in
-            if let data = data {
-                DispatchQueue.main.async {
-                    if let decodedResponse = try? JSONDecoder().decode(OpenWeather.self, from: data) {
-                        self.weather = decodedResponse
-                    }
-                }
+        do {
+            let weatherService = WeatherService()
+            let weather = try await weatherService.weather(for: location)
+            DispatchQueue.main.async {
+                self.weather = weather.currentWeather
             }
-        }.resume()
+        } catch {
+            print("Error fetching weather")
+        }
     }
 
-    func startMonitoring() {
-        if (weather.current == nil) && ((self.location?.coordinate.latitude) != nil) &&
+    func startMonitoring() async {
+        if (weather == nil) && ((self.location?.coordinate.latitude) != nil) &&
                 ((self.location?.coordinate.longitude) != nil) {
-            fetchTheWeather()
+            await fetchTheWeather()
         }
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        self.locationManager.requestTemporaryFullAccuracyAuthorization(
-            withPurposeKey: "Track location in background while in use"
-        )
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         self.locationManager.activityType = .fitness
         self.locationManager.allowsBackgroundLocationUpdates = true
         #if os(iOS)
@@ -201,9 +113,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 lastLocation = locations.last
             }
             self.location = location
-            if self.weather.lat == 0 && self.weather.lon == 0 {
-                self.fetchTheWeather()
-            }
         }
     }
 }

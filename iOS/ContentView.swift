@@ -13,13 +13,14 @@ var lat: Double = 0.0
 var lon: Double = 0.0
 var locationList: [CLLocation] = []
 var timer = Timer()
+var getFirstLocationTimer = Timer()
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var boardManager: BLEManager
     @StateObject var lm = LocationManager.init()
     @State private var started = false
-
+    @State var buttonDisabled = true
     var localizeNumber = LocalizeNumbers()
 
     @FetchRequest(
@@ -122,9 +123,10 @@ struct ContentView: View {
                 addRide()
             }) {
                 Text("Connect and Ride")
-            }.onAppear(perform: {
-                lm.startMonitoring()
-            })
+            }.task {
+                await lm.startMonitoring()
+                await lm.fetchTheWeather()
+            }
         )
     }
 
@@ -134,9 +136,15 @@ struct ContentView: View {
                 addRide()
             }) {
                 Text("Ride")
-            }.onAppear(perform: {
-                lm.startMonitoring()
-            })
+            }.onAppear {
+                getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                                                             block: {_ in
+                    getFirstLocation()
+                })
+            }.task {
+                await lm.startMonitoring()
+                await lm.fetchTheWeather()
+            }.disabled(buttonDisabled)
         )
     }
 
@@ -178,7 +186,6 @@ struct ContentView: View {
         #endif
         do {
             try self.viewContext.save()
-            lm.fetchTheWeather()
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
                                  block: {_ in
                                     updateLoaction()
@@ -192,10 +199,25 @@ struct ContentView: View {
             fatalError("Unresolved error 3 \(nsError), \(nsError.userInfo)")
         }
     }
+    
+    func getFirstLocation() {
+        if lm.location?.coordinate.latitude != nil &&
+            (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {
+            lat = (lm.location?.coordinate.latitude)!
+            lon = (lm.location?.coordinate.longitude)!
+            print("Going to invalidate")
+            buttonDisabled = false
+            Task {
+                await lm.fetchTheWeather()
+            }
+            getFirstLocationTimer.invalidate()
+        }
+    }
 
     func updateLoaction() {
-        if currentRide?.weather == nil && lm.weather.current != nil {
+        if currentRide?.weather == nil && lm.weather != nil {
             let weather = Weather(context: viewContext)
+            /*
             weather.clouds = Int16(lm.weather.current?.clouds ?? 0)
             weather.feelsLike = lm.weather.current?.feelsLike ?? 0
             weather.humidity = Int16(lm.weather.current?.humidity ?? 0)
@@ -213,6 +235,7 @@ struct ContentView: View {
             weather.sunset = Int32(lm.weather.current?.sunrise ?? 0)
             weather.sunrise = Int32(lm.weather.current?.sunrise ?? 0)
             currentRide?.weather = weather
+             */
             do {
                 try self.viewContext.save()
             } catch {

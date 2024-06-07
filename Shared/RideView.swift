@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import CoreLocation
 
 struct TripView: View {
     @Environment(\.managedObjectContext) private var viewContext
