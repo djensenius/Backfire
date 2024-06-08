@@ -15,6 +15,7 @@ struct RideDetailView: View {
     var body: some View {
         let helper = Helper()
         let formattedWeather = helper.formatWeather(weather: ride.weather ?? nil)
+        let temp = localizeNumber.temp(temp: formattedWeather.temperature)
 
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -26,7 +27,7 @@ struct RideDetailView: View {
                         }
                         VStack {
                             VStack {
-                                Text("\(formattedWeather.iconColor) \(localizeNumber.temp(temp: formattedWeather.temperature))")
+                                Text("\(formattedWeather.iconColor) \(temp)")
                             }.padding(5)
                         }
                         .background(Color("AccentColor").opacity(0.2))

@@ -117,7 +117,7 @@ struct RideDetailsText: View {
             title: "Wind Speed",
             value: localizeNumber.speed(speed: Int(formattedWeather?.windSpeed ?? 0))
         )
-        if (rideDetails.endBattery != 0 || rideDetails.startBattery != 0) {
+        if rideDetails.endBattery != 0 || rideDetails.startBattery != 0 {
             return [
                 rideDistance,
                 rideTime,

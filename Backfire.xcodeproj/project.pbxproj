@@ -344,6 +344,7 @@
 				634659A2261E1BA100460166 /* Resources */,
 				634659A9261E1BA500460166 /* Sources */,
 				634659AA261E1BA500460166 /* Frameworks */,
+				636EDFD52C14A95D004B6603 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -543,6 +544,25 @@
 		};
 		635E61D32C13C51000C03081 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nfi\n";
+		};
+		636EDFD52C14A95D004B6603 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

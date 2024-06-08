@@ -51,7 +51,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var status: CLAuthorizationStatus?
 
     @Published var weather: CurrentWeather?
-    
     @Published var location: CLLocation?
     @Published var totalDistance: Double = 0
 
