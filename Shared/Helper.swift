@@ -259,7 +259,7 @@ class Helper {
         weather.windSpeed = lm.weather?.wind.speed.value ?? 0
         weather.windCompassDirection = lm.weather?.wind.compassDirection.description ?? ""
         weather.windSpeedUnit = lm.weather?.wind.speed.unit.symbol ?? ""
-        weather.visibility = Int16(lm.weather?.visibility.value ?? 0)
+        weather.visibilityDouble = lm.weather?.visibility.value ?? 0
         weather.visibilityUnit = lm.weather?.visibility.unit.symbol ?? ""
         weather.dt = Int32((lm.weather?.metadata.date ?? Date()).timeIntervalSince1970)
         weather.dewPoint = lm.weather?.dewPoint.value ?? 0

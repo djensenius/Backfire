@@ -44,6 +44,7 @@
         <attribute name="uvi" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="uviCategory" optional="YES" attributeType="String"/>
         <attribute name="visibility" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="visibilityDouble" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="visibilityUnit" optional="YES" attributeType="String"/>
         <attribute name="weatherDescription" optional="YES" attributeType="String"/>
         <attribute name="windCompassDirection" optional="YES" attributeType="String"/>
