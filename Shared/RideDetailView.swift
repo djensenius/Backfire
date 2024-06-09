@@ -15,7 +15,7 @@ struct RideDetailView: View {
     var body: some View {
         let helper = Helper()
         let formattedWeather = helper.formatWeather(weather: ride.weather ?? nil)
-        let temp = localizeNumber.temp(temp: formattedWeather.temperature)
+        let temp = localizeNumber.temp(temp: formattedWeather.temperature, unitName: formattedWeather.temperatureUnit)
 
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {

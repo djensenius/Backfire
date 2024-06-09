@@ -11,11 +11,14 @@ import SwiftUI
 
 struct DetailWeather {
     var temperature: Double
+    var temperatureUnit: String
     var icon: Image
     var iconColor: Image
     var description: String
     var windSpeed: Double
+    var windSpeedUnit: String
     var feelsLike: Double
+    var feelsLikeUnit: String
 }
 
 struct DetailRide {
@@ -145,21 +148,27 @@ class Helper {
         if weather == nil {
             return DetailWeather(
                 temperature: 0,
+                temperatureUnit: "",
                 icon: icon!,
                 iconColor: iconColor,
                 description: "",
                 windSpeed: 100.0,
-                feelsLike: 100.0
+                windSpeedUnit: "",
+                feelsLike: 100.0,
+                feelsLikeUnit: ""
             )
         }
 
         return DetailWeather(
             temperature: weather!.temperature,
+            temperatureUnit: weather?.temperatureUnit ?? "",
             icon: icon!,
             iconColor: iconColor,
             description: weather!.mainDescription ?? "",
             windSpeed: weather!.windSpeed,
-            feelsLike: weather!.feelsLike
+            windSpeedUnit: weather?.windSpeedUnit ?? "",
+            feelsLike: weather!.feelsLike,
+            feelsLikeUnit: weather?.feelsLikeUnit ?? ""
         )
     }
 

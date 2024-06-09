@@ -97,11 +97,17 @@ struct RideDetailsText: View {
         let batteryStart = RideDetails(title: "Battery Start", value: "\(rideDetails.startBattery)%")
         let temprature = RideDetails(
             title: "Temprature",
-            value: localizeNumber.temp(temp: formattedWeather?.temperature ?? 0)
+            value: localizeNumber.temp(
+                temp: formattedWeather?.temperature ?? 0,
+                unitName: formattedWeather?.temperatureUnit ?? ""
+            )
         )
         let feelsLike = RideDetails(
             title: "Feels Like",
-            value: localizeNumber.temp(temp: formattedWeather?.feelsLike ?? 0)
+            value: localizeNumber.temp(
+                temp: formattedWeather?.feelsLike ?? 0,
+                unitName: formattedWeather?.feelsLikeUnit ?? ""
+            )
         )
 
         let rideTime = RideDetails(title: "Ride Time", value: rideDetails.rideTime)

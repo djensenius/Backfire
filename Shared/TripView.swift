@@ -47,7 +47,12 @@ struct TripView: View {
                                         Text(weatherIcon(icon: item.weather?.icon ?? "").renderingMode(.template))
                                             .font(.largeTitle)
                                     }
-                                    Text(localizeNumber.temp(temp: item.weather?.temperature ?? 373.15))
+                                    Text(
+                                        localizeNumber.temp(
+                                            temp: item.weather?.temperature ?? 373.15,
+                                            unitName: item.weather?.temperatureUnit ?? ""
+                                        )
+                                    )
                                         .font(.subheadline)
                                 }
                             }
