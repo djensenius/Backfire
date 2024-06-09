@@ -42,8 +42,8 @@
 		63B68B60261E074900CCA935 /* Backfire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B33261E074500CCA935 /* Backfire.xcdatamodeld */; };
 		63B68B61261E074900CCA935 /* BackfireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B35261E074500CCA935 /* BackfireApp.swift */; };
 		63B68B62261E074900CCA935 /* BackfireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B35261E074500CCA935 /* BackfireApp.swift */; };
-		63B68B63261E074900CCA935 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B36261E074500CCA935 /* RideView.swift */; };
-		63B68B64261E074900CCA935 /* RideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B36261E074500CCA935 /* RideView.swift */; };
+		63B68B63261E074900CCA935 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B36261E074500CCA935 /* TripView.swift */; };
+		63B68B64261E074900CCA935 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B36261E074500CCA935 /* TripView.swift */; };
 		63B68B65261E074900CCA935 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B37261E074500CCA935 /* Persistence.swift */; };
 		63B68B66261E074900CCA935 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B37261E074500CCA935 /* Persistence.swift */; };
 		63B68B67261E074900CCA935 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63B68B38261E074900CCA935 /* Assets.xcassets */; };
@@ -130,7 +130,7 @@
 		635589452620E816003264E8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		63B68B34261E074500CCA935 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		63B68B35261E074500CCA935 /* BackfireApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireApp.swift; sourceTree = "<group>"; };
-		63B68B36261E074500CCA935 /* RideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideView.swift; sourceTree = "<group>"; };
+		63B68B36261E074500CCA935 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		63B68B37261E074500CCA935 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		63B68B38261E074900CCA935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63B68B3D261E074900CCA935 /* Backfire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backfire.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,7 +254,7 @@
 			children = (
 				63B68B35261E074500CCA935 /* BackfireApp.swift */,
 				63D65E4E262C631300CEEE4F /* SettingsView.swift */,
-				63B68B36261E074500CCA935 /* RideView.swift */,
+				63B68B36261E074500CCA935 /* TripView.swift */,
 				63F3B7EE261E8FFA00502AF6 /* RideDetailView.swift */,
 				63D80DAF26251060008222CF /* RideDetailsText.swift */,
 				63F3B7F4261F584500502AF6 /* MapView.swift */,
@@ -619,7 +619,7 @@
 				6338E3172623A2A50046ABBC /* LocalizeNumbers.swift in Sources */,
 				63F3B7FB261F5B8500502AF6 /* LocationViewModel.swift in Sources */,
 				6346599A261E1B2500460166 /* BackfireAppDebug.swift in Sources */,
-				63B68B63261E074900CCA935 /* RideView.swift in Sources */,
+				63B68B63261E074900CCA935 /* TripView.swift in Sources */,
 				63D80DB026251060008222CF /* RideDetailsText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -642,7 +642,7 @@
 				6338E3182623A2A50046ABBC /* LocalizeNumbers.swift in Sources */,
 				63F3B7FC261F5B8500502AF6 /* LocationViewModel.swift in Sources */,
 				6346599B261E1B2500460166 /* BackfireAppDebug.swift in Sources */,
-				63B68B64261E074900CCA935 /* RideView.swift in Sources */,
+				63B68B64261E074900CCA935 /* TripView.swift in Sources */,
 				63D80DB126251060008222CF /* RideDetailsText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
