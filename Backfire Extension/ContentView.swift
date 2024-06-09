@@ -120,9 +120,9 @@ struct ContentView: View {
                         lm.stopMonitoring()
                         extendedSession.start()
                         Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
-                                             block: {_ in
-                                                extendedSession.invalidate()
-                                             })
+                            block: {_ in
+                                extendedSession.invalidate()
+                        })
                     }
                 } else if boardManager.isSearching == true {
                     Text("You have \(items.count) rides")
@@ -141,9 +141,9 @@ struct ContentView: View {
                         lm.stopMonitoring()
                         extendedSession.start()
                         Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
-                                             block: {_ in
-                                                extendedSession.invalidate()
-                                             })
+                            block: {_ in
+                            extendedSession.invalidate()
+                        })
                     }
                 } else if config.count > 0 && config[0].useBackfire == false && started == false {
                     Text("To connect to a Backfire Board connection swipe to settings.")
@@ -208,6 +208,9 @@ struct ContentView: View {
     }
 
     func addRide() {
+        Task {
+            await lm.startMonitoring()
+        }
         currentRide = Ride(context: self.viewContext)
         currentRide?.timestamp = Date()
         currentRide?.device = "Apple Watch"
@@ -228,18 +231,21 @@ struct ContentView: View {
     }
 
     func getFirstLocation() {
-             if lm.location?.coordinate.latitude != nil &&
-                 (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {
-                 lat = (lm.location?.coordinate.latitude)!
-                 lon = (lm.location?.coordinate.longitude)!
-                 print("Going to invalidate")
-                 buttonDisabled = false
-                 Task {
-                     await lm.fetchTheWeather()
-                 }
-                 getFirstLocationTimer.invalidate()
-             }
-         }
+        if lm.location?.coordinate.latitude != nil &&
+            (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {
+            lat = (lm.location?.coordinate.latitude)!
+            lon = (lm.location?.coordinate.longitude)!
+            buttonDisabled = false
+            Task {
+                await lm.fetchTheWeather()
+            }
+            getFirstLocationTimer.invalidate()
+            if !started {
+                print("Stopping location monitoring from first")
+                lm.stopMonitoring()
+            }
+        }
+    }
 
     func updateLoaction() {
         if currentRide?.weather == nil && lm.weather != nil {
