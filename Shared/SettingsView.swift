@@ -26,17 +26,17 @@ struct SettingsView: View {
                     .onAppear(perform: {
                         configureHealthKit()
                     })
-                    .onChange(of: useHealthKit, perform: { value in
-                        updateHealth(use: value)
-                    })
+                    .onChange(of: useHealthKit) {
+                        updateHealth(use: useHealthKit)
+                    }
                 Toggle("Backfire Board", isOn: $useBackfire
                 )
                     .onAppear(perform: {
                         configureBackfire()
                     })
-                    .onChange(of: useBackfire, perform: { value in
-                        updateBackfire(use: value)
-                    })
+                    .onChange(of: useBackfire) {
+                        updateBackfire(use: useBackfire)
+                    }
             }
         }.padding()
     }
