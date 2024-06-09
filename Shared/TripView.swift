@@ -21,6 +21,8 @@ struct TripView: View {
 
     private var localizeNumber = LocalizeNumbers()
 
+    let helper = Helper()
+
     var body: some View {
         NavigationView {
             if items.count > 0 {
@@ -41,11 +43,12 @@ struct TripView: View {
 
                                 VStack(alignment: .trailing, spacing: 10) {
                                     if colorScheme == .dark {
-                                        Text(weatherIcon(icon: item.weather?.icon ?? ""))
+                                        Text(helper.weatherIcon(icon: item.weather?.icon ?? ""))
                                             .font(.largeTitle)
                                     } else {
-                                        Text(weatherIcon(icon: item.weather?.icon ?? "").renderingMode(.template))
-                                            .font(.largeTitle)
+                                        helper.weatherIcon(
+                                            icon: item.weather?.icon ?? ""
+                                        ).symbolRenderingMode(getRenderMode())
                                     }
                                     Text(
                                         localizeNumber.temp(
@@ -68,69 +71,16 @@ struct TripView: View {
             }
         }
     }
-    // swiftlint:disable function_body_length
-    func weatherIcon(icon: String) -> Image {
-        switch icon {
-        case "01d":
-            return Image(systemName: "sun.max.fill")
-                .renderingMode(.original)
-        case "02d":
-            return Image(systemName: "cloud.sun.fill")
-                .renderingMode(.original)
-        case "03d":
-            return Image(systemName: "cloud.fill")
-                .renderingMode(.original)
-        case "04d":
-            return Image(systemName: "cloud.fill")
-                .renderingMode(.original)
-        case "09d":
-            return Image(systemName: "cloud.rain.fill")
-                .renderingMode(.original)
-        case "10d":
-            return Image(systemName: "cloud.sun.rain.fill")
-                .renderingMode(.original)
-        case "11d":
-            return Image(systemName: "cloud.sun.bolt.fill")
-                .renderingMode(.original)
-        case "13d":
-            return Image(systemName: "snow")
-                .renderingMode(.original)
-        case "50d":
-            return Image(systemName: "cloud.fog.fill")
-                .renderingMode(.original)
-        case "01n":
-            return Image(systemName: "moon.fill")
-                .renderingMode(.original)
-        case "02n":
-            return Image(systemName: "cloud.moon.fill")
-                .renderingMode(.original)
-        case "03n":
-            return Image(systemName: "cloud.fill")
-                .renderingMode(.original)
-        case "04n":
-            return Image(systemName: "cloud.fill")
-                .renderingMode(.original)
-        case "09n":
-            return Image(systemName: "cloud.rain.fill")
-                .renderingMode(.original)
-        case "10n":
-            return Image(systemName: "cloud.moon.rain.fill")
-                .renderingMode(.original)
-        case "11n":
-            return Image(systemName: "cloud.moon.bolt.fill")
-                .renderingMode(.original)
-        case "13n":
-            return Image(systemName: "cloud.snow.fill")
-                .renderingMode(.original)
-        case "50n":
-            return Image(systemName: "cloud.fog.fill")
-                .renderingMode(.original)
-        default:
-            return Image(systemName: "thermometer")
-                .renderingMode(.original)
+
+    func getRenderMode() -> SymbolRenderingMode {
+        var renderingMode: SymbolRenderingMode = .multicolor
+        #if !os(visionOS)
+        if colorScheme == .light {
+            renderingMode = .monochrome
         }
+        #endif
+        return renderingMode
     }
-    // swiftlint:enable function_body_length
 
     func details(locationsAny: [Any]) -> AnyView {
         guard let locations = locationsAny as? [Location] else {

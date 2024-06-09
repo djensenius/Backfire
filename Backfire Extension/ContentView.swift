@@ -41,6 +41,7 @@ struct ContentView: View {
 
     private var items: FetchedResults<Ride>
     private var localizeNumber = LocalizeNumbers()
+    let helper = Helper()
 
     var body: some View {
         TabView {
@@ -49,31 +50,16 @@ struct ContentView: View {
                 if boardManager.isConnected == true && boardManager.isSearching == false {
                     ZStack {
                         VStack {
-                            Text("\(localizeNumber.speed(speed: boardManager.speed))")
-                                .font(.title2)
-                                .padding(.bottom)
+                            Text("\(localizeNumber.speed(speed: boardManager.speed))").font(.title2).padding(.bottom)
                             Text("Trip: \(localizeNumber.distance(distance: Double(boardManager.tripDistance) / 10))")
                                 .font(.footnote)
-                            Text("Battery: \(boardManager.battery)%")
-                                .font(.footnote)
-                            Text(boardManager.mode)
-                                .font(.footnote)
+                            Text("Battery: \(boardManager.battery)%").font(.footnote)
+                            Text(boardManager.mode).font(.footnote)
                             if currentRide != nil {
-                                Text("Press to end")
-                                    .font(.footnote)
+                                Text("Press to end").font(.footnote)
                             }
                         }
-                        Circle()
-                            .trim(from: 0, to: (CGFloat(boardManager.battery) + 1) / 100)
-                            .stroke(
-                                AngularGradient(
-                                    gradient: Gradient(colors: [Color.red, Color.green]),
-                                    center: .center,
-                                    startAngle: .degrees(0),
-                                    endAngle: .degrees(350)
-                                ),
-                                style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                            ).rotationEffect(.degrees(-90))
+                        CircleView(battery: CGFloat(boardManager.battery))
                     }.frame(idealWidth: 250, idealHeight: 250, alignment: .center)
                     .onLongPressGesture {
                         print("Long press")
@@ -308,31 +294,27 @@ struct ContentView: View {
     }
 
     func getWeather() -> Weather {
-             let weather = Weather(context: viewContext)
-             weather.clouds = Int16((lm.weather?.cloudCover ?? 0) * 100)
-             weather.feelsLike = lm.weather?.apparentTemperature.value ?? 0
-             weather.feelsLikeUnit = lm.weather?.apparentTemperature.unit.symbol ?? ""
-             weather.humidity = Int16((lm.weather?.humidity ?? 0) * 100)
-             weather.icon = lm.weather?.symbolName ?? ""
-             weather.mainDescription = lm.weather?.condition.description ?? ""
-             weather.temperature = lm.weather?.temperature.value ?? 0
-             weather.temperatureUnit = lm.weather?.temperature.unit.symbol ?? ""
-             weather.timestamp = Date()
-             weather.uvi = Double(lm.weather?.uvIndex.value ?? 0)
-             weather.uviCategory = lm.weather?.uvIndex.category.description ?? ""
-             weather.weatherDescription = lm.weather?.condition.description ?? ""
-             weather.windDeg = Int16(lm.weather?.wind.direction.value ?? 0)
-             weather.windSpeed = lm.weather?.wind.speed.value ?? 0
-             weather.windCompassDirection = lm.weather?.wind.compassDirection.description ?? ""
-             weather.windSpeedUnit = lm.weather?.wind.speed.unit.symbol ?? ""
-             weather.visibility = Int16(lm.weather?.visibility.value ?? 0)
-             weather.visibilityUnit = lm.weather?.visibility.unit.symbol ?? ""
-             weather.dt = Int32((lm.weather?.metadata.date ?? Date()).timeIntervalSince1970)
-             weather.dewPoint = lm.weather?.dewPoint.value ?? 0
-             weather.dewPointUnit = lm.weather?.dewPoint.unit.symbol ?? ""
+        let theWeather = Weather(context: viewContext)
+        let weather = helper.getWeather(lm: lm, weather: theWeather)
+        return weather
+    }
+}
 
-             return weather
-         }
+struct CircleView: View {
+    var battery: CGFloat
+    var body: some View {
+        Circle()
+            .trim(from: 0, to: (battery + 1) / 100)
+            .stroke(
+                AngularGradient(
+                    gradient: Gradient(colors: [Color.red, Color.green]),
+                    center: .center,
+                    startAngle: .degrees(0),
+                    endAngle: .degrees(350)
+                ),
+                style: StrokeStyle(lineWidth: 10, lineCap: .round)
+            ).rotationEffect(.degrees(-90))
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

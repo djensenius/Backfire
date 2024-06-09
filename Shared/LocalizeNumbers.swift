@@ -49,7 +49,7 @@ class LocalizeNumbers {
         default:
             cel = Measurement(value: temp, unit: UnitTemperature.kelvin)
         }
-        
+
         return formatter.string(from: cel)
     }
 

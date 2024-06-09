@@ -22,6 +22,7 @@ struct ContentView: View {
     @State private var started = false
     @State var buttonDisabled = true
     var localizeNumber = LocalizeNumbers()
+    var helper = Helper()
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -108,9 +109,9 @@ struct ContentView: View {
                     } else if boardManager.isConnected == true || started == true {
                         Button(action: {
                             stop()
-                        }) {
+                        }, label: {
                             Text("End Ride")
-                        }
+                        })
                     }
                 }
             }
@@ -121,9 +122,9 @@ struct ContentView: View {
         return AnyView(
             Button(action: {
                 addRide()
-            }) {
+            }, label: {
                 Text("Connect and Ride")
-            }.onAppear {
+            }).onAppear {
                 getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
                     block: {_ in
                         getFirstLocation()
@@ -139,9 +140,9 @@ struct ContentView: View {
         return AnyView(
             Button(action: {
                 addRide()
-            }) {
+            }, label: {
                 Text("Ride")
-            }.onAppear {
+            }).onAppear {
                 getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
                                                              block: {_ in
                     getFirstLocation()
@@ -157,12 +158,12 @@ struct ContentView: View {
         return AnyView(
             Button(action: {
                 stop()
-            }) {
+            }, label: {
                 VStack {
                     Text("Connecting to board")
                     Text("End Ride")
                 }
-            }
+            })
         )
     }
 
@@ -185,7 +186,7 @@ struct ContentView: View {
         currentRide = Ride(context: viewContext)
         currentRide?.timestamp = Date()
         #if os(iOS)
-        currentRide?.device = UIDevice().model
+        currentRide?.device = UIDevice.current.model
         #else
         currentRide?.device = "macOS"
         #endif
@@ -278,29 +279,8 @@ struct ContentView: View {
     }
 
     func getWeather() -> Weather {
-        let weather = Weather(context: viewContext)
-        weather.clouds = Int16((lm.weather?.cloudCover ?? 0) * 100)
-        weather.feelsLike = lm.weather?.apparentTemperature.value ?? 0
-        weather.feelsLikeUnit = lm.weather?.apparentTemperature.unit.symbol ?? ""
-        weather.humidity = Int16((lm.weather?.humidity ?? 0) * 100)
-        weather.icon = lm.weather?.symbolName ?? ""
-        weather.mainDescription = lm.weather?.condition.description ?? ""
-        weather.temperature = lm.weather?.temperature.value ?? 0
-        weather.temperatureUnit = lm.weather?.temperature.unit.symbol ?? ""
-        weather.timestamp = Date()
-        weather.uvi = Double(lm.weather?.uvIndex.value ?? 0)
-        weather.uviCategory = lm.weather?.uvIndex.category.description ?? ""
-        weather.weatherDescription = lm.weather?.condition.description ?? ""
-        weather.windDeg = Int16(lm.weather?.wind.direction.value ?? 0)
-        weather.windSpeed = lm.weather?.wind.speed.value ?? 0
-        weather.windCompassDirection = lm.weather?.wind.compassDirection.description ?? ""
-        weather.windSpeedUnit = lm.weather?.wind.speed.unit.symbol ?? ""
-        weather.visibility = Int16(lm.weather?.visibility.value ?? 0)
-        weather.visibilityUnit = lm.weather?.visibility.unit.symbol ?? ""
-        weather.dt = Int32((lm.weather?.metadata.date ?? Date()).timeIntervalSince1970)
-        weather.dewPoint = lm.weather?.dewPoint.value ?? 0
-        weather.dewPointUnit = lm.weather?.dewPoint.unit.symbol ?? ""
-
+        let theWeather = Weather(context: viewContext)
+        let weather = helper.getWeather(lm: lm, weather: theWeather)
         return weather
     }
 

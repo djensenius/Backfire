@@ -6,3 +6,6 @@ identifier_name:
   min_length:
     warning: 1
     error: 1
+function_body_length:
+  warning: 100
+  error: 150
