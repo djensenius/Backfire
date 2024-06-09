@@ -123,6 +123,11 @@ struct ContentView: View {
                 addRide()
             }) {
                 Text("Connect and Ride")
+            }.onAppear {
+                getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                    block: {_ in
+                        getFirstLocation()
+                })
             }.task {
                 await lm.startMonitoring()
                 await lm.fetchTheWeather()
@@ -199,7 +204,7 @@ struct ContentView: View {
             fatalError("Unresolved error 3 \(nsError), \(nsError.userInfo)")
         }
     }
-    
+
     func getFirstLocation() {
         if lm.location?.coordinate.latitude != nil &&
             (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {

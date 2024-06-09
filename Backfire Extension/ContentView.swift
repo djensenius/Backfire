@@ -15,6 +15,7 @@ var lat: Double = 0.0
 var lon: Double = 0.0
 var locationList: [CLLocation] = []
 var timer = Timer()
+var getFirstLocationTimer = Timer()
 var extendedSession = ExtendedSessionCoordinator.init()
 
 struct ContentView: View {
@@ -26,6 +27,7 @@ struct ContentView: View {
     @State private var useHealthKit = false
     @State private var useBackfire = false
     @State private var started = false
+    @State var buttonDisabled = true
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -147,26 +149,36 @@ struct ContentView: View {
                     Text("To connect to a Backfire Board connection swipe to settings.")
                     Spacer()
                     Text("You have \(items.count) rides")
-                    Button("Ride") {
+                    Button("Ride!") {
                         started = true
                         addRide()
                         extendedSession.start()
                         if config.count > 0 && config[0].useHealthKit == true {
                             healthtracking.startHealthTracking()
                         }
+                    }.onAppear {
+                        getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                            block: {_ in
+                                getFirstLocation()
+                        })
                     }.task {
                         await lm.startMonitoring()
                         await lm.fetchTheWeather()
                     }
                 } else {
                     Text("You have \(items.count) rides")
-                    Button("Connect and Ride") {
+                    Button("Connect and Ride!") {
                         boardManager.startScanning()
                         addRide()
                         extendedSession.start()
                         if config.count > 0 && config[0].useHealthKit == true {
                             healthtracking.startHealthTracking()
                         }
+                    }.onAppear {
+                        getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                            block: {_ in
+                                getFirstLocation()
+                        })
                     }.task {
                         await lm.startMonitoring()
                         await lm.fetchTheWeather()
@@ -215,28 +227,24 @@ struct ContentView: View {
         }
     }
 
+    func getFirstLocation() {
+             if lm.location?.coordinate.latitude != nil &&
+                 (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {
+                 lat = (lm.location?.coordinate.latitude)!
+                 lon = (lm.location?.coordinate.longitude)!
+                 print("Going to invalidate")
+                 buttonDisabled = false
+                 Task {
+                     await lm.fetchTheWeather()
+                 }
+                 getFirstLocationTimer.invalidate()
+             }
+         }
+
     func updateLoaction() {
         if currentRide?.weather == nil && lm.weather != nil {
-            let weather = Weather(context: self.viewContext)
-            /*
-            weather.clouds = Int16(lm.weather.current?.clouds ?? 0)
-            weather.feelsLike = lm.weather.current?.feelsLike ?? 0
-            weather.humidity = Int16(lm.weather.current?.humidity ?? 0)
-            weather.icon = lm.weather.current?.weather[0].icon ?? ""
-            weather.mainDescription = lm.weather.current?.weather[0].main ?? ""
-            weather.temperature = lm.weather.current?.temp ?? 0
-            weather.timestamp = Date()
-            weather.uvi = lm.weather.current?.uvi ?? 0
-            weather.weatherDescription = lm.weather.current?.weather[0].weatherDescription ?? ""
-            weather.windDeg = Int16(lm.weather.current?.windDeg ?? 0)
-            weather.windSpeed = lm.weather.current?.windSpeed ?? 0
-            weather.visibility = Int16(lm.weather.current?.visibility ?? 0)
-            weather.dt = Int32(lm.weather.current?.dt ?? 0)
-            weather.dewPoint = lm.weather.current?.dewPoint ?? 0
-            weather.sunset = Int32(lm.weather.current?.sunrise ?? 0)
-            weather.sunrise = Int32(lm.weather.current?.sunrise ?? 0)
+            let weather = getWeather()
             currentRide?.weather = weather
-             */
             do {
                 try self.viewContext.save()
             } catch {
@@ -292,6 +300,33 @@ struct ContentView: View {
             }
         }
     }
+
+    func getWeather() -> Weather {
+             let weather = Weather(context: viewContext)
+             weather.clouds = Int16((lm.weather?.cloudCover ?? 0) * 100)
+             weather.feelsLike = lm.weather?.apparentTemperature.value ?? 0
+             weather.feelsLikeUnit = lm.weather?.apparentTemperature.unit.symbol ?? ""
+             weather.humidity = Int16((lm.weather?.humidity ?? 0) * 100)
+             weather.icon = lm.weather?.symbolName ?? ""
+             weather.mainDescription = lm.weather?.condition.description ?? ""
+             weather.temperature = lm.weather?.temperature.value ?? 0
+             weather.temperatureUnit = lm.weather?.temperature.unit.symbol ?? ""
+             weather.timestamp = Date()
+             weather.uvi = Double(lm.weather?.uvIndex.value ?? 0)
+             weather.uviCategory = lm.weather?.uvIndex.category.description ?? ""
+             weather.weatherDescription = lm.weather?.condition.description ?? ""
+             weather.windDeg = Int16(lm.weather?.wind.direction.value ?? 0)
+             weather.windSpeed = lm.weather?.wind.speed.value ?? 0
+             weather.windCompassDirection = lm.weather?.wind.compassDirection.description ?? ""
+             weather.windSpeedUnit = lm.weather?.wind.speed.unit.symbol ?? ""
+             weather.visibility = Int16(lm.weather?.visibility.value ?? 0)
+             weather.visibilityUnit = lm.weather?.visibility.unit.symbol ?? ""
+             weather.dt = Int32((lm.weather?.metadata.date ?? Date()).timeIntervalSince1970)
+             weather.dewPoint = lm.weather?.dewPoint.value ?? 0
+             weather.dewPointUnit = lm.weather?.dewPoint.unit.symbol ?? ""
+
+             return weather
+         }
 }
 
 struct ContentView_Previews: PreviewProvider {
