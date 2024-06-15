@@ -65,15 +65,18 @@ struct ContentView: View {
                         print("Long press")
                         self.boardManager.disconnect()
                         timer.invalidate()
-                        if config.count > 0 && config[0].useHealthKit == true {
+                        if healthtracking.tracking == true {
                             healthtracking.stopHeathTracking()
                         }
                         lm.stopMonitoring()
+                        extendedSession.invalidate()
+                        /*
                         extendedSession.start()
                         Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
                                              block: {_ in
                                                 extendedSession.invalidate()
                                              })
+                         */
                     }
                 } else if config.count > 0 && config[0].useBackfire == false && started == true {
                     // Get speed and distance from location manager
@@ -99,16 +102,12 @@ struct ContentView: View {
                     .onLongPressGesture {
                         print("Long press")
                         timer.invalidate()
-                        if config.count > 0 && config[0].useHealthKit == true {
+                        if healthtracking.tracking == true {
                             healthtracking.stopHeathTracking()
                         }
                         started = false
                         lm.stopMonitoring()
-                        extendedSession.start()
-                        Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
-                            block: {_ in
-                                extendedSession.invalidate()
-                        })
+                        extendedSession.invalidate()
                     }
                 } else if boardManager.isSearching == true {
                     Text("You have \(items.count) rides")
@@ -121,15 +120,11 @@ struct ContentView: View {
                             self.boardManager.disconnect()
                         }
                         timer.invalidate()
-                        if config.count > 0 && config[0].useHealthKit == true {
+                        if healthtracking.tracking == true {
                             healthtracking.stopHeathTracking()
                         }
+                        extendedSession.invalidate()
                         lm.stopMonitoring()
-                        extendedSession.start()
-                        Timer.scheduledTimer(withTimeInterval: 300, repeats: false,
-                            block: {_ in
-                            extendedSession.invalidate()
-                        })
                     }
                 } else if config.count > 0 && config[0].useBackfire == false && started == false {
                     Text("To connect to a Backfire Board connection swipe to settings.")
