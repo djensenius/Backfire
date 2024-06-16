@@ -54,7 +54,7 @@
 	<key>WKCompanionAppBundleIdentifier</key>
 	<string>org.davidjensenius.Backfire</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
-	<false/>
+	<true/>
 	<key>com.apple.developer.icloud-container-environment</key>
 	<string>Development</string>
 </dict>
