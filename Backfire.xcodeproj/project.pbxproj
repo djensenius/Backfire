@@ -33,6 +33,25 @@
 		63465A00261E31DD00460166 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634659FF261E31DD00460166 /* LocationManager.swift */; };
 		63465A01261E31DD00460166 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634659FF261E31DD00460166 /* LocationManager.swift */; };
 		63465A02261E31DD00460166 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634659FF261E31DD00460166 /* LocationManager.swift */; };
+		6348DE012C21355700AE97C8 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 6348DE002C21355700AE97C8 /* RealityKitContent */; };
+		6348DE032C21355700AE97C8 /* Backfire_VisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348DE022C21355700AE97C8 /* Backfire_VisionApp.swift */; };
+		6348DE052C21355700AE97C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348DE042C21355700AE97C8 /* ContentView.swift */; };
+		6348DE072C21355800AE97C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6348DE062C21355800AE97C8 /* Assets.xcassets */; };
+		6348DE0A2C21355800AE97C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6348DE092C21355800AE97C8 /* Preview Assets.xcassets */; };
+		6348DE152C21355800AE97C8 /* Backfire_VisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6348DE142C21355800AE97C8 /* Backfire_VisionTests.swift */; };
+		6348DE1D2C21365000AE97C8 /* Backfire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B33261E074500CCA935 /* Backfire.xcdatamodeld */; };
+		6348DE1E2C21365000AE97C8 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D80DB826252E74008222CF /* Helper.swift */; };
+		6348DE1F2C21365000AE97C8 /* LocalizeNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338E3162623A2A50046ABBC /* LocalizeNumbers.swift */; };
+		6348DE202C21365000AE97C8 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7FA261F5B8500502AF6 /* LocationViewModel.swift */; };
+		6348DE212C21365000AE97C8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7F4261F584500502AF6 /* MapView.swift */; };
+		6348DE222C21365000AE97C8 /* MapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7F7261F5B5500502AF6 /* MapViewCoordinator.swift */; };
+		6348DE232C21365000AE97C8 /* MulticolorPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B800261F6DB700502AF6 /* MulticolorPolyline.swift */; };
+		6348DE242C21365000AE97C8 /* RideDetailsText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D80DAF26251060008222CF /* RideDetailsText.swift */; };
+		6348DE252C21365000AE97C8 /* RideDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F3B7EE261E8FFA00502AF6 /* RideDetailView.swift */; };
+		6348DE262C21365000AE97C8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D65E4E262C631300CEEE4F /* SettingsView.swift */; };
+		6348DE272C21365000AE97C8 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B36261E074500CCA935 /* TripView.swift */; };
+		6348DE282C2136AB00AE97C8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634659FF261E31DD00460166 /* LocationManager.swift */; };
+		6348DE292C21370800AE97C8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B37261E074500CCA935 /* Persistence.swift */; };
 		635589462620E816003264E8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635589452620E816003264E8 /* CoreData.framework */; };
 		6355894D2620E84B003264E8 /* Backfire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B33261E074500CCA935 /* Backfire.xcdatamodeld */; };
 		635589542620E884003264E8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B68B37261E074500CCA935 /* Persistence.swift */; };
@@ -74,6 +93,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 634659A3261E1BA100460166;
 			remoteInfo = Backfire;
+		};
+		6348DE112C21355800AE97C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63B68B2E261E074500CCA935 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6348DDFB2C21355700AE97C8;
+			remoteInfo = "Backfire Vision";
 		};
 		63B68B4E261E074900CCA935 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -127,6 +153,16 @@
 		634659D6261E1C0800460166 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		634659F7261E267200460166 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		634659FF261E31DD00460166 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		6348DDFC2C21355700AE97C8 /* Backfire Vision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Backfire Vision.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6348DDFF2C21355700AE97C8 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		6348DE022C21355700AE97C8 /* Backfire_VisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backfire_VisionApp.swift; sourceTree = "<group>"; };
+		6348DE042C21355700AE97C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6348DE062C21355800AE97C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6348DE092C21355800AE97C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6348DE0B2C21355800AE97C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6348DE102C21355800AE97C8 /* Backfire VisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Backfire VisionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6348DE142C21355800AE97C8 /* Backfire_VisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backfire_VisionTests.swift; sourceTree = "<group>"; };
+		6348DE1C2C2135D200AE97C8 /* Backfire Vision.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Backfire Vision.entitlements"; sourceTree = "<group>"; };
 		635589452620E816003264E8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		63B68B34261E074500CCA935 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		63B68B35261E074500CCA935 /* BackfireApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfireApp.swift; sourceTree = "<group>"; };
@@ -167,6 +203,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6348DDF92C21355700AE97C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6348DE012C21355700AE97C8 /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6348DE0D2C21355800AE97C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63B68B3A261E074900CCA935 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,13 +251,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		634659A5261E1BA100460166 /* Backfire */ = {
+		634659A5261E1BA100460166 /* Backfire Watch */ = {
 			isa = PBXGroup;
 			children = (
 				634659A6261E1BA400460166 /* Assets.xcassets */,
 				634659A8261E1BA400460166 /* Info.plist */,
 			);
-			path = Backfire;
+			path = "Backfire Watch";
 			sourceTree = "<group>";
 		};
 		634659B1261E1BA500460166 /* Backfire Extension */ = {
@@ -233,6 +284,43 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		6348DDFD2C21355700AE97C8 /* Backfire Vision */ = {
+			isa = PBXGroup;
+			children = (
+				6348DE1C2C2135D200AE97C8 /* Backfire Vision.entitlements */,
+				6348DE022C21355700AE97C8 /* Backfire_VisionApp.swift */,
+				6348DE042C21355700AE97C8 /* ContentView.swift */,
+				6348DE062C21355800AE97C8 /* Assets.xcassets */,
+				6348DE0B2C21355800AE97C8 /* Info.plist */,
+				6348DE082C21355800AE97C8 /* Preview Content */,
+			);
+			path = "Backfire Vision";
+			sourceTree = "<group>";
+		};
+		6348DDFE2C21355700AE97C8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				6348DDFF2C21355700AE97C8 /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		6348DE082C21355800AE97C8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6348DE092C21355800AE97C8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6348DE132C21355800AE97C8 /* Backfire VisionTests */ = {
+			isa = PBXGroup;
+			children = (
+				6348DE142C21355800AE97C8 /* Backfire_VisionTests.swift */,
+			);
+			path = "Backfire VisionTests";
+			sourceTree = "<group>";
+		};
 		63B68B2D261E074500CCA935 = {
 			isa = PBXGroup;
 			children = (
@@ -243,7 +331,10 @@
 				634659B1261E1BA500460166 /* Backfire Extension */,
 				63B68B50261E074900CCA935 /* Tests iOS */,
 				63B68B5B261E074900CCA935 /* Tests macOS */,
-				634659A5261E1BA100460166 /* Backfire */,
+				634659A5261E1BA100460166 /* Backfire Watch */,
+				6348DDFD2C21355700AE97C8 /* Backfire Vision */,
+				6348DDFE2C21355700AE97C8 /* Packages */,
+				6348DE132C21355800AE97C8 /* Backfire VisionTests */,
 				63B68B3E261E074900CCA935 /* Products */,
 				63B68B78261E078B00CCA935 /* Frameworks */,
 			);
@@ -281,6 +372,8 @@
 				63B68B4D261E074900CCA935 /* Tests iOS.xctest */,
 				63B68B58261E074900CCA935 /* Tests macOS.xctest */,
 				634659A4261E1BA100460166 /* Backfire.app */,
+				6348DDFC2C21355700AE97C8 /* Backfire Vision.app */,
+				6348DE102C21355800AE97C8 /* Backfire VisionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -354,6 +447,44 @@
 			productName = Backfire;
 			productReference = 634659A4261E1BA100460166 /* Backfire.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6348DDFB2C21355700AE97C8 /* Backfire Vision */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6348DE162C21355800AE97C8 /* Build configuration list for PBXNativeTarget "Backfire Vision" */;
+			buildPhases = (
+				6348DDF82C21355700AE97C8 /* Sources */,
+				6348DDF92C21355700AE97C8 /* Frameworks */,
+				6348DDFA2C21355700AE97C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Backfire Vision";
+			packageProductDependencies = (
+				6348DE002C21355700AE97C8 /* RealityKitContent */,
+			);
+			productName = "Backfire Vision";
+			productReference = 6348DDFC2C21355700AE97C8 /* Backfire Vision.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6348DE0F2C21355800AE97C8 /* Backfire VisionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6348DE192C21355800AE97C8 /* Build configuration list for PBXNativeTarget "Backfire VisionTests" */;
+			buildPhases = (
+				6348DE0C2C21355800AE97C8 /* Sources */,
+				6348DE0D2C21355800AE97C8 /* Frameworks */,
+				6348DE0E2C21355800AE97C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6348DE122C21355800AE97C8 /* PBXTargetDependency */,
+			);
+			name = "Backfire VisionTests";
+			productName = "Backfire VisionTests";
+			productReference = 6348DE102C21355800AE97C8 /* Backfire VisionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		63B68B3C261E074900CCA935 /* Backfire (iOS) */ = {
 			isa = PBXNativeTarget;
@@ -436,11 +567,18 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					634659A3261E1BA100460166 = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					6348DDFB2C21355700AE97C8 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					6348DE0F2C21355800AE97C8 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6348DDFB2C21355700AE97C8;
 					};
 					63B68B3C261E074900CCA935 = {
 						CreatedOnToolsVersion = 12.5;
@@ -476,6 +614,8 @@
 				63B68B4C261E074900CCA935 /* Tests iOS */,
 				63B68B57261E074900CCA935 /* Tests macOS */,
 				634659A3261E1BA100460166 /* Backfire */,
+				6348DDFB2C21355700AE97C8 /* Backfire Vision */,
+				6348DE0F2C21355800AE97C8 /* Backfire VisionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -488,6 +628,22 @@
 				634659BC261E1BA500460166 /* Preview Assets.xcassets in Resources */,
 				634659B9261E1BA500460166 /* Assets.xcassets in Resources */,
 				634659A7261E1BA400460166 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6348DDFA2C21355700AE97C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6348DE0A2C21355800AE97C8 /* Preview Assets.xcassets in Resources */,
+				6348DE072C21355800AE97C8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6348DE0E2C21355800AE97C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +756,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6348DDF82C21355700AE97C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6348DE292C21370800AE97C8 /* Persistence.swift in Sources */,
+				6348DE282C2136AB00AE97C8 /* LocationManager.swift in Sources */,
+				6348DE1D2C21365000AE97C8 /* Backfire.xcdatamodeld in Sources */,
+				6348DE1E2C21365000AE97C8 /* Helper.swift in Sources */,
+				6348DE1F2C21365000AE97C8 /* LocalizeNumbers.swift in Sources */,
+				6348DE202C21365000AE97C8 /* LocationViewModel.swift in Sources */,
+				6348DE212C21365000AE97C8 /* MapView.swift in Sources */,
+				6348DE222C21365000AE97C8 /* MapViewCoordinator.swift in Sources */,
+				6348DE232C21365000AE97C8 /* MulticolorPolyline.swift in Sources */,
+				6348DE242C21365000AE97C8 /* RideDetailsText.swift in Sources */,
+				6348DE252C21365000AE97C8 /* RideDetailView.swift in Sources */,
+				6348DE262C21365000AE97C8 /* SettingsView.swift in Sources */,
+				6348DE272C21365000AE97C8 /* TripView.swift in Sources */,
+				6348DE052C21355700AE97C8 /* ContentView.swift in Sources */,
+				6348DE032C21355700AE97C8 /* Backfire_VisionApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6348DE0C2C21355800AE97C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6348DE152C21355800AE97C8 /* Backfire_VisionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63B68B39261E074900CCA935 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -671,6 +857,11 @@
 			target = 634659A3261E1BA100460166 /* Backfire */;
 			targetProxy = 634659BE261E1BA500460166 /* PBXContainerItemProxy */;
 		};
+		6348DE122C21355800AE97C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6348DDFB2C21355700AE97C8 /* Backfire Vision */;
+			targetProxy = 6348DE112C21355800AE97C8 /* PBXContainerItemProxy */;
+		};
 		63B68B4F261E074900CCA935 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 63B68B3C261E074900CCA935 /* Backfire (iOS) */;
@@ -695,7 +886,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
-				INFOPLIST_FILE = Backfire/Info.plist;
+				INFOPLIST_FILE = "Backfire Watch/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
@@ -722,7 +913,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
-				INFOPLIST_FILE = Backfire/Info.plist;
+				INFOPLIST_FILE = "Backfire Watch/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
@@ -736,6 +927,132 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		6348DE172C21355800AE97C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Backfire Vision/Backfire Vision.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Backfire Vision/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Backfire-Vision";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Debug;
+		};
+		6348DE182C21355800AE97C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Backfire Vision/Backfire Vision.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Backfire Vision/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Backfire-Vision";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Release;
+		};
+		6348DE1A2C21355800AE97C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Backfire-VisionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backfire Vision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Backfire Vision";
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Debug;
+		};
+		6348DE1B2C21355800AE97C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.davidjensenius.Backfire-VisionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Backfire Vision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Backfire Vision";
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.2;
 			};
 			name = Release;
 		};
@@ -1070,6 +1387,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6348DE162C21355800AE97C8 /* Build configuration list for PBXNativeTarget "Backfire Vision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6348DE172C21355800AE97C8 /* Debug */,
+				6348DE182C21355800AE97C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6348DE192C21355800AE97C8 /* Build configuration list for PBXNativeTarget "Backfire VisionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6348DE1A2C21355800AE97C8 /* Debug */,
+				6348DE1B2C21355800AE97C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		63B68B31261E074500CCA935 /* Build configuration list for PBXProject "Backfire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1116,6 +1451,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6348DE002C21355700AE97C8 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		63B68B33261E074500CCA935 /* Backfire.xcdatamodeld */ = {

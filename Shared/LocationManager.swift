@@ -71,6 +71,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
 
+    #if !os(visionOS)
     func startMonitoring() async {
         if (weather == nil) && ((self.location?.coordinate.latitude) != nil) &&
                 ((self.location?.coordinate.longitude) != nil) {
@@ -114,4 +115,5 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.location = location
         }
     }
+    #endif
 }
