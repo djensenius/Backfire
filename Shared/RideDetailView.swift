@@ -18,6 +18,8 @@ struct RideDetailView: View {
         let temp = localizeNumber.temp(temp: formattedWeather.temperature, unitName: formattedWeather.temperatureUnit)
         #if os(iOS)
         let size = UIDevice.current.userInterfaceIdiom == .phone ? 200.0 : 380.0
+        #elseif os(visionOS)
+        let size = 300.0
         #else
         let size = 380.0
         #endif

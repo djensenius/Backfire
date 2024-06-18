@@ -9,3 +9,5 @@ identifier_name:
 function_body_length:
   warning: 100
   error: 150
+excluded:
+  - Packages/

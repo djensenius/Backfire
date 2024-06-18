@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Backfire_VisionApp: App {
+struct BackfireVisionApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

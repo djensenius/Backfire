@@ -19,61 +19,58 @@ struct TripView: View {
 
     private var items: FetchedResults<Ride>
 
+    @State private var selection: Ride?
+
+    @State private var columnVisibility = NavigationSplitViewVisibility.all
+
     private var localizeNumber = LocalizeNumbers()
 
     let helper = Helper()
 
     var body: some View {
-        NavigationView {
-            if items.count > 0 {
-                List {
-                    ForEach(items) { item in
-                        NavigationLink(
-                            destination: RideDetailView(ride: item).navigationTitle(returnTitleText(item: item))
-                        ) {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 10) {
-                                    returnTitle(item: item)
-                                    if item.locations?.count ?? 0 > 0 {
-                                        details(locationsAny: item.locations!.allObjects)
-                                    }
-                                }
-
-                                Spacer()
-
-                                VStack(alignment: .trailing, spacing: 10) {
-                                    if colorScheme == .dark {
-                                        Text(helper.weatherIcon(icon: item.weather?.icon ?? ""))
-                                            .font(.largeTitle)
-                                    } else {
-                                        helper.weatherIcon(
-                                            icon: item.weather?.icon ?? ""
-                                        ).symbolRenderingMode(getRenderMode())
-                                    }
-                                    Text(
-                                        localizeNumber.temp(
-                                            temp: item.weather?.temperature ?? 373.15,
-                                            unitName: item.weather?.temperatureUnit ?? ""
-                                        )
-                                    )
-                                        .font(.subheadline)
-                                }
+        NavigationSplitView(columnVisibility: $columnVisibility) {
+            List(items, selection: $selection) { item in
+                NavigationLink(value: item) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 10) {
+                            returnTitle(item: item)
+                            if item.locations?.count ?? 0 > 0 {
+                                details(locationsAny: item.locations!.allObjects)
                             }
                         }
+
+                        Spacer()
+
+                        VStack(alignment: .trailing, spacing: 10) {
+                            if colorScheme == .dark {
+                                Text(helper.weatherIcon(icon: item.weather?.icon ?? ""))
+                                    .font(.largeTitle)
+                            } else {
+                                helper.weatherIcon(
+                                    icon: item.weather?.icon ?? ""
+                                ).symbolRenderingMode(getRenderMode())
+                            }
+                            Text(
+                                localizeNumber.temp(
+                                    temp: item.weather?.temperature ?? 373.15,
+                                    unitName: item.weather?.temperatureUnit ?? ""
+                                )
+                            )
+                            .font(.subheadline)
+                        }
                     }
-                    .onDelete(perform: deleteItems)
                 }
-                .navigationBarTitle("Rides")
-                #if !os(macOS)
+            }
+            .navigationTitle("Rides")
+            #if !os(macOS) && !os(visionOS)
                 .frame(maxWidth: .infinity)
                 .listStyle(GroupedListStyle())
-                #endif
-            } else {
-                #if os(macOS)
-                    Text("No rides available, use the iOS App to create a ride.")
-                #endif
+            #endif
+        } detail: {
+            if let item = selection {
+                RideDetailView(ride: item).navigationTitle(returnTitleText(item: item))
             }
-        }
+        }.navigationSplitViewStyle(.balanced)
     }
 
     func getRenderMode() -> SymbolRenderingMode {
