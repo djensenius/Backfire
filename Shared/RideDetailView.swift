@@ -37,7 +37,9 @@ struct RideDetailView: View {
                                 Text("\(formattedWeather.iconColor) \(temp)")
                             }.padding(5)
                         }
+                        #if !os(visionOS)
                         .background(Color("AccentColor").opacity(0.2))
+                        #endif
                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                         .padding(5)
 
