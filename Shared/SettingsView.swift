@@ -20,7 +20,6 @@ struct SettingsView: View {
 
     var body: some View {
         VStack {
-            Text("If you enable HealthKit this app will track your ride as a skating activity.")
             List {
                 Toggle("HealthKit", isOn: $useHealthKit)
                     .onAppear(perform: {
@@ -29,8 +28,7 @@ struct SettingsView: View {
                     .onChange(of: useHealthKit) {
                         updateHealth(use: useHealthKit)
                     }
-                Toggle("Backfire Board", isOn: $useBackfire
-                )
+                Toggle("Backfire Board", isOn: $useBackfire)
                     .onAppear(perform: {
                         configureBackfire()
                     })
@@ -38,7 +36,7 @@ struct SettingsView: View {
                         updateBackfire(use: useBackfire)
                     }
             }
-        }.padding()
+        }
     }
 
     func updateHealth(use: Bool) {

@@ -237,7 +237,11 @@ class Helper {
             return Image(systemName: "thermometer")
                 .renderingMode(.original)
         default:
-            return Image(systemName: icon)
+            var fillIcon = icon
+            if !icon.contains("fill") {
+                fillIcon += ".fill"
+            }
+            return Image(systemName: fillIcon)
                 .renderingMode(.original)
         }
     }

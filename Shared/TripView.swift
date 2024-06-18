@@ -64,6 +64,10 @@ struct TripView: View {
                     .onDelete(perform: deleteItems)
                 }
                 .navigationBarTitle("Rides")
+                #if !os(macOS)
+                .frame(maxWidth: .infinity)
+                .listStyle(GroupedListStyle())
+                #endif
             } else {
                 #if os(macOS)
                     Text("No rides available, use the iOS App to create a ride.")
