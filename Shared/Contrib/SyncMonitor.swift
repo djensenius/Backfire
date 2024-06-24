@@ -95,6 +95,9 @@ import CloudKit
 public class SyncMonitor: ObservableObject {
     /// A singleton to use
     public static let shared = SyncMonitor()
+    #if os(watchOS)
+    private var extendedSession = ExtendedSessionCoordinator.init()
+    #endif
 
     // MARK: - Summary properties -
 
@@ -513,12 +516,18 @@ public class SyncMonitor: ObservableObject {
         // ends. If it has an endDate, it means the event finished.
         if let startDate = event.startDate, event.endDate == nil {
             state = .inProgress(started: startDate)
+            #if os(watchOS)
+            extendedSession.start()
+            #endif
         } else if let startDate = event.startDate, let endDate = event.endDate {
             if event.succeeded {
                 state = .succeeded(started: startDate, ended: endDate)
             } else {
                 state = .failed(started: startDate, ended: endDate, error: event.error)
             }
+            #if os(watchOS)
+            extendedSession.invalidate()
+            #endif
         }
 
         switch event.type {

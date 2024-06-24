@@ -16,6 +16,7 @@ var lon: Double = 0.0
 var locationList: [CLLocation] = []
 var timer = Timer()
 var getFirstLocationTimer = Timer()
+var extendedSession = ExtendedSessionCoordinator.init()
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -28,7 +29,6 @@ struct ContentView: View {
     @State private var useBackfire = false
     @State private var started = false
     @State var buttonDisabled = true
-    @State private var extendedSession = ExtendedSessionCoordinator.init()
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -154,15 +154,9 @@ struct ContentView: View {
                         syncMonitor.syncStateSummary.inProgress {
                         Image(systemName: syncMonitor.syncStateSummary.symbolName)
                             .foregroundColor(syncMonitor.syncStateSummary.symbolColor)
-                            .onAppear {
-                                extendedSession.start()
-                            }
                     } else {
                         Image(systemName: syncMonitor.syncStateSummary.symbolName)
                             .foregroundColor(syncMonitor.syncStateSummary.symbolColor)
-                            .onAppear {
-                                extendedSession.invalidate()
-                            }
                     }
                     Spacer()
                     Text("You have \(items.count) rides")
