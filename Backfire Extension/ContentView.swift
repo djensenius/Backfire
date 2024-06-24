@@ -16,18 +16,19 @@ var lon: Double = 0.0
 var locationList: [CLLocation] = []
 var timer = Timer()
 var getFirstLocationTimer = Timer()
-var extendedSession = ExtendedSessionCoordinator.init()
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject var lm = LocationManager.init()
     @ObservedObject var boardManager = BLEManager()
+    @ObservedObject var syncMonitor: SyncMonitor = SyncMonitor.shared
     @State var healthtracking = HealthTracking()
     @State private var didLongPress = false
     @State private var useHealthKit = false
     @State private var useBackfire = false
     @State private var started = false
     @State var buttonDisabled = true
+    @State private var extendedSession = ExtendedSessionCoordinator.init()
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -130,6 +131,7 @@ struct ContentView: View {
                     Text("To connect to a Backfire Board connection swipe to settings.")
                     Spacer()
                     Text("You have \(items.count) rides")
+                    // Add sync stuff here
                     Button("Ride!") {
                         started = true
                         addRide()
@@ -147,6 +149,22 @@ struct ContentView: View {
                         await lm.fetchTheWeather()
                     }
                 } else {
+                    // Add sync stuff here
+                    if syncMonitor.syncStateSummary.isBroken ||
+                        syncMonitor.syncStateSummary.inProgress {
+                        Image(systemName: syncMonitor.syncStateSummary.symbolName)
+                            .foregroundColor(syncMonitor.syncStateSummary.symbolColor)
+                            .onAppear {
+                                extendedSession.start()
+                            }
+                    } else {
+                        Image(systemName: syncMonitor.syncStateSummary.symbolName)
+                            .foregroundColor(syncMonitor.syncStateSummary.symbolColor)
+                            .onAppear {
+                                extendedSession.invalidate()
+                            }
+                    }
+                    Spacer()
                     Text("You have \(items.count) rides")
                     Button("Connect and Ride!") {
                         boardManager.startScanning()
