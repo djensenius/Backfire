@@ -11,3 +11,4 @@ function_body_length:
   error: 150
 excluded:
   - Packages/
+  - Shared/Contrib

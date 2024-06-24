@@ -11,6 +11,7 @@ struct SettingsView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var useHealthKit = false
     @State private var useBackfire = false
+    @ObservedObject var syncMonitor: SyncMonitor = SyncMonitor.shared
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -36,6 +37,10 @@ struct SettingsView: View {
                         updateBackfire(use: useBackfire)
                     }
             }
+            Spacer()
+            Text(syncMonitor.syncStateSummary.description)
+            Image(systemName: syncMonitor.syncStateSummary.symbolName)
+                     .foregroundColor(syncMonitor.syncStateSummary.symbolColor)
         }
     }
 
