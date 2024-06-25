@@ -32,14 +32,24 @@ class LocalizeNumbers {
         return formatter.string(from: kmh)
     }
 
-    func temp(temp: Double, length: Int = 1) -> String {
+    func temp(temp: Double, length: Int = 1, unitName: String) -> String {
+        var cel: Measurement<UnitTemperature>
         let formatter = MeasurementFormatter()
         formatter.locale = Locale.current
         formatter.unitStyle = .short
         let num = NumberFormatter()
         num.maximumFractionDigits = length
         formatter.numberFormatter = num
-        let cel = Measurement(value: temp, unit: UnitTemperature.kelvin)
+
+        switch unitName {
+        case UnitTemperature.celsius.symbol:
+            cel = Measurement(value: temp, unit: UnitTemperature.celsius)
+        case UnitTemperature.fahrenheit.symbol:
+            cel = Measurement(value: temp, unit: UnitTemperature.fahrenheit)
+        default:
+            cel = Measurement(value: temp, unit: UnitTemperature.kelvin)
+        }
+
         return formatter.string(from: cel)
     }
 

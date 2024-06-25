@@ -12,10 +12,12 @@ class HealthTracking: NSObject, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDe
     let healthStore = HKHealthStore()
     var session: HKWorkoutSession!
     var builder: HKLiveWorkoutBuilder!
+    var tracking: Bool = false
 
     func workoutSession(_ workoutSession: HKWorkoutSession,
                         didChangeTo toState: HKWorkoutSessionState,
                         from fromState: HKWorkoutSessionState, date: Date) {
+        print("Change state?")
         if toState == .ended {
             print("The workout has now ended.")
             builder.endCollection(withEnd: Date()) { (_, _) in
@@ -39,6 +41,7 @@ class HealthTracking: NSObject, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDe
     }
 
     func startHealthTracking() {
+        print("Starting health tracking")
         let typesToShare: Set = [
             HKQuantityType.workoutType()
         ]
@@ -72,11 +75,13 @@ class HealthTracking: NSObject, HKWorkoutSessionDelegate, HKLiveWorkoutBuilderDe
         builder.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
                                                      workoutConfiguration: configuration)
         session.startActivity(with: Date())
+        self.tracking = true
         builder.beginCollection(withStart: Date()) { (_, _) in
             // The workout has started.
         }
     }
     func stopHeathTracking() {
         session.end()
+        self.tracking = false
     }
 }

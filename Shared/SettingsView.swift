@@ -11,6 +11,7 @@ struct SettingsView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var useHealthKit = false
     @State private var useBackfire = false
+    @ObservedObject var syncMonitor: SyncMonitor = SyncMonitor.shared
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -20,25 +21,27 @@ struct SettingsView: View {
 
     var body: some View {
         VStack {
-            Text("If you enable HealthKit this app will track your ride as a skating activity.")
             List {
                 Toggle("HealthKit", isOn: $useHealthKit)
                     .onAppear(perform: {
                         configureHealthKit()
                     })
-                    .onChange(of: useHealthKit, perform: { value in
-                        updateHealth(use: value)
-                    })
-                Toggle("Backfire Board", isOn: $useBackfire
-                )
+                    .onChange(of: useHealthKit) {
+                        updateHealth(use: useHealthKit)
+                    }
+                Toggle("Backfire Board", isOn: $useBackfire)
                     .onAppear(perform: {
                         configureBackfire()
                     })
-                    .onChange(of: useBackfire, perform: { value in
-                        updateBackfire(use: value)
-                    })
+                    .onChange(of: useBackfire) {
+                        updateBackfire(use: useBackfire)
+                    }
             }
-        }.padding()
+            Spacer()
+            Text(syncMonitor.syncStateSummary.description)
+            Image(systemName: syncMonitor.syncStateSummary.symbolName)
+                     .foregroundColor(syncMonitor.syncStateSummary.symbolColor)
+        }
     }
 
     func updateHealth(use: Bool) {

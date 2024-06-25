@@ -19,6 +19,7 @@ struct RideDetailsText: View {
     let localizeNumber = LocalizeNumbers()
 
     @State var parsedRideDetails: [RideDetails?] = []
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         let helper = Helper()
@@ -97,11 +98,17 @@ struct RideDetailsText: View {
         let batteryStart = RideDetails(title: "Battery Start", value: "\(rideDetails.startBattery)%")
         let temprature = RideDetails(
             title: "Temprature",
-            value: localizeNumber.temp(temp: formattedWeather?.temperature ?? 0)
+            value: localizeNumber.temp(
+                temp: formattedWeather?.temperature ?? 0,
+                unitName: formattedWeather?.temperatureUnit ?? ""
+            )
         )
         let feelsLike = RideDetails(
             title: "Feels Like",
-            value: localizeNumber.temp(temp: formattedWeather?.feelsLike ?? 0)
+            value: localizeNumber.temp(
+                temp: formattedWeather?.feelsLike ?? 0,
+                unitName: formattedWeather?.feelsLikeUnit ?? ""
+            )
         )
 
         let rideTime = RideDetails(title: "Ride Time", value: rideDetails.rideTime)
@@ -111,39 +118,22 @@ struct RideDetailsText: View {
         let weatherDescription = RideDetails(
             title: String("\(formattedWeather!.icon)"),
             value: formattedWeather?.description ?? "",
-            image: formattedWeather!.icon
+            image: formattedWeather!.icon.symbolRenderingMode(getRenderMode())
         )
         let windSpeed = RideDetails(
             title: "Wind Speed",
             value: localizeNumber.speed(speed: Int(formattedWeather?.windSpeed ?? 0))
         )
-        if (rideDetails.endBattery != 0 || rideDetails.startBattery != 0) {
+        if rideDetails.endBattery != 0 || rideDetails.startBattery != 0 {
             return [
-                rideDistance,
-                rideTime,
-                maxSpeed,
-                avgSpeed,
-                climb,
-                decline,
-                batteryStart,
-                batteryEnd,
-                temprature,
-                weatherDescription,
-                feelsLike,
+                rideDistance, rideTime, maxSpeed, avgSpeed, climb, decline,
+                batteryStart, batteryEnd, temprature, weatherDescription, feelsLike,
                 windSpeed
             ]
         }
         return [
-            rideDistance,
-            rideTime,
-            maxSpeed,
-            avgSpeed,
-            climb,
-            decline,
-            temprature,
-            weatherDescription,
-            feelsLike,
-            windSpeed
+            rideDistance, rideTime, maxSpeed, avgSpeed, climb,
+            decline, temprature, weatherDescription, feelsLike, windSpeed
         ]
 
     }
@@ -183,6 +173,16 @@ struct RideDetailsText: View {
             Text("\(timeText) / \(String(format: "%.02f", totalDistance / 1000)) KMs")
                 .font(.subheadline)
         )
+    }
+
+    func getRenderMode() -> SymbolRenderingMode {
+        var renderingMode: SymbolRenderingMode = .multicolor
+        #if !os(visionOS)
+        if colorScheme == .light {
+            renderingMode = .monochrome
+        }
+        #endif
+        return renderingMode
     }
 }
 

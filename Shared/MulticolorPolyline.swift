@@ -10,7 +10,7 @@ import MapKit
 
 // extension MKPolyline {
 class MulticolorPolyline: MKPolyline {
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
         var color = UIColor.black
     #else
         var color = NSColor.black

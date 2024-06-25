@@ -13,14 +13,16 @@ var lat: Double = 0.0
 var lon: Double = 0.0
 var locationList: [CLLocation] = []
 var timer = Timer()
+var getFirstLocationTimer = Timer()
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var boardManager: BLEManager
     @StateObject var lm = LocationManager.init()
     @State private var started = false
-
+    @State var buttonDisabled = true
     var localizeNumber = LocalizeNumbers()
+    var helper = Helper()
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Config.timestamp, ascending: false)],
@@ -107,9 +109,9 @@ struct ContentView: View {
                     } else if boardManager.isConnected == true || started == true {
                         Button(action: {
                             stop()
-                        }) {
+                        }, label: {
                             Text("End Ride")
-                        }
+                        })
                     }
                 }
             }
@@ -120,11 +122,17 @@ struct ContentView: View {
         return AnyView(
             Button(action: {
                 addRide()
-            }) {
+            }, label: {
                 Text("Connect and Ride")
-            }.onAppear(perform: {
-                lm.startMonitoring()
-            })
+            }).onAppear {
+                getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                    block: {_ in
+                        getFirstLocation()
+                })
+            }.task {
+                await lm.startMonitoring()
+                await lm.fetchTheWeather()
+            }
         )
     }
 
@@ -132,11 +140,17 @@ struct ContentView: View {
         return AnyView(
             Button(action: {
                 addRide()
-            }) {
+            }, label: {
                 Text("Ride")
-            }.onAppear(perform: {
-                lm.startMonitoring()
-            })
+            }).onAppear {
+                getFirstLocationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
+                                                             block: {_ in
+                    getFirstLocation()
+                })
+            }.task {
+                await lm.startMonitoring()
+                await lm.fetchTheWeather()
+            }.disabled(buttonDisabled)
         )
     }
 
@@ -144,12 +158,12 @@ struct ContentView: View {
         return AnyView(
             Button(action: {
                 stop()
-            }) {
+            }, label: {
                 VStack {
                     Text("Connecting to board")
                     Text("End Ride")
                 }
-            }
+            })
         )
     }
 
@@ -172,13 +186,12 @@ struct ContentView: View {
         currentRide = Ride(context: viewContext)
         currentRide?.timestamp = Date()
         #if os(iOS)
-        currentRide?.device = UIDevice().model
+        currentRide?.device = UIDevice.current.model
         #else
         currentRide?.device = "macOS"
         #endif
         do {
             try self.viewContext.save()
-            lm.fetchTheWeather()
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
                                  block: {_ in
                                     updateLoaction()
@@ -193,25 +206,23 @@ struct ContentView: View {
         }
     }
 
+    func getFirstLocation() {
+        if lm.location?.coordinate.latitude != nil &&
+            (lm.location?.coordinate.latitude != lat || lm.location?.coordinate.longitude != lon) {
+            lat = (lm.location?.coordinate.latitude)!
+            lon = (lm.location?.coordinate.longitude)!
+            print("Going to invalidate")
+            buttonDisabled = false
+            Task {
+                await lm.fetchTheWeather()
+            }
+            getFirstLocationTimer.invalidate()
+        }
+    }
+
     func updateLoaction() {
-        if currentRide?.weather == nil && lm.weather.current != nil {
-            let weather = Weather(context: viewContext)
-            weather.clouds = Int16(lm.weather.current?.clouds ?? 0)
-            weather.feelsLike = lm.weather.current?.feelsLike ?? 0
-            weather.humidity = Int16(lm.weather.current?.humidity ?? 0)
-            weather.icon = lm.weather.current?.weather[0].icon ?? ""
-            weather.mainDescription = lm.weather.current?.weather[0].main ?? ""
-            weather.temperature = lm.weather.current?.temp ?? 0
-            weather.timestamp = Date()
-            weather.uvi = lm.weather.current?.uvi ?? 0
-            weather.weatherDescription = lm.weather.current?.weather[0].weatherDescription ?? ""
-            weather.windDeg = Int16(lm.weather.current?.windDeg ?? 0)
-            weather.windSpeed = lm.weather.current?.windSpeed ?? 0
-            weather.visibility = Int16(lm.weather.current?.visibility ?? 0)
-            weather.dt = Int32(lm.weather.current?.dt ?? 0)
-            weather.dewPoint = lm.weather.current?.dewPoint ?? 0
-            weather.sunset = Int32(lm.weather.current?.sunrise ?? 0)
-            weather.sunrise = Int32(lm.weather.current?.sunrise ?? 0)
+        if currentRide?.weather == nil && lm.weather != nil {
+            let weather = getWeather()
             currentRide?.weather = weather
             do {
                 try self.viewContext.save()
@@ -265,6 +276,12 @@ struct ContentView: View {
                 fatalError("Unresolved error 5\(nsError), \(nsError.userInfo)")
             }
         }
+    }
+
+    func getWeather() -> Weather {
+        let theWeather = Weather(context: viewContext)
+        let weather = helper.getWeather(lm: lm, weather: theWeather)
+        return weather
     }
 
     func checkConfig() -> Bool {

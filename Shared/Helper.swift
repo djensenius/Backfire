@@ -11,11 +11,14 @@ import SwiftUI
 
 struct DetailWeather {
     var temperature: Double
+    var temperatureUnit: String
     var icon: Image
     var iconColor: Image
     var description: String
     var windSpeed: Double
+    var windSpeedUnit: String
     var feelsLike: Double
+    var feelsLikeUnit: String
 }
 
 struct DetailRide {
@@ -40,9 +43,7 @@ class Helper {
         guard let locations = ride.locations?.allObjects as? [Location] else {
             fatalError("Could not cast locations")
         }
-        let sortedLocations = locations.sorted {
-            $0.timestamp?.compare($1.timestamp ?? Date()) == .orderedAscending
-        }
+        let sortedLocations = sortLoactions(locations: locations)
 
         let diffComponents = Calendar.current.dateComponents(
             [.minute, .second],
@@ -105,12 +106,8 @@ class Helper {
                 endBattery = location.battery
             }
         }
-        var mostMode = "Economy"
-        if speed > economy && speed > turbo {
-            mostMode = "Sport"
-        } else if turbo > speed && turbo > economy {
-            mostMode = "Turbo"
-        }
+
+        let mostMode = getMostMode(speed: speed, economy: economy, turbo: turbo)
 
         let rideTime = Calendar.current.dateComponents(
             [.second],
@@ -133,33 +130,50 @@ class Helper {
         )
     }
 
+    func getMostMode(speed: Int, economy: Int, turbo: Int) -> String {
+        var mostMode = "Economy"
+        if speed > economy && speed > turbo {
+            mostMode = "Sport"
+        } else if turbo > speed && turbo > economy {
+            mostMode = "Turbo"
+        }
+        return mostMode
+    }
+    func sortLoactions(locations: [Location]) -> [Location] {
+        return locations.sorted {
+            $0.timestamp?.compare($1.timestamp ?? Date()) == .orderedAscending
+        }
+    }
+
     func formatWeather(weather: Weather?) -> DetailWeather {
         var icon: Image?
         let iconColor = weatherIcon(icon: weather?.icon ?? "")
-        if colorScheme == .dark {
-            icon = iconColor
-        } else {
-            icon = iconColor.renderingMode(.template)
-        }
+        icon = iconColor
 
         if weather == nil {
             return DetailWeather(
                 temperature: 0,
+                temperatureUnit: "",
                 icon: icon!,
                 iconColor: iconColor,
                 description: "",
                 windSpeed: 100.0,
-                feelsLike: 100.0
+                windSpeedUnit: "",
+                feelsLike: 100.0,
+                feelsLikeUnit: ""
             )
         }
 
         return DetailWeather(
             temperature: weather!.temperature,
+            temperatureUnit: weather?.temperatureUnit ?? "",
             icon: icon!,
             iconColor: iconColor,
             description: weather!.mainDescription ?? "",
             windSpeed: weather!.windSpeed,
-            feelsLike: weather!.feelsLike
+            windSpeedUnit: weather?.windSpeedUnit ?? "",
+            feelsLike: weather!.feelsLike,
+            feelsLikeUnit: weather?.feelsLikeUnit ?? ""
         )
     }
 
@@ -219,9 +233,42 @@ class Helper {
         case "50n":
             return Image(systemName: "cloud.fog.fill")
                 .renderingMode(.original)
-        default:
+        case "":
             return Image(systemName: "thermometer")
                 .renderingMode(.original)
+        default:
+            var fillIcon = icon
+            if !icon.contains("fill") {
+                fillIcon += ".fill"
+            }
+            return Image(systemName: fillIcon)
+                .renderingMode(.original)
         }
+    }
+
+    func getWeather(lm: LocationManager, weather: Weather) -> Weather {
+        weather.clouds = Int16((lm.weather?.cloudCover ?? 0) * 100)
+        weather.feelsLike = lm.weather?.apparentTemperature.value ?? 0
+        weather.feelsLikeUnit = lm.weather?.apparentTemperature.unit.symbol ?? ""
+        weather.humidity = Int16((lm.weather?.humidity ?? 0) * 100)
+        weather.icon = lm.weather?.symbolName ?? ""
+        weather.mainDescription = lm.weather?.condition.description ?? ""
+        weather.temperature = lm.weather?.temperature.value ?? 0
+        weather.temperatureUnit = lm.weather?.temperature.unit.symbol ?? ""
+        weather.timestamp = Date()
+        weather.uvi = Double(lm.weather?.uvIndex.value ?? 0)
+        weather.uviCategory = lm.weather?.uvIndex.category.description ?? ""
+        weather.weatherDescription = lm.weather?.condition.description ?? ""
+        weather.windDeg = Int16(lm.weather?.wind.direction.value ?? 0)
+        weather.windSpeed = lm.weather?.wind.speed.value ?? 0
+        weather.windCompassDirection = lm.weather?.wind.compassDirection.description ?? ""
+        weather.windSpeedUnit = lm.weather?.wind.speed.unit.symbol ?? ""
+        weather.visibilityDouble = lm.weather?.visibility.value ?? 0
+        weather.visibilityUnit = lm.weather?.visibility.unit.symbol ?? ""
+        weather.dt = Int32((lm.weather?.metadata.date ?? Date()).timeIntervalSince1970)
+        weather.dewPoint = lm.weather?.dewPoint.value ?? 0
+        weather.dewPointUnit = lm.weather?.dewPoint.unit.symbol ?? ""
+
+        return weather
     }
 }
