@@ -67,8 +67,9 @@ struct TripView: View {
                 .listStyle(GroupedListStyle())
             #endif
         } detail: {
-            if let item = selection {
-                RideDetailView(ride: item).navigationTitle(returnTitleText(item: item))
+            if let detailItem = selection {
+                RideDetailView(ride: detailItem).navigationTitle(returnTitleText(item: detailItem))
+                    .id(detailItem.id)
             }
         }.navigationSplitViewStyle(.balanced)
     }
