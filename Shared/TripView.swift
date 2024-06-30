@@ -86,7 +86,7 @@ struct TripView: View {
 
     func details(locationsAny: [Any]) -> AnyView {
         guard let locations = locationsAny as? [Location] else {
-            fatalError("Could nto cast variable")
+            fatalError("Could not cast variable")
         }
         if locations.count == 0 {
             return AnyView(Text(""))
@@ -182,7 +182,7 @@ struct TripView: View {
                 // may be useful during development.
                 let nsError = error as NSError
                 print(nsError)
-                fatalError("Unresolved error 2 \(nsError), \(nsError.userInfo)")
+                // fatalError("Unresolved error 2 \(nsError), \(nsError.userInfo)")
             }
         }
     }
