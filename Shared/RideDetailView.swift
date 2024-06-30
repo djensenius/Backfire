@@ -54,6 +54,7 @@ struct RideDetailView: View {
                     .font(.footnote)
                     .padding([.bottom, .leading])
                 } else {
+                    Spacer()
                     Text("Not enough ride data to show ride.")
                 }
             }
