@@ -23,6 +23,10 @@ struct TripView: View {
 
     @State private var columnVisibility = NavigationSplitViewVisibility.all
 
+    #if os(macOS) || os(visionOS)
+    @ObservedObject var syncMonitor: SyncMonitor = SyncMonitor.shared
+    #endif
+
     private var localizeNumber = LocalizeNumbers()
 
     let helper = Helper()
@@ -65,6 +69,13 @@ struct TripView: View {
             #if !os(macOS) && !os(visionOS)
                 .frame(maxWidth: .infinity)
                 .listStyle(GroupedListStyle())
+            #endif
+            #if os(macOS) || os(visionOS)
+            HStack {
+                Text(syncMonitor.syncStateSummary.description)
+                Image(systemName: syncMonitor.syncStateSummary.symbolName)
+                    .foregroundColor(syncMonitor.syncStateSummary.symbolColor)
+            }.padding(.all)
             #endif
         } detail: {
             if let detailItem = selection {
