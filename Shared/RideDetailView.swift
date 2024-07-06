@@ -18,31 +18,42 @@ struct RideDetailView: View {
         let temp = localizeNumber.temp(temp: formattedWeather.temperature, unitName: formattedWeather.temperatureUnit)
         #if os(iOS)
         let size = UIDevice.current.userInterfaceIdiom == .phone ? 200.0 : 380.0
+        let tempPadding = 5.0
         #elseif os(visionOS)
         let size = 300.0
+        let tempPadding = 20.0
         #else
         let size = 380.0
+        let tempPadding = 5.0
         #endif
 
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 if ride.locations?.count ?? 0 > 1 {
                     ZStack(alignment: .topTrailing) {
-                        if ride.locations?.count ?? 0 > 1 {
-                            MapView(rideLocations: ride.locations!.allObjects)
-                                .frame(height: size)
+                        NavigationStack {
+                            NavigationLink {
+                                FullMapView(ride: ride)
+                                    .navigationTitle("Ride Details")
+                            } label: {
+                                MapView(rideLocations: ride.locations!.allObjects)
+                                    .frame(height: size)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                                #if !os(macOS)
+                               .hoverEffectDisabled()
+                               #endif
                         }
                         VStack {
                             VStack {
                                 Text("\(formattedWeather.iconColor) \(temp)")
-                            }.padding(5)
+                            }.padding(tempPadding)
                         }
                         #if !os(visionOS)
                         .background(Color("AccentColor").opacity(0.2))
                         #endif
                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                         .padding(5)
-
                     }
                 }
                 if ride.locations?.count ?? 0 > 0 {
