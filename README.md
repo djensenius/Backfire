@@ -1,4 +1,8 @@
 # Backfire
+
+> [!CAUTION]
+> As of 20 April 2026, this project is no longer maintained and has been archived. My board broke and I don't have a newer one to test with. Feel free to fork and continue development if you have a board and want to keep this project alive.
+
  Simple iOS, watchOS, macOS app to read data from Backfire Skateboards.
 
  This code is all done by reverse engineering the bluetooth connection on the [Backfire Zealot S](https://www.backfireboards.com/products/backfire-zealot-s-belt-drive-electric-skateboard) electric skateboard.
